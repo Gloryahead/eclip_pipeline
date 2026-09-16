@@ -1,0 +1,21 @@
+# eCLIP sample manifest — Mouse experiments (Rhine et al. 2025, Nat Neurosci)
+# GEO: GSE276985 (IP samples only; SMInput NOT deposited — see download_geo_fastqs.sh)
+#
+# Species: Mus musculus
+# Tissue: cerebellum
+# Ages: 1.5 months (young), 6 months (mid-age), 22–25 months (old)
+# Target: TDP-43
+# Genome: mm10 (GRCm38), GENCODE M35
+#
+# ⚠  Input_fastq: fill in with SMInput FASTQ paths once obtained from authors.
+#    CLIP_fastq file names match what download_geo_fastqs.sh saves to data/fastq/.
+#
+Experiment,Sample,Cells,Input_replicate,Input_adapter,Input_fastq,CLIP_replicate,CLIP_adapter,CLIP_fastq,Notes
+TDP43_mouse_youngAge,TDP43,mouse_cerebellum_1p5mo,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_youngAge_ip_rep1.fastq.gz,SRR30639401
+TDP43_mouse_youngAge,TDP43,mouse_cerebellum_1p5mo,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_youngAge_ip_rep2.fastq.gz,SRR30639400
+TDP43_mouse_youngAge,TDP43,mouse_cerebellum_1p5mo,3,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,3,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_youngAge_ip_rep3.fastq.gz,SRR30639399
+TDP43_mouse_youngAge,TDP43,mouse_cerebellum_1p5mo,4,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,4,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_youngAge_ip_rep4.fastq.gz,SRR30639398
+TDP43_mouse_midAge,TDP43,mouse_cerebellum_6mo,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_midAge_ip_rep1.fastq.gz,SRR30639397
+TDP43_mouse_midAge,TDP43,mouse_cerebellum_6mo,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_midAge_ip_rep2.fastq.gz,SRR30639396
+TDP43_mouse_oldAge,TDP43,mouse_cerebellum_22to25mo,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_oldAge_ip_rep1.fastq.gz,SRR30639395
+TDP43_mouse_oldAge,TDP43,mouse_cerebellum_22to25mo,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_mouse_oldAge_ip_rep2.fastq.gz,SRR30639394

@@ -1,0 +1,44 @@
+# eCLIP sample manifest — Human experiments (Rhine et al. 2025, Nat Neurosci)
+# GEO: GSE276985 (IP samples only; input/SMInput NOT deposited — see download_geo_fastqs.sh)
+#
+# Cell type key:
+#   NGN2 = iPSC-derived neurons (young/control model)
+#   NK   = transdifferentiated neurons (aged model; NK = neurally-induced keratinocytes)
+#
+# ⚠  Input_fastq column: fill in paths to SMInput FASTQ files once obtained.
+#    The size-matched inputs were not deposited to GEO; contact the authors
+#    or check ENCODE for compatible inputs from the same protocol/cell line.
+#
+# CLIP_fastq file names match what download_geo_fastqs.sh saves to data/fastq/.
+#
+# Experiments present in GSE276985:
+#   TDP43_NGN2_unstress, TDP43_NGN2_stress, TDP43_NK_unstress
+#   Caprin1_NGN2_unstress, Caprin1_NGN2_stress, Caprin1_NK_unstress
+#   G3BP1_NGN2_unstress, G3BP1_NGN2_stress, G3BP1_NK_unstress
+#   G3BP1_brain_midage (3 donors, 30–50 yr), G3BP1_brain_oldage (3 donors, 80–90 yr)
+# NOTE: TDP-43 human brain (frontal cortex) eCLIP is NOT in GSE276985.
+#
+Experiment,Sample,Cells,Input_replicate,Input_adapter,Input_fastq,CLIP_replicate,CLIP_adapter,CLIP_fastq,Notes
+TDP43_NGN2_unstress,TDP43,NGN2_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_NGN2_unstress_ip_rep1.fastq.gz,SRR30639407
+TDP43_NGN2_unstress,TDP43,NGN2_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_NGN2_unstress_ip_rep2.fastq.gz,SRR30639406
+TDP43_NGN2_stress,TDP43,NGN2_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_NGN2_stress_ip_rep1.fastq.gz,SRR30639405
+TDP43_NGN2_stress,TDP43,NGN2_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_NGN2_stress_ip_rep2.fastq.gz,SRR30639404
+TDP43_NK_unstress,TDP43,NK_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_NK_unstress_ip_rep1.fastq.gz,SRR30639403
+TDP43_NK_unstress,TDP43,NK_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/TDP43_NK_unstress_ip_rep2.fastq.gz,SRR30639402
+Caprin1_NGN2_unstress,Caprin1,NGN2_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/Caprin1_NGN2_unstress_ip_rep1.fastq.gz,SRR30639393
+Caprin1_NGN2_unstress,Caprin1,NGN2_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/Caprin1_NGN2_unstress_ip_rep2.fastq.gz,SRR30639392
+Caprin1_NGN2_stress,Caprin1,NGN2_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/Caprin1_NGN2_stress_ip_rep1.fastq.gz,SRR30639391
+Caprin1_NGN2_stress,Caprin1,NGN2_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/Caprin1_NGN2_stress_ip_rep2.fastq.gz,SRR30639390
+Caprin1_NK_unstress,Caprin1,NK_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/Caprin1_NK_unstress_ip_rep1.fastq.gz,SRR30639389
+Caprin1_NK_unstress,Caprin1,NK_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/Caprin1_NK_unstress_ip_rep2.fastq.gz,SRR30639388
+G3BP1_NGN2_unstress,G3BP1,NGN2_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_NGN2_unstress_ip_rep1.fastq.gz,SRR30639387
+G3BP1_NGN2_unstress,G3BP1,NGN2_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_NGN2_unstress_ip_rep2.fastq.gz,SRR30639386
+G3BP1_NGN2_stress,G3BP1,NGN2_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_NGN2_stress_ip_rep1.fastq.gz,SRR30639385
+G3BP1_NGN2_stress,G3BP1,NGN2_neurons,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_NGN2_stress_ip_rep2.fastq.gz,SRR30639384
+G3BP1_NK_unstress,G3BP1,NK_neurons,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_NK_unstress_ip_rep1.fastq.gz,SRR30639383
+G3BP1_brain_midage,G3BP1,frontal_cortex_midage,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_brain_midage_ip_rep1.fastq.gz,SRR30639382
+G3BP1_brain_midage,G3BP1,frontal_cortex_midage,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_brain_midage_ip_rep2.fastq.gz,SRR30639381
+G3BP1_brain_midage,G3BP1,frontal_cortex_midage,3,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,3,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_brain_midage_ip_rep3.fastq.gz,SRR30639380
+G3BP1_brain_oldage,G3BP1,frontal_cortex_oldage,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,1,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_brain_oldage_ip_rep1.fastq.gz,SRR30639379
+G3BP1_brain_oldage,G3BP1,frontal_cortex_oldage,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,2,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_brain_oldage_ip_rep2.fastq.gz,SRR30639378
+G3BP1_brain_oldage,G3BP1,frontal_cortex_oldage,3,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,FILL_IN_SMISPUT_PATH,3,/xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/G3BP1_brain_oldage_ip_rep3.fastq.gz,SRR30639377

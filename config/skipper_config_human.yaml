@@ -1,0 +1,90 @@
+# =============================================================================
+# skipper_config_human.yaml
+# Skipper eCLIP pipeline configuration — Human (hg38 / GRCh38)
+#
+# Paper: Rhine et al. 2025, Nature Neuroscience
+#   "Neuronal aging causes mislocalization of splicing proteins
+#    and unchecked cellular stress"
+#   doi: 10.1038/s41593-025-01952-z
+#
+# Targets: TDP-43, G3BP1, Caprin1
+# Cell types: transdifferentiated neurons (Tdiff), iPSC-derived neurons
+# Human brain: frontal cortex, mid-age (30-50 yr) vs old-age (80-90 yr)
+#
+# Protocol: ENCODE4 eCLIP (single-end informative read, 10 nt UMI)
+# Genome: GRCh38 (hg38), GENCODE v47
+#
+# Reference: Boyle et al. 2023, Cell Genomics
+#   "Skipper analysis of eCLIP datasets enables sensitive detection
+#    of constrained translation factor binding sites"
+# =============================================================================
+
+# ── Output and working directories ─────────────────────────────────────────
+WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/human"
+TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
+
+# Path to this config's companion manifest (fill in FASTQ paths there)
+MANIFEST: "/xdisk/haining/maarowosegbe/eclip_pipeline/config/manifest_human.csv"
+
+# ── Skipper tool directory ─────────────────────────────────────────────────
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
+
+# ── Reference files (hg38) ─────────────────────────────────────────────────
+# GFF3 annotation: GENCODE v47, pre-filtered for transcript quality
+# (run setup/01_download_references.sh to generate this file)
+GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
+
+# Primary assembly genome FASTA (gzipped)
+GENOME_FASTA: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz"
+
+# ENCODE eCLIP blacklist — excludes anomalously enriched regions
+# Leave blank ("") to disable; paper's Skipper run likely used this
+BLACKLIST: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/encode_eclip_blacklist.bed"
+
+# ── Skipper-generated intermediate files (auto-created, do not edit) ───────
+# Skipper will generate these from the GFF + genome on first run
+PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed"
+FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv"
+STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index"
+
+# Accession rankings: defines the priority order of transcript biotypes
+# This file ships with Skipper; point to your cloned copy.
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt"
+
+# ── eCLIP protocol parameters ──────────────────────────────────────────────
+# Paper uses ENCODE4 protocol:
+#   - Informative (cDNA) read is read 1
+#   - 10 nt UMI present at 5' end of the cDNA (from RT primer random bases)
+#   - UMI-tools used internally by Skipper for PCR deduplication
+PROTOCOL: "ENCODE4"
+
+# Length of the UMI in bases.
+# From the paper's RT primer: /5Phos/NNNNNNNNNNAGATCGGAAGAGCGTCGTGT/3SpC3/
+#                                      ^^^^^^^^^^  = 10 N = 10 nt UMI
+UMI_SIZE: 10
+
+# Which read carries the cDNA sequence (1 or 2).
+# ENCODE4 = read 1 is the cDNA; ENCODE3 = read 2.
+INFORMATIVE_READ: 1
+
+# ── Peak calling thresholds ────────────────────────────────────────────────
+# Gini coefficient threshold for filtering low-quality libraries.
+# 0.9 = default Skipper recommendation; higher = stricter.
+GINI_CUTOFF: 0.9
+
+# Normalization method: "new" = input-based overdispersion model
+# (matches the method in Boyle et al. 2023 and used by this paper's lab)
+NORMALIZATION: "new"
+
+# Minimum read count in a window to include it in analysis.
+# Skipper default is 2; matches the paper's settings.
+MIN_THRESHOLD: 2
+
+# Reproducibility: a window must be enriched in N replicates to be called.
+# Paper used n=2 biological replicates per condition.
+REPRODUCIBILITY: 2
+
+# ── HOMER motif analysis (optional, enabled here to match the paper) ───────
+# Paper reports top TDP-43 binding motif (GU-rich) from eCLIP data.
+# Set to false to skip motif analysis and speed up the run.
+RUN_HOMER: true

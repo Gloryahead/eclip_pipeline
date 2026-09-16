@@ -1,0 +1,36 @@
+# =============================================================================
+# skipper_config_mouse.yaml
+# Skipper eCLIP pipeline configuration — Mouse (mm10 / GRCm38)
+#
+# Paper: Rhine et al. 2025, Nature Neuroscience
+# Mouse cohorts: 1.5 mo, 6 mo, 24 mo wild-type C57BL6/J
+# Targets: TDP-43 (cerebellum eCLIP; motor cortex eCLIP)
+# Genome: GRCm38 (mm10), GENCODE M35
+# =============================================================================
+
+WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/mouse"
+TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
+MANIFEST: "/xdisk/haining/maarowosegbe/eclip_pipeline/config/manifest_mouse.csv"
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
+
+# Reference files (mm10 / GRCm38, GENCODE M35)
+GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/gencode.M35.filtered.gff3.gz"
+GENOME_FASTA: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/GRCm38.primary_assembly.genome.fa.gz"
+BLACKLIST: ""   # No mm10-specific eCLIP blacklist; leave blank
+
+PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/skipper_partition.bed"
+FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/skipper_feature_annotations.tsv"
+STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/star_index"
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt"
+
+# Protocol: same ENCODE4 10nt UMI as human experiments
+PROTOCOL: "ENCODE4"
+UMI_SIZE: 10
+INFORMATIVE_READ: 1
+
+GINI_CUTOFF: 0.9
+NORMALIZATION: "new"
+MIN_THRESHOLD: 2
+REPRODUCIBILITY: 2   # Paper used 2 mice per age cohort as replicates
+
+RUN_HOMER: true

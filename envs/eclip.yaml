@@ -1,0 +1,97 @@
+# =============================================================================
+# eclip.yaml
+# Single micromamba environment for eCLIP-seq analysis (Rhine et al. 2025).
+# Contains every tool needed to run the full Skipper pipeline:
+#   cutadapt → STAR → umi_tools → samtools → Skipper peak calling → HOMER → MultiQC
+#
+# Create with:
+#   micromamba env create -f eclip.yaml
+#
+# Activate with:
+#   micromamba activate eclip
+# =============================================================================
+name: eclip
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+
+  # ── Python runtime ──────────────────────────────────────────────────────
+  # 3.12: supported by both snakemake-executor-plugin-slurm (requires >=3.11)
+  # and pysam/bioinformatics tools on bioconda
+  - python=3.12
+
+  # ── Workflow management ─────────────────────────────────────────────────
+  - snakemake=9.12.0
+  - snakemake-executor-plugin-slurm=1.4.0
+
+  # ── Adapter trimming ────────────────────────────────────────────────────
+  # cutadapt removes the 3' RNA ligation adapter and low-quality bases.
+  # ENCODE4 eCLIP adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+  - cutadapt=4.9
+
+  # ── Alignment ───────────────────────────────────────────────────────────
+  # STAR is the aligner used by Skipper and by the RNA-seq arm of the paper
+  - star=2.7.11b
+
+  # ── UMI deduplication ───────────────────────────────────────────────────
+  # umi_tools extracts the 10 nt UMI and deduplicates PCR copies after
+  # alignment. Non-negotiable for eCLIP: reads naturally pile at crosslink
+  # sites, so flag-based dedup destroys real signal.
+  - umi_tools>=1.1.5      # 1.1.5 has no py3.12 build; solver picks compatible
+
+  # ── BAM / BED processing ────────────────────────────────────────────────
+  - samtools=1.20
+  - bedtools=2.31.1
+  - htslib=1.20           # tabix + bgzip for indexed BED/VCF
+  - pysam                 # version unpinned — resolves against python=3.10
+  - sambamba=1.0.1
+
+  # ── Quality control ─────────────────────────────────────────────────────
+  - fastqc=0.12.1
+  - multiqc=1.25.1
+  - trim-galore=0.6.10
+
+  # ── Motif analysis ──────────────────────────────────────────────────────
+  # HOMER identifies enriched k-mers in eCLIP binding sites (Fig. 2e, 2l)
+  - homer=4.11
+  - perl=5.32.1
+
+  # ── Skipper Python dependencies ─────────────────────────────────────────
+  - pandas=2.2.2
+  - numpy=1.26.4
+  - scipy=1.13.1
+  - statsmodels=0.14.2
+  - pybedtools=0.10.0
+  - pyranges=0.0.129
+  - click=8.1.7
+
+  # ── Genome coverage / bigWig ─────────────────────────────────────────────
+  # deeptools bamCoverage handles bigWig; dropping ucsc-bedgraphtobigwig
+  # which requires legacy openssl 1.1.x incompatible with other packages
+  - deeptools=3.5.4
+
+  # ── Compression & download ──────────────────────────────────────────────
+  - pigz=2.8
+  - wget
+  - curl
+  - sra-tools=3.1.1
+
+  # ── R + Bioconductor packages ───────────────────────────────────────────
+  # Bioconductor package versions are unpinned: the exact build numbers
+  # that were failing (1.64.0, 1.56.x, 1.38.0) don't exist on bioconda
+  # for this channel configuration. Let conda resolve compatible versions.
+  - r-base=4.3.3
+  - r-tidyverse
+  - r-data.table
+  - r-ggplot2
+  - r-dplyr
+  - r-stringr
+  - bioconductor-rtracklayer      # required by Skipper GFF filter script
+  - bioconductor-genomicranges
+  - bioconductor-genomicfeatures
+  - bioconductor-biocparallel
+
+  # ── Git ─────────────────────────────────────────────────────────────────
+  - git

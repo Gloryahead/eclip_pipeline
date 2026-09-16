@@ -1,0 +1,62 @@
+# =============================================================================
+# SLURM executor profile for Snakemake 9 + snakemake-executor-plugin-slurm
+# UArizona HPC (Puma cluster)
+#
+# Usage: snakemake --profile config/profiles/slurm ...
+# =============================================================================
+
+# Use the SLURM executor plugin
+executor: slurm
+
+# Maximum number of jobs submitted to SLURM at once.
+# UArizona standard allocation allows ~200 concurrent jobs; stay conservative.
+jobs: 50
+
+# Resubmit failed jobs up to this many times before giving up.
+retries: 2
+
+# Wait for missing output files up to this many seconds (network FS latency)
+latency-wait: 60
+
+# Keep incomplete output files on failure for debugging (remove for clean runs)
+keep-incomplete: false
+
+# ── Default SLURM resource requests ───────────────────────────────────────
+# These are overridden per-rule by Skipper's own resource directives.
+# They apply only to rules that don't specify their own resources.
+default-resources:
+  slurm_account: haining          # UArizona HPC group account
+  slurm_partition: standard       # standard | windfall | high_priority
+  runtime: 120                    # minutes; most short rules finish in < 30
+  mem_mb: 8000                    # 8 GB default
+  cpus_per_task: 4
+  # Export the full parent environment (PATH, CONDA_PREFIX, etc.) to every
+  # child SLURM job so the eclip conda env tools are on PATH without needing
+  # per-rule conda specs (Skipper does not define per-rule conda envs).
+  slurm_extra: "'--export=ALL'"
+
+# ── Per-rule resource overrides ────────────────────────────────────────────
+# STAR alignment and STAR indexing are the most resource-intensive steps.
+# Skipper submits these as separate SLURM jobs via its own snakemake rules;
+# the values here serve as sensible defaults in case they're not overridden.
+set-resources:
+  star_align:
+    cpus_per_task: 16
+    mem_mb: 48000
+    runtime: 240
+  star_index:
+    cpus_per_task: 16
+    mem_mb: 64000
+    runtime: 360
+  umi_dedup:
+    cpus_per_task: 8
+    mem_mb: 32000
+    runtime: 180
+  call_peaks:
+    cpus_per_task: 4
+    mem_mb: 16000
+    runtime: 120
+  homer_motif:
+    cpus_per_task: 8
+    mem_mb: 16000
+    runtime: 240

@@ -1,0 +1,25 @@
+# snakemake_env.yaml
+# Orchestration environment for the eCLIP Skipper pipeline.
+# Contains only the workflow manager + SLURM executor + R for GFF filtering.
+# Skipper auto-installs its own tool-level conda environments on first run.
+#
+# Create with:
+#   micromamba env create -f envs/snakemake_env.yaml
+name: snakemake9
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - snakemake=9.12.0          # Pinned: Skipper requires Snakemake >=9
+  - snakemake-executor-plugin-slurm=1.4.0  # SLURM cluster execution
+  - pandas=2.2.2               # Manifest parsing
+  - pyyaml=6.0.2               # Config file handling
+  - wget                        # Reference downloads
+  - git                         # Cloning Skipper
+  # R + packages needed for Skipper's GFF transcript quality filter script
+  - r-base=4.4.1
+  - r-tidyverse=2.0.0
+  - r-data.table=1.15.4
+  - bioconductor-rtracklayer=1.64.0
