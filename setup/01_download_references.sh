@@ -37,7 +37,7 @@ set -euo pipefail
 # ── User-configurable ──────────────────────────────────────────────────────
 BASE_DIR="/xdisk/haining/maarowosegbe/eclip_pipeline"
 REF_DIR="${BASE_DIR}/references"
-SKIPPER_DIR="/home/u11/maarowosegbe/eclip_pipeline/skipper"
+SKIPPER_DIR="/home/u11/maarowosegbe/eclip_pipeline/skipper/gff_utils"
 THREADS=16
 
 # env already activated by eclip_pipeline.slurm; tools are on PATH
