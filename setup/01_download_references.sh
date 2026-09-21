@@ -38,7 +38,7 @@ set -euo pipefail
 BASE_DIR="/xdisk/haining/maarowosegbe/eclip_pipeline"
 REF_DIR="${BASE_DIR}/references"
 SKIPPER_DIR="/home/u11/maarowosegbe/eclip_pipeline/skipper/gff_utils"
-THREADS=16
+THREADS="${SLURM_NTASKS:-16}"
 
 # env already activated by eclip_pipeline.slurm; tools are on PATH
 
@@ -81,19 +81,21 @@ STAR_INDEX_HG38="${HG38_DIR}/star_index"
 if [[ ! -d "${STAR_INDEX_HG38}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_HG38}"
     HG38_FASTA_TMP="${HG38_DIR}/GRCh38.primary_assembly.genome.fa"
-    echo "Decompressing hg38 FASTA for STAR (STAR requires uncompressed input)..."
+    HG38_GFF_TMP="${HG38_DIR}/gencode.v${GENCODE_HUMAN_VER}.filtered.gff3"
+    echo "Decompressing hg38 FASTA and GFF3 for STAR..."
     zcat "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz" > "${HG38_FASTA_TMP}"
+    zcat "${FILTERED_GFF}" > "${HG38_GFF_TMP}"
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_HG38}" \
         --outFileNamePrefix "${STAR_INDEX_HG38}/" \
         --genomeFastaFiles "${HG38_FASTA_TMP}" \
-        --sjdbGTFfile "${FILTERED_GFF}" \
-        --sjdbGTFfeatureExon CDS \
+        --sjdbGTFfile "${HG38_GFF_TMP}" \
+        --sjdbGTFfeatureExon exon \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
         --limitGenomeGenerateRAM 60000000000
-    rm -f "${HG38_FASTA_TMP}"
+    rm -f "${HG38_FASTA_TMP}" "${HG38_GFF_TMP}"
 else
     echo "STAR index for hg38 already exists, skipping."
 fi
@@ -135,19 +137,21 @@ STAR_INDEX_MM10="${MM10_DIR}/star_index"
 if [[ ! -d "${STAR_INDEX_MM10}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_MM10}"
     MM10_FASTA_TMP="${MM10_DIR}/GRCm38.primary_assembly.genome.fa"
-    echo "Decompressing mm10 FASTA for STAR (STAR requires uncompressed input)..."
+    MM10_GFF_TMP="${MM10_DIR}/gencode.${GENCODE_MOUSE_VER}.filtered.gff3"
+    echo "Decompressing mm10 FASTA and GFF3 for STAR..."
     zcat "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" > "${MM10_FASTA_TMP}"
+    zcat "${FILTERED_GFF_MM10}" > "${MM10_GFF_TMP}"
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_MM10}" \
         --outFileNamePrefix "${STAR_INDEX_MM10}/" \
         --genomeFastaFiles "${MM10_FASTA_TMP}" \
-        --sjdbGTFfile "${FILTERED_GFF_MM10}" \
-        --sjdbGTFfeatureExon CDS \
+        --sjdbGTFfile "${MM10_GFF_TMP}" \
+        --sjdbGTFfeatureExon exon \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
         --limitGenomeGenerateRAM 60000000000
-    rm -f "${MM10_FASTA_TMP}"
+    rm -f "${MM10_FASTA_TMP}" "${MM10_GFF_TMP}"
 else
     echo "STAR index for mm10 already exists, skipping."
 fi
