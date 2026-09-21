@@ -83,8 +83,9 @@ if [[ ! -d "${STAR_INDEX_HG38}/Genome" ]]; then
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_HG38}" \
-        --genomeFastaFiles <(zcat "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz") \
-        --sjdbGTFfile <(zcat "${FILTERED_GFF}") \
+        --outFileNamePrefix "${STAR_INDEX_HG38}/" \
+        --genomeFastaFiles "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz" \
+        --sjdbGTFfile "${FILTERED_GFF}" \
         --sjdbGTFfeatureExon CDS \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
@@ -132,8 +133,9 @@ if [[ ! -d "${STAR_INDEX_MM10}/Genome" ]]; then
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_MM10}" \
-        --genomeFastaFiles <(zcat "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz") \
-        --sjdbGTFfile <(zcat "${FILTERED_GFF_MM10}") \
+        --outFileNamePrefix "${STAR_INDEX_MM10}/" \
+        --genomeFastaFiles "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" \
+        --sjdbGTFfile "${FILTERED_GFF_MM10}" \
         --sjdbGTFfeatureExon CDS \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
