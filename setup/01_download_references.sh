@@ -80,16 +80,20 @@ echo "=== [hg38 4/4] Building STAR genome index ==="
 STAR_INDEX_HG38="${HG38_DIR}/star_index"
 if [[ ! -d "${STAR_INDEX_HG38}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_HG38}"
+    HG38_FASTA_TMP="${HG38_DIR}/GRCh38.primary_assembly.genome.fa"
+    echo "Decompressing hg38 FASTA for STAR (STAR requires uncompressed input)..."
+    zcat "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz" > "${HG38_FASTA_TMP}"
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_HG38}" \
         --outFileNamePrefix "${STAR_INDEX_HG38}/" \
-        --genomeFastaFiles "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz" \
+        --genomeFastaFiles "${HG38_FASTA_TMP}" \
         --sjdbGTFfile "${FILTERED_GFF}" \
         --sjdbGTFfeatureExon CDS \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
         --limitGenomeGenerateRAM 60000000000
+    rm -f "${HG38_FASTA_TMP}"
 else
     echo "STAR index for hg38 already exists, skipping."
 fi
@@ -130,16 +134,20 @@ echo "=== [mm10 4/4] Building STAR genome index ==="
 STAR_INDEX_MM10="${MM10_DIR}/star_index"
 if [[ ! -d "${STAR_INDEX_MM10}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_MM10}"
+    MM10_FASTA_TMP="${MM10_DIR}/GRCm38.primary_assembly.genome.fa"
+    echo "Decompressing mm10 FASTA for STAR (STAR requires uncompressed input)..."
+    zcat "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" > "${MM10_FASTA_TMP}"
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_MM10}" \
         --outFileNamePrefix "${STAR_INDEX_MM10}/" \
-        --genomeFastaFiles "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" \
+        --genomeFastaFiles "${MM10_FASTA_TMP}" \
         --sjdbGTFfile "${FILTERED_GFF_MM10}" \
         --sjdbGTFfeatureExon CDS \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
         --limitGenomeGenerateRAM 60000000000
+    rm -f "${MM10_FASTA_TMP}"
 else
     echo "STAR index for mm10 already exists, skipping."
 fi
