@@ -5,7 +5,7 @@
 # Paper: Rhine et al. 2025, Nature Neuroscience
 # Mouse cohorts: 1.5 mo, 6 mo, 24 mo wild-type C57BL6/J
 # Targets: TDP-43 (cerebellum eCLIP; motor cortex eCLIP)
-# Genome: GRCm38 (mm10), GENCODE M35
+# Genome: GRCm38 (mm10), GENCODE M25
 # =============================================================================
 
 WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/mouse"
@@ -13,8 +13,8 @@ TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
 MANIFEST: "/xdisk/haining/maarowosegbe/eclip_pipeline/config/manifest_mouse.csv"
 TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
 
-# Reference files (mm10 / GRCm38, GENCODE M35)
-GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/gencode.M35.filtered.gff3.gz"
+# Reference files (mm10 / GRCm38, GENCODE M25)
+GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/gencode.vM25.filtered.gff3.gz"
 GENOME_FASTA: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/GRCm38.primary_assembly.genome.fa.gz"
 BLACKLIST: ""   # No mm10-specific eCLIP blacklist; leave blank
 

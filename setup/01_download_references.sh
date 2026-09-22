@@ -102,9 +102,9 @@ fi
 
 # ── Mouse (mm10 / GRCm38, GENCODE M35) ────────────────────────────────────
 MM10_DIR="${REF_DIR}/mm10"
-GENCODE_MOUSE_VER="M35"
+GENCODE_MOUSE_VER="M25"
 GENCODE_MOUSE_FASTA="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_${GENCODE_MOUSE_VER}/GRCm38.primary_assembly.genome.fa.gz"
-GENCODE_MOUSE_GFF="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_${GENCODE_MOUSE_VER}/gencode.${GENCODE_MOUSE_VER}.annotation.gff3.gz"
+GENCODE_MOUSE_GFF="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_${GENCODE_MOUSE_VER}/gencode.v${GENCODE_MOUSE_VER}.annotation.gff3.gz"
 
 echo "=== [mm10 1/4] Downloading mouse genome FASTA (GENCODE ${GENCODE_MOUSE_VER}) ==="
 if [[ ! -f "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" ]]; then
@@ -114,19 +114,19 @@ else
 fi
 
 echo "=== [mm10 2/4] Downloading mouse annotation GFF3 ==="
-if [[ ! -f "${MM10_DIR}/gencode.${GENCODE_MOUSE_VER}.annotation.gff3.gz" ]]; then
+if [[ ! -f "${MM10_DIR}/gencode.v${GENCODE_MOUSE_VER}.annotation.gff3.gz" ]]; then
     wget -c -P "${MM10_DIR}" "${GENCODE_MOUSE_GFF}"
 else
     echo "Mouse GFF3 already present, skipping."
 fi
 
 echo "=== [mm10 3/4] Filtering mouse GFF3 ==="
-FILTERED_GFF_MM10="${MM10_DIR}/gencode.${GENCODE_MOUSE_VER}.filtered.gff3.gz"
+FILTERED_GFF_MM10="${MM10_DIR}/gencode.v${GENCODE_MOUSE_VER}.filtered.gff3.gz"
 if [[ ! -f "${FILTERED_GFF_MM10}" ]]; then
     Rscript \
         "${SKIPPER_DIR}/gff_transcript_quality_filter.R" \
         gencode \
-        "${MM10_DIR}/gencode.${GENCODE_MOUSE_VER}.annotation.gff3.gz" \
+        "${MM10_DIR}/gencode.v${GENCODE_MOUSE_VER}.annotation.gff3.gz" \
         "${FILTERED_GFF_MM10}"
 else
     echo "Filtered mouse GFF3 already present, skipping."
@@ -137,7 +137,7 @@ STAR_INDEX_MM10="${MM10_DIR}/star_index"
 if [[ ! -d "${STAR_INDEX_MM10}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_MM10}"
     MM10_FASTA_TMP="${MM10_DIR}/GRCm38.primary_assembly.genome.fa"
-    MM10_GFF_TMP="${MM10_DIR}/gencode.${GENCODE_MOUSE_VER}.filtered.gff3"
+    MM10_GFF_TMP="${MM10_DIR}/gencode.v${GENCODE_MOUSE_VER}.filtered.gff3"
     echo "Decompressing mm10 FASTA and GFF3 for STAR..."
     zcat "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" > "${MM10_FASTA_TMP}"
     zcat "${FILTERED_GFF_MM10}" > "${MM10_GFF_TMP}"
