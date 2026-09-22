@@ -19,7 +19,8 @@ set -euo pipefail
 
 # ── Paths ──────────────────────────────────────────────────────────────────
 BASE_DIR="/xdisk/haining/maarowosegbe/eclip_pipeline"
-SKIPPER_DIR="/home/u11/maarowosegbe/eclip_pipeline/skipper"
+SCRIPT_BASE="/home/u11/maarowosegbe/eclip_pipeline"
+SKIPPER_DIR="${SCRIPT_BASE}/skipper"
 LOG_DIR="${BASE_DIR}/logs"
 
 # env already activated by eclip_pipeline.slurm; snakemake and all tools on PATH
@@ -35,10 +36,10 @@ fi
 
 case "${GENOME}" in
     human)
-        CONFIG="${BASE_DIR}/config/skipper_config_human.yaml"
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_human.yaml"
         ;;
     mouse)
-        CONFIG="${BASE_DIR}/config/skipper_config_mouse.yaml"
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_mouse.yaml"
         ;;
     *)
         echo "Unknown genome '${GENOME}'. Use 'human' or 'mouse'."
@@ -64,7 +65,7 @@ unset SLURM_JOB_ID
 snakemake \
     --snakefile "${SKIPPER_DIR}/Skipper.py" \
     --configfile "${CONFIG}" \
-    --profile "${BASE_DIR}/config/profiles/slurm" \
+    --profile "${SCRIPT_BASE}/config/profiles/slurm" \
     --rerun-incomplete \
     --keep-going \
     "${EXTRA_ARGS[@]}"
