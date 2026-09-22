@@ -10,7 +10,7 @@
 
 WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/mouse"
 TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
-MANIFEST: "/xdisk/haining/maarowosegbe/eclip_pipeline/config/manifest_mouse.csv"
+MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_mouse.csv"
 TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
 
 # Reference files (mm10 / GRCm38, GENCODE M25)

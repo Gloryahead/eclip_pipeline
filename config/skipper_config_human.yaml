@@ -24,7 +24,7 @@ WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/human"
 TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
 
 # Path to this config's companion manifest (fill in FASTQ paths there)
-MANIFEST: "/xdisk/haining/maarowosegbe/eclip_pipeline/config/manifest_human.csv"
+MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_human.csv"
 
 # ── Skipper tool directory ─────────────────────────────────────────────────
 TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
