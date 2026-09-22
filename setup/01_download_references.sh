@@ -12,7 +12,7 @@
 #
 # Reference versions used (match paper's analysis timeframe, June 2025 pub):
 #   Human : GENCODE v47 (GRCh38 / hg38)
-#   Mouse : GENCODE M35 (GRCm38 / mm10)
+#   Mouse : GENCODE M25 (GRCm38 / mm10)
 #
 # CPU/memory: STAR indexing requires ~32 GB RAM and 8 CPUs. Submit as a
 # SLURM job on the HPC, not as an interactive session.
@@ -78,7 +78,7 @@ fi
 
 echo "=== [hg38 4/4] Building STAR genome index ==="
 STAR_INDEX_HG38="${HG38_DIR}/star_index"
-if [[ ! -d "${STAR_INDEX_HG38}/Genome" ]]; then
+if [[ ! -f "${STAR_INDEX_HG38}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_HG38}"
     HG38_FASTA_TMP="${HG38_DIR}/GRCh38.primary_assembly.genome.fa"
     HG38_GFF_TMP="${HG38_DIR}/gencode.v${GENCODE_HUMAN_VER}.filtered.gff3"
@@ -134,7 +134,7 @@ fi
 
 echo "=== [mm10 4/4] Building STAR genome index ==="
 STAR_INDEX_MM10="${MM10_DIR}/star_index"
-if [[ ! -d "${STAR_INDEX_MM10}/Genome" ]]; then
+if [[ ! -f "${STAR_INDEX_MM10}/Genome" ]]; then
     mkdir -p "${STAR_INDEX_MM10}"
     MM10_FASTA_TMP="${MM10_DIR}/GRCm38.primary_assembly.genome.fa"
     MM10_GFF_TMP="${MM10_DIR}/gencode.v${GENCODE_MOUSE_VER}.filtered.gff3"

@@ -72,19 +72,19 @@ INFORMATIVE_READ: 1
 # 0.9 = default Skipper recommendation; higher = stricter.
 GINI_CUTOFF: 0.9
 
-# Normalization method: "new" = input-based overdispersion model
-# (matches the method in Boyle et al. 2023 and used by this paper's lab)
-NORMALIZATION: "new"
+# Overdispersion estimation source: "clip" = from CLIP samples, "input" = from SMInput.
+# SMInput (size-matched input) is not deposited in GEO for this dataset, so use "clip".
+OVERDISPERSION_MODE: "clip"
 
-# Minimum read count in a window to include it in analysis.
-# Skipper default is 2; matches the paper's settings.
-MIN_THRESHOLD: 2
+# Normalization method. "new" = input-based overdispersion model (Boyle et al. 2023).
+NORMALIZATION_MODE: "new"
 
-# Reproducibility: a window must be enriched in N replicates to be called.
-# Paper used n=2 biological replicates per condition.
-REPRODUCIBILITY: 2
+# Minimum read count in a window to include it in analysis (Skipper default: 2).
+THRESHOLD_MIN: 2
 
-# ── HOMER motif analysis (optional, enabled here to match the paper) ───────
-# Paper reports top TDP-43 binding motif (GU-rich) from eCLIP data.
-# Set to false to skip motif analysis and speed up the run.
-RUN_HOMER: true
+# Reproducibility: minimum replicates that must support a peak ("ALL" = all reps must agree).
+DEFINITION_OF_REPRODUCIBILITY: "ALL"
+
+# HOMER motif analysis: set to path of findMotifsGenome.pl, or "" to disable.
+# Paper reports GU-rich TDP-43 motif from eCLIP data but HOMER is optional.
+HOMER: ""

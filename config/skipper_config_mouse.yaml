@@ -29,8 +29,14 @@ UMI_SIZE: 10
 INFORMATIVE_READ: 1
 
 GINI_CUTOFF: 0.9
-NORMALIZATION: "new"
-MIN_THRESHOLD: 2
-REPRODUCIBILITY: 2   # Paper used 2 mice per age cohort as replicates
 
-RUN_HOMER: true
+# Overdispersion estimation source: "clip" = from CLIP samples, "input" = from SMInput.
+# SMInput is not deposited in GEO for this dataset, so use "clip".
+OVERDISPERSION_MODE: "clip"
+
+NORMALIZATION_MODE: "new"
+THRESHOLD_MIN: 2
+DEFINITION_OF_REPRODUCIBILITY: "ALL"   # With 2 mice per cohort, ALL = both must agree
+
+# HOMER motif analysis: set to path of findMotifsGenome.pl, or "" to disable.
+HOMER: ""
