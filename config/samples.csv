@@ -1,0 +1,5 @@
+sample_id,srr_accession,condition
+severe1,SRR31499777,Severe
+severe2,SRR31499804,Severe
+healthy1,SRR31499787,Healthy
+healthy2,SRR31499788,Healthy

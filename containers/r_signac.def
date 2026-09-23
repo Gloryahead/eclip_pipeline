@@ -1,0 +1,127 @@
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:RELEASE_3_22
+
+# =============================================================================
+# r_signac.def — Apptainer/Singularity container for scATAC-seq R analysis
+#
+# Base image : bioconductor/bioconductor_docker:RELEASE_3_22
+#              (R 4.5.x, Bioconductor 3.22 — matches tutorial versions exactly)
+#
+# Included packages (all version-pinned):
+#   Signac 1.17.1, Seurat 5.5.1, Harmony, clustree, SingleR, celldex,
+#   motifmatchr, TFBSTools, JASPAR2020, BSgenome.Hsapiens.UCSC.hg38,
+#   scDblFinder, argparse, and all dependencies
+#
+# Build command (run on HPC, takes 30-60 min):
+#   apptainer build /xdisk/haining/maarowosegbe/scATAC-seq/containers/r_signac.sif \
+#       /home/u11/maarowosegbe/scATAC-seq_pipeline/containers/r_signac.def
+#
+# Test:
+#   apptainer exec r_signac.sif Rscript -e 'library(Signac); packageVersion("Signac")'
+# =============================================================================
+
+%post
+    set -e
+
+    # System dependencies needed for R package compilation
+    apt-get update -qq
+    apt-get install -y --no-install-recommends \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libxml2-dev \
+        libfontconfig1-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        libfreetype6-dev \
+        libpng-dev \
+        libtiff5-dev \
+        libjpeg-dev \
+        libgit2-dev \
+        libhdf5-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        python3 \
+        python3-pip
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+    # Install R packages — CRAN first, then Bioconductor
+    Rscript -e '
+        options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+        # Core CRAN packages
+        pkgs_cran <- c(
+            "argparse",       # CLI argument parsing for pipeline scripts
+            "ggplot2",        # plotting
+            "patchwork",      # multi-panel figure assembly
+            "dplyr",          # data manipulation
+            "Matrix",         # sparse matrix support
+            "future",         # parallel processing
+            "remotes"         # install from GitHub
+        )
+        install.packages(pkgs_cran, quiet = TRUE)
+
+        # Harmony — batch correction
+        install.packages("harmony", quiet = TRUE)
+
+        # clustree — resolution selection visualisation
+        install.packages("clustree", quiet = TRUE)
+
+        # Bioconductor packages (pinned to release 3.22 via base image)
+        if (!requireNamespace("BiocManager", quietly = TRUE))
+            install.packages("BiocManager")
+
+        bioc_pkgs <- c(
+            "GenomicRanges",
+            "GenomeInfoDb",
+            "AnnotationHub",
+            "EnsDb.Hsapiens.v86",
+            "biovizBase",
+            "rtracklayer",
+            "Rsamtools",
+            "scDblFinder",       # AMULET doublet detection method
+            "SingleR",
+            "celldex",
+            "motifmatchr",
+            "TFBSTools",
+            "JASPAR2020",
+            "BSgenome.Hsapiens.UCSC.hg38",
+            "r.hdf5r"            # HDF5 file support for Read10X_h5
+        )
+        BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE, quiet = TRUE)
+
+        # Seurat 5.5.1 — install from CRAN
+        install.packages("Seurat", version = "5.5.1", quiet = TRUE)
+
+        # Signac 1.17.1 — install from CRAN
+        install.packages("Signac", version = "1.17.1", quiet = TRUE)
+    '
+
+%environment
+    export LC_ALL=C
+    export LANG=C
+    # Disable AnnotationHub internet check inside the container
+    export BIOCONDUCTOR_USE_CONTAINER_REPOSITORY=FALSE
+
+%labels
+    Author maarowosegbe@arizona.edu
+    Version 1.0.0
+    R_version 4.5.x
+    Bioconductor RELEASE_3_22
+    Signac 1.17.1
+    Seurat 5.5.1
+
+%help
+    scATAC-seq R analysis container.
+    Contains Signac, Seurat, Harmony, SingleR, JASPAR2020, and all dependencies
+    needed for Parts 2-4 of the ngs101 scATAC-seq tutorial pipeline.
+
+    Build:
+        apptainer build r_signac.sif r_signac.def
+
+    Run a script:
+        apptainer exec --bind /xdisk:/xdisk r_signac.sif Rscript my_script.R
+
+    Interactive R session:
+        apptainer exec r_signac.sif R

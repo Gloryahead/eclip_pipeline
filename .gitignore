@@ -1,0 +1,49 @@
+# Nextflow work directory and cache
+work/
+.nextflow/
+.nextflow.log*
+nextflow_work/
+
+# Pipeline reports (generated outputs)
+*.html
+*.timeline
+pipeline_dag.*
+
+# Large data files — never commit to git
+*.fastq
+*.fastq.gz
+*.bam
+*.bai
+*.sam
+*.bed.gz
+*.tbi
+*.h5
+*.rds
+*.sif
+*.sra
+*.tsv.gz
+
+# R session artifacts
+.Rhistory
+.RData
+.Rproj.user/
+
+# Logs
+logs/
+*.log
+*.out
+*.err
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Keep these even if they match above patterns
+!config/samples.csv
+!scripts/**
+!modules/**
+!containers/**

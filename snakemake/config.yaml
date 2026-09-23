@@ -1,0 +1,52 @@
+# =============================================================================
+# config.yaml — Snakemake configuration for scATAC-seq pipeline
+# =============================================================================
+
+# ── Samples ───────────────────────────────────────────────────────────────────
+samples:
+  severe1:
+    srr: SRR31499777
+    condition: Severe
+  severe2:
+    srr: SRR31499804
+    condition: Severe
+  healthy1:
+    srr: SRR31499787
+    condition: Healthy
+  healthy2:
+    srr: SRR31499788
+    condition: Healthy
+
+# ── Paths ─────────────────────────────────────────────────────────────────────
+pipeline_dir: /home/u11/maarowosegbe/scATAC-seq_pipeline
+outdir:        /xdisk/haining/maarowosegbe/scATAC-seq/results
+
+cellranger_ref:       /xdisk/haining/maarowosegbe/scATAC-seq/reference/refdata-cellranger-arc-GRCh38-2024-A
+cellranger_atac_path: /xdisk/haining/maarowosegbe/scATAC-seq/tools/cellranger-atac-2.1.0/cellranger-atac
+blacklist_bed:        /xdisk/haining/maarowosegbe/scATAC-seq/reference/ENCFF356LFX.bed
+rna_ref_rds:          /xdisk/haining/maarowosegbe/scATAC-seq/reference/pbmc_10k_v3_rna.rds
+ensdb_cache:          /xdisk/haining/maarowosegbe/scATAC-seq/reference/annotationhub_cache
+r_signac_sif:         /xdisk/haining/maarowosegbe/scATAC-seq/containers/r_signac.sif
+
+# ── QC thresholds ─────────────────────────────────────────────────────────────
+min_fragments:       3000
+max_fragments:       100000
+min_tss:             2.0
+min_frip:            15
+max_nucleosome:      4.0
+max_blacklist_ratio: 0.05
+amulet_qvalue:       0.05
+
+# ── Integration ───────────────────────────────────────────────────────────────
+lsi_dims:           "2:30"
+harmony_dims:       "2:30"
+cluster_resolution: "0.2,0.4,0.6,0.8,1.0"
+min_cells_per_peak: 20
+peak_min_width:     20
+peak_max_width:     10000
+
+# ── Annotation ────────────────────────────────────────────────────────────────
+gene_activity_upstream: 2000
+prediction_score_min:   0.5
+marker_peak_fdr:        0.01
+genome:                 hg38
