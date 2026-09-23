@@ -11,11 +11,11 @@
 WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/mouse"
 TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
 MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_mouse.csv"
-TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
 
 # Reference files (mm10 / GRCm38, GENCODE M25)
 GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/gencode.vM25.filtered.gff3.gz"
-GENOME_FASTA: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/GRCm38.primary_assembly.genome.fa.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/GRCm38.primary_assembly.genome.fa.gz"
 BLACKLIST: ""   # No mm10-specific eCLIP blacklist; leave blank
 
 PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/skipper_partition.bed"
@@ -24,7 +24,7 @@ STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/star_index
 ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt"
 
 # Protocol: same ENCODE4 10nt UMI as human experiments
-PROTOCOL: "ENCODE4"
+protocol: ENCODE4
 UMI_SIZE: 10
 INFORMATIVE_READ: 1
 

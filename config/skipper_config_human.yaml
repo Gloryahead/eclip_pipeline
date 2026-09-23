@@ -27,7 +27,7 @@ TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
 MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_human.csv"
 
 # ── Skipper tool directory ─────────────────────────────────────────────────
-TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
 
 # ── Reference files (hg38) ─────────────────────────────────────────────────
 # GFF3 annotation: GENCODE v47, pre-filtered for transcript quality
@@ -35,7 +35,7 @@ TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper"
 GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
 
 # Primary assembly genome FASTA (gzipped)
-GENOME_FASTA: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz"
 
 # ENCODE eCLIP blacklist — excludes anomalously enriched regions
 # Leave blank ("") to disable; paper's Skipper run likely used this
@@ -56,7 +56,7 @@ ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/a
 #   - Informative (cDNA) read is read 1
 #   - 10 nt UMI present at 5' end of the cDNA (from RT primer random bases)
 #   - UMI-tools used internally by Skipper for PCR deduplication
-PROTOCOL: "ENCODE4"
+protocol: ENCODE4
 
 # Length of the UMI in bases.
 # From the paper's RT primer: /5Phos/NNNNNNNNNNAGATCGGAAGAGCGTCGTGT/3SpC3/
