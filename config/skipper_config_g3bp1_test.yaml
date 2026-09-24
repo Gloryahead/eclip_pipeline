@@ -27,7 +27,7 @@ BLACKLIST: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/encode_eclip_b
 PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed"
 FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv"
 STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index"
-ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt"
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt"
 
 # Protocol parameters — Eclipse BioInnovations kit follows ENCODE4 exactly
 protocol: ENCODE4

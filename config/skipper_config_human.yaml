@@ -49,7 +49,7 @@ STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index
 
 # Accession rankings: defines the priority order of transcript biotypes
 # This file ships with Skipper; point to your cloned copy.
-ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt"
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt"
 
 # ── eCLIP protocol parameters ──────────────────────────────────────────────
 # Paper uses ENCODE4 protocol:
