@@ -60,6 +60,11 @@ echo "Env     : ${CONDA_DEFAULT_ENV:-not set — check mamba-haining activate ab
 echo "Commit  : $(git -C "${SKIPPER_DIR}" rev-parse HEAD 2>/dev/null || echo unknown)"
 echo ""
 
+# Redirect Snakemake's internal cache off the home directory (limited quota)
+# to xdisk. Without this, ~/.cache/snakemake fills up the home quota.
+export XDG_CACHE_HOME="${BASE_DIR}/.cache"
+mkdir -p "${XDG_CACHE_HOME}"
+
 # Unset SLURM_JOB_ID — if this script is called from inside a SLURM job
 # (e.g. via eclip_pipeline.slurm), Snakemake sees it and thinks it is
 # already inside a cluster job, which prevents it from submitting children.
