@@ -1,0 +1,44 @@
+# =============================================================================
+# skipper_config_g3bp1_test.yaml
+# Skipper eCLIP pipeline configuration — G3BP1 pipeline test run
+#
+# Dataset : He et al. 2021, Nucleic Acids Research (doi: 10.1093/nar/gkab873)
+#           "G3BP1 binds to guanine quadruplexes in mRNAs to modulate their stabilities"
+# GEO     : GSE168943 | BioProject: PRJNA714642
+# Target  : G3BP1 (Ctrl/DMSO condition only — 2 IP reps + 2 SMInput reps)
+# Cell    : Human kidney cells (HEK293)
+# Protocol: seCLIP (Eclipse BioInnovations eCLIP Library Prep Kit = ENCODE4)
+# Genome  : hg38 (GRCh38), GENCODE v47 — same index already built for Rhine et al.
+#
+# Purpose : Full end-to-end pipeline test while Rhine et al. SMInput data is pending.
+#           This dataset has BOTH IP and SMInput deposited, so the full Skipper
+#           peak-calling model can run with OVERDISPERSION_MODE: input.
+# =============================================================================
+
+WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test"
+TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
+MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_g3bp1_test.csv"
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
+
+# Reference files — reuse hg38 index already built for Rhine et al.
+GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz"
+BLACKLIST: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/encode_eclip_blacklist.bed"
+PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed"
+FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv"
+STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index"
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt"
+
+# Protocol parameters — Eclipse BioInnovations kit follows ENCODE4 exactly
+protocol: ENCODE4
+UMI_SIZE: 10
+INFORMATIVE_READ: 1
+
+# Peak-calling parameters
+# OVERDISPERSION_MODE: input — use SMInput for overdispersion (recommended; we have real input here)
+OVERDISPERSION_MODE: "input"
+GINI_CUTOFF: 0.9
+NORMALIZATION_MODE: "new"
+THRESHOLD_MIN: 2
+DEFINITION_OF_REPRODUCIBILITY: "ALL"
+HOMER: ""

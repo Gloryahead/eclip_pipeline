@@ -1,0 +1,24 @@
+# eCLIP sample manifest — G3BP1 pipeline test run (He et al. 2021, Nucleic Acids Res)
+# GEO: GSE168943 | BioProject: PRJNA714642
+#
+# Target: G3BP1, Ctrl/DMSO condition only
+# Cell: Human kidney cells (HEK293)
+# Protocol: seCLIP with Eclipse BioInnovations eCLIP Library Prep Kit (= ENCODE4)
+# Genome: hg38
+#
+# Why this dataset: has BOTH IP and SMInput deposited → full Skipper peak-calling test.
+# Used while Rhine et al. 2025 (GSE276985) SMInput FASTQs are pending from authors.
+#
+# SRR accessions verified 2026-09-24 against NCBI SRA:
+#   Ctrl-Input-rep1 (SRX10344592) → SRR13966667  1.2 GB
+#   Ctrl-IP-rep1   (SRX10344593) → SRR13966668  1.1 GB
+#   Ctrl-Input-rep2 (SRX10344594) → SRR13966669  2.5 GB
+#   Ctrl-IP-rep2   (SRX10344595) → SRR13966670  1.3 GB
+#
+# Run download first: bash scripts/download_g3bp1_test.sh
+#
+# Skipper rule: Sample must equal Experiment for unique CLIP_replicate_labels.
+#
+Experiment,Sample,Cells,Input_replicate,Input_adapter,Input_fastq,CLIP_replicate,CLIP_adapter,CLIP_fastq,Notes
+G3BP1_kidney_ctrl,G3BP1_kidney_ctrl,HEK293_kidney,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz,SRR13966667/SRR13966668
+G3BP1_kidney_ctrl,G3BP1_kidney_ctrl,HEK293_kidney,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz,SRR13966669/SRR13966670

@@ -41,8 +41,11 @@ case "${GENOME}" in
     mouse)
         CONFIG="${SCRIPT_BASE}/config/skipper_config_mouse.yaml"
         ;;
+    g3bp1_test)
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_g3bp1_test.yaml"
+        ;;
     *)
-        echo "Unknown genome '${GENOME}'. Use 'human' or 'mouse'."
+        echo "Unknown genome '${GENOME}'. Use 'human', 'mouse', or 'g3bp1_test'."
         exit 1
         ;;
 esac
