@@ -18,7 +18,7 @@
 ### REQUIRED. Set the number of CPUs that will be used for this job.
 #SBATCH --ntasks=32
 ### REQUIRED. Set the memory required for this job.
-#SBATCH --mem-per-cpu=8gb
+###SBATCH --mem-per-cpu=8gb
 ### REQUIRED. Specify the time required for this job, hhh:mm:ss
 #SBATCH --time=240:00:00
 

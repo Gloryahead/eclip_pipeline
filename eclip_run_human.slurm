@@ -19,7 +19,7 @@
 ### This job only runs Snakemake; actual compute is in child SLURM jobs.
 #SBATCH --ntasks=2
 ### REQUIRED. Set the memory required for this job.
-#SBATCH --mem-per-cpu=8gb
+###SBATCH --mem-per-cpu=8gb
 ### REQUIRED. Specify the time required for this job, hhh:mm:ss
 ### Keep alive long enough for all child jobs to finish (~24 hrs typical).
 #SBATCH --time=48:00:00

@@ -19,7 +19,7 @@
 ### fasterq-dump uses 8 threads per sample.
 #SBATCH --ntasks=8
 ### REQUIRED. Set the memory required for this job.
-#SBATCH --mem-per-cpu=8gb
+###SBATCH --mem-per-cpu=8gb
 ### REQUIRED. Specify the time required for this job, hhh:mm:ss
 ### 31 IP samples; allow ~20 min per sample over a variable network.
 #SBATCH --time=24:00:00

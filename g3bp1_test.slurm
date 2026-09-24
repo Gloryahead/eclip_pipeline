@@ -22,7 +22,7 @@
 #SBATCH --partition=standard
 #SBATCH --nodes=1
 #SBATCH --ntasks=2
-#SBATCH --mem-per-cpu=8gb
+###SBATCH --mem-per-cpu=8gb
 #SBATCH --time=48:00:00
 
 echo "========== Job started at: $(date) =========="
