@@ -49,6 +49,7 @@ download_one() {
 
     fasterq-dump "${TMP_PREFETCH}/${srr}/${srr}.sra" \
         --outdir "${FASTQ_DIR}" \
+        --temp  "${TMP_PREFETCH}" \
         --threads "${THREADS}" \
         --split-3
 
