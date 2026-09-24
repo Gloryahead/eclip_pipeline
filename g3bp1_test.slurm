@@ -21,8 +21,7 @@
 #SBATCH --account=haining
 #SBATCH --partition=standard
 #SBATCH --nodes=1
-#SBATCH --ntasks=2
-###SBATCH --mem-per-cpu=8gb
+#SBATCH --ntasks=32
 #SBATCH --time=48:00:00
 
 echo "========== Job started at: $(date) =========="
