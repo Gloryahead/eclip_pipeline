@@ -20,7 +20,7 @@
 ### REQUIRED. Set the memory required for this job.
 ###SBATCH --mem-per-cpu=8gb
 ### REQUIRED. Specify the time required for this job, hhh:mm:ss
-#SBATCH --time=240:00:00
+#SBATCH --time=180:00:00
 
 # --------------------------------------------------------------
 ### PART 2: Setup and run your job
