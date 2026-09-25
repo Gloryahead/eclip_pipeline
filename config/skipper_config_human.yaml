@@ -34,8 +34,8 @@ TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
 # (run setup/01_download_references.sh to generate this file)
 GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
 
-# Primary assembly genome FASTA (gzipped)
-GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz"
+# Primary assembly genome FASTA (uncompressed — bedtools nuc does not support plain gzip)
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa"
 
 # ENCODE eCLIP blacklist — excludes anomalously enriched regions
 # Leave blank ("") to disable; paper's Skipper run likely used this

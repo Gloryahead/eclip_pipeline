@@ -15,7 +15,7 @@ TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
 
 # Reference files (mm10 / GRCm38, GENCODE M25)
 GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/gencode.vM25.filtered.gff3.gz"
-GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/GRCm38.primary_assembly.genome.fa.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/GRCm38.primary_assembly.genome.fa"
 BLACKLIST: ""   # No mm10-specific eCLIP blacklist; leave blank
 
 PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/mm10/skipper_partition.bed"

@@ -22,7 +22,7 @@ TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
 
 # Reference files — reuse hg38 index already built for Rhine et al.
 GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
-GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa"
 BLACKLIST: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/encode_eclip_blacklist.bed"
 PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed"
 FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv"
