@@ -7,28 +7,15 @@
 # What it does:
 #   1. Downloads GENCODE genome FASTA and GFF3 annotation
 #   2. Filters the GFF3 with Skipper's transcript quality filter
-#   3. Builds STAR genome indices for each genome
+#   3. Builds STAR genome indices for each genome (rebuilds on version mismatch)
 #   4. Downloads ENCODE eCLIP blacklist regions (optional but recommended)
 #
-# Reference versions used (match paper's analysis timeframe, June 2025 pub):
+# Reference versions:
 #   Human : GENCODE v47 (GRCh38 / hg38)
 #   Mouse : GENCODE M25 (GRCm38 / mm10)
 #
-# CPU/memory: STAR indexing requires ~32 GB RAM and 8 CPUs. Submit as a
-# SLURM job on the HPC, not as an interactive session.
-#
-# Usage:
-#   sbatch setup/01_download_references.sh
-#   OR on an interactive high-memory node:
-#   bash setup/01_download_references.sh
+# Usage: called by setup/build_references.slurm — do not run directly.
 # =============================================================================
-#SBATCH --job-name=eclip_build_refs
-#SBATCH --partition=standard
-#SBATCH --account=haining
-#SBATCH --nodes=1
-#SBATCH --ntasks=32
-#SBATCH --time=06:00:00
-#SBATCH --output=/xdisk/haining/maarowosegbe/eclip_pipeline/logs/build_refs_%j.out
 
 set -euo pipefail
 
