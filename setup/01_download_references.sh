@@ -25,12 +25,10 @@
 #SBATCH --job-name=eclip_build_refs
 #SBATCH --partition=standard
 #SBATCH --account=haining
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=64gb
+#SBATCH --nodes=1
+#SBATCH --ntasks=32
 #SBATCH --time=06:00:00
-#SBATCH --output=logs/build_refs_%j.out
-#SBATCH --error=logs/build_refs_%j.err
+#SBATCH --output=/xdisk/haining/maarowosegbe/eclip_pipeline/logs/build_refs_%j.out
 
 set -euo pipefail
 
@@ -78,26 +76,34 @@ fi
 
 echo "=== [hg38 4/4] Building STAR genome index ==="
 STAR_INDEX_HG38="${HG38_DIR}/star_index"
-if [[ ! -f "${STAR_INDEX_HG38}/Genome" ]]; then
+CURRENT_STAR_VER=$(STAR --version 2>&1 | head -1)
+INDEX_STAR_VER=$(grep "^versionGenome" "${STAR_INDEX_HG38}/genomeParameters.txt" 2>/dev/null | awk '{print $2}' || echo "none")
+if [[ ! -f "${STAR_INDEX_HG38}/Genome" ]] || [[ "${CURRENT_STAR_VER}" != "${INDEX_STAR_VER}" ]]; then
+    echo "Building STAR index (binary=${CURRENT_STAR_VER}, existing index=${INDEX_STAR_VER})"
+    rm -rf "${STAR_INDEX_HG38}"
     mkdir -p "${STAR_INDEX_HG38}"
-    HG38_FASTA_TMP="${HG38_DIR}/GRCh38.primary_assembly.genome.fa"
+    # Uncompressed FASTA is kept on disk — bedtools nuc also requires it
+    HG38_FASTA="${HG38_DIR}/GRCh38.primary_assembly.genome.fa"
+    if [[ ! -f "${HG38_FASTA}" ]]; then
+        echo "Decompressing hg38 FASTA..."
+        gunzip -k "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz"
+    fi
     HG38_GFF_TMP="${HG38_DIR}/gencode.v${GENCODE_HUMAN_VER}.filtered.gff3"
-    echo "Decompressing hg38 FASTA and GFF3 for STAR..."
-    zcat "${HG38_DIR}/GRCh38.primary_assembly.genome.fa.gz" > "${HG38_FASTA_TMP}"
+    echo "Decompressing hg38 GFF3 for STAR..."
     zcat "${FILTERED_GFF}" > "${HG38_GFF_TMP}"
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_HG38}" \
         --outFileNamePrefix "${STAR_INDEX_HG38}/" \
-        --genomeFastaFiles "${HG38_FASTA_TMP}" \
+        --genomeFastaFiles "${HG38_FASTA}" \
         --sjdbGTFfile "${HG38_GFF_TMP}" \
         --sjdbGTFfeatureExon exon \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
         --limitGenomeGenerateRAM 60000000000
-    rm -f "${HG38_FASTA_TMP}" "${HG38_GFF_TMP}"
+    rm -f "${HG38_GFF_TMP}"
 else
-    echo "STAR index for hg38 already exists, skipping."
+    echo "STAR index for hg38 already up-to-date (version ${INDEX_STAR_VER}), skipping."
 fi
 
 # ── Mouse (mm10 / GRCm38, GENCODE M35) ────────────────────────────────────
@@ -134,26 +140,32 @@ fi
 
 echo "=== [mm10 4/4] Building STAR genome index ==="
 STAR_INDEX_MM10="${MM10_DIR}/star_index"
-if [[ ! -f "${STAR_INDEX_MM10}/Genome" ]]; then
+INDEX_STAR_VER_MM10=$(grep "^versionGenome" "${STAR_INDEX_MM10}/genomeParameters.txt" 2>/dev/null | awk '{print $2}' || echo "none")
+if [[ ! -f "${STAR_INDEX_MM10}/Genome" ]] || [[ "${CURRENT_STAR_VER}" != "${INDEX_STAR_VER_MM10}" ]]; then
+    echo "Building STAR index for mm10 (binary=${CURRENT_STAR_VER}, existing index=${INDEX_STAR_VER_MM10})"
+    rm -rf "${STAR_INDEX_MM10}"
     mkdir -p "${STAR_INDEX_MM10}"
-    MM10_FASTA_TMP="${MM10_DIR}/GRCm38.primary_assembly.genome.fa"
+    MM10_FASTA="${MM10_DIR}/GRCm38.primary_assembly.genome.fa"
+    if [[ ! -f "${MM10_FASTA}" ]]; then
+        echo "Decompressing mm10 FASTA..."
+        gunzip -k "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz"
+    fi
     MM10_GFF_TMP="${MM10_DIR}/gencode.v${GENCODE_MOUSE_VER}.filtered.gff3"
-    echo "Decompressing mm10 FASTA and GFF3 for STAR..."
-    zcat "${MM10_DIR}/GRCm38.primary_assembly.genome.fa.gz" > "${MM10_FASTA_TMP}"
+    echo "Decompressing mm10 GFF3 for STAR..."
     zcat "${FILTERED_GFF_MM10}" > "${MM10_GFF_TMP}"
     STAR \
         --runMode genomeGenerate \
         --genomeDir "${STAR_INDEX_MM10}" \
         --outFileNamePrefix "${STAR_INDEX_MM10}/" \
-        --genomeFastaFiles "${MM10_FASTA_TMP}" \
+        --genomeFastaFiles "${MM10_FASTA}" \
         --sjdbGTFfile "${MM10_GFF_TMP}" \
         --sjdbGTFfeatureExon exon \
         --runThreadN "${THREADS}" \
         --genomeSAindexNbases 14 \
         --limitGenomeGenerateRAM 60000000000
-    rm -f "${MM10_FASTA_TMP}" "${MM10_GFF_TMP}"
+    rm -f "${MM10_GFF_TMP}"
 else
-    echo "STAR index for mm10 already exists, skipping."
+    echo "STAR index for mm10 already up-to-date (version ${INDEX_STAR_VER_MM10}), skipping."
 fi
 
 # ── ENCODE eCLIP blacklist (optional) ─────────────────────────────────────
