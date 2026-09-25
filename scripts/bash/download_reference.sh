@@ -21,7 +21,7 @@ mkdir -p "${REF_DIR}" "${TOOLS_DIR}"
 # ── 1. Cell Ranger ARC GRCh38-2024-A reference ───────────────────────────────
 # This is the ATAC+RNA joint reference but Cell Ranger ATAC can use it too.
 # File size: ~15 GB. Takes 20-40 min to download.
-CELLRANGER_REF_URL="https://cf.10xgenomics.com/supp/cell-atac/refdata-cellranger-arc-GRCh38-2024-A.tar.gz"
+CELLRANGER_REF_URL="https://cf.10xgenomics.com/supp/cell-arc/refdata-cellranger-arc-GRCh38-2024-A.tar.gz"
 CELLRANGER_REF_TARBALL="${REF_DIR}/refdata-cellranger-arc-GRCh38-2024-A.tar.gz"
 
 if [[ -d "${REF_DIR}/refdata-cellranger-arc-GRCh38-2024-A" ]]; then
@@ -52,7 +52,7 @@ fi
 # ── 3. Cell Ranger ATAC binary ────────────────────────────────────────────────
 # Cell Ranger ATAC requires a free license from 10x Genomics.
 # This section checks if you already have it installed.
-CELLRANGER_ATAC_DIR="${TOOLS_DIR}/cellranger-atac-2.1.0"
+CELLRANGER_ATAC_DIR="${TOOLS_DIR}/cellranger-atac-2.2.0"
 
 if [[ -f "${CELLRANGER_ATAC_DIR}/cellranger-atac" ]]; then
     echo "Cell Ranger ATAC already installed at ${CELLRANGER_ATAC_DIR}"
