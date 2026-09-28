@@ -86,10 +86,12 @@ From: bioconductor/bioconductor_docker:RELEASE_3_22
             "motifmatchr",
             "TFBSTools",
             "JASPAR2020",
-            "BSgenome.Hsapiens.UCSC.hg38",
-            "r.hdf5r"            # HDF5 file support for Read10X_h5
+            "BSgenome.Hsapiens.UCSC.hg38"
         )
         BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE, quiet = TRUE)
+
+        # hdf5r — HDF5 file support for Read10X_h5 (CRAN, not Bioconductor)
+        install.packages("hdf5r", quiet = TRUE)
 
         # Seurat 5.5.1 — install from CRAN
         install.packages("Seurat", version = "5.5.1", quiet = TRUE)

@@ -11,7 +11,7 @@
 
 echo "========== Container build started: $(date) =========="
 
-module load apptainer
+module --ignore_cache load apptainer 2>/dev/null || true
 
 mkdir -p /xdisk/haining/maarowosegbe/scATAC-seq/containers
 
