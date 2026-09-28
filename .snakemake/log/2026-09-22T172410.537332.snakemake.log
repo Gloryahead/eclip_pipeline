@@ -1,0 +1,3 @@
+KeyError in file "/home/u11/maarowosegbe/eclip_pipeline/skipper/Skipper.py", line 122:
+'protocol'
+  File "/home/u11/maarowosegbe/eclip_pipeline/skipper/Skipper.py", line 122, in <module>

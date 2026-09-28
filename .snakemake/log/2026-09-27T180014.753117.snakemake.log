@@ -1,0 +1,862 @@
+host: r7u02n1.puma.hpc.arizona.edu
+Building DAG of jobs...
+SLURM run ID: 5ae65f49-7270-4cc4-8d7d-64ed1d9a934a
+Using shell: /usr/bin/bash
+Provided remote nodes: 50
+Conda environments: ignored
+Job stats:
+job                                   count
+----------------------------------  -------
+all                                       1
+all_basic_output                          1
+all_qc                                    1
+call_enriched_windows                     2
+check_window_concordance                  1
+consult_encode_reference                  1
+filter_reproducible_windows               1
+find_reproducible_enriched_windows        1
+fit_input_betabinomial_model              2
+get_nt_coverage                           1
+make_genome_count_table                   1
+make_scaled_bigwig                        4
+make_unscaled_bigwig                      4
+multiqc                                   1
+partition_bam_reads                       4
+se_align_reads                            4
+se_dedup_umi                              4
+se_index_bams                             8
+se_sort_bam                               4
+total                                    46
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 4 jobs...
+[Sun Sep 27 18:00:16 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+    jobid: 22
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 4
+    resources: mem_mb=60000, mem_mib=57221, disk_mb=2715, disk_mib=2590, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=12, slurm_extra=--export=ALL, exclusive=True
+Job 22 has been submitted with SLURM jobid 24024427 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24024427.log).
+[Sun Sep 27 18:00:17 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+    jobid: 4
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 4
+    resources: mem_mb=60000, mem_mib=57221, disk_mb=2360, disk_mib=2251, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=12, slurm_extra=--export=ALL, exclusive=True
+Job 4 has been submitted with SLURM jobid 24024428 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24024428.log).
+[Sun Sep 27 18:00:17 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+    jobid: 16
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 4
+    resources: mem_mb=60000, mem_mib=57221, disk_mb=2282, disk_mib=2177, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=12, slurm_extra=--export=ALL, exclusive=True
+Job 16 has been submitted with SLURM jobid 24024429 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24024429.log).
+[Sun Sep 27 18:00:17 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+    jobid: 10
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 4
+    resources: mem_mb=60000, mem_mib=57221, disk_mb=5141, disk_mib=4903, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=12, slurm_extra=--export=ALL, exclusive=True
+Job 10 has been submitted with SLURM jobid 24024430 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24024430.log).
+[Sun Sep 27 18:13:48 2026]
+Finished jobid: 22 (Rule: se_align_reads)
+1 of 46 steps (2%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:13:48 2026]
+rule se_sort_bam:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.genome.sort_bam.out, stderr/G3BP1_kidney_ctrl_IP_2.genome.sort_bam.err
+    jobid: 21
+    benchmark: benchmarks/sort/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.sort_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam
+    wildcards: ref=genome, replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=4137, disk_mib=3946, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 21 has been submitted with SLURM jobid 24024635 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_sort_bam/genome_G3BP1_kidney_ctrl_IP_2/24024635.log).
+[Sun Sep 27 18:13:48 2026]
+Finished jobid: 4 (Rule: se_align_reads)
+2 of 46 steps (4%) done
+[Sun Sep 27 18:13:48 2026]
+Finished jobid: 16 (Rule: se_align_reads)
+3 of 46 steps (7%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Sun Sep 27 18:13:48 2026]
+rule se_sort_bam:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.genome.sort_bam.out, stderr/G3BP1_kidney_ctrl_IN_1.genome.sort_bam.err
+    jobid: 3
+    benchmark: benchmarks/sort/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.sort_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam
+    wildcards: ref=genome, replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3662, disk_mib=3493, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 3 has been submitted with SLURM jobid 24024636 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_sort_bam/genome_G3BP1_kidney_ctrl_IN_1/24024636.log).
+[Sun Sep 27 18:13:48 2026]
+rule se_sort_bam:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.genome.sort_bam.out, stderr/G3BP1_kidney_ctrl_IP_1.genome.sort_bam.err
+    jobid: 15
+    benchmark: benchmarks/sort/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.sort_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam
+    wildcards: ref=genome, replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3522, disk_mib=3359, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 15 has been submitted with SLURM jobid 24024637 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_sort_bam/genome_G3BP1_kidney_ctrl_IP_1/24024637.log).
+[Sun Sep 27 18:16:18 2026]
+Finished jobid: 3 (Rule: se_sort_bam)
+4 of 46 steps (9%) done
+Removing temporary output output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam.
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:16:18 2026]
+rule se_index_bams:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    log: stdout/raw.genome.sort.G3BP1_kidney_ctrl_IN_1.genome.index_bams.out, stderr/raw.genome.sort.G3BP1_kidney_ctrl_IN_1.genome.index_bams.err
+    jobid: 7
+    benchmark: benchmarks/index_bam/raw/genome/sort/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.genome.index_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam
+    wildcards: round=raw, ref=genome, replicate_label=G3BP1_kidney_ctrl_IN_1.genome, mid=sort
+    threads: 2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=2236, disk_mib=2133, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=30, cpus_per_task=4, slurm_extra=--export=ALL
+Job 7 has been submitted with SLURM jobid 24024699 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_index_bams/raw_genome_G3BP1_kidney_ctrl_IN_1.genome_sort/24024699.log).
+[Sun Sep 27 18:16:18 2026]
+Finished jobid: 15 (Rule: se_sort_bam)
+5 of 46 steps (11%) done
+Removing temporary output output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam.
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:16:18 2026]
+rule se_index_bams:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    log: stdout/raw.genome.sort.G3BP1_kidney_ctrl_IP_1.genome.index_bams.out, stderr/raw.genome.sort.G3BP1_kidney_ctrl_IP_1.genome.index_bams.err
+    jobid: 19
+    benchmark: benchmarks/index_bam/raw/genome/sort/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.genome.index_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam
+    wildcards: round=raw, ref=genome, replicate_label=G3BP1_kidney_ctrl_IP_1.genome, mid=sort
+    threads: 2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=2161, disk_mib=2061, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=30, cpus_per_task=4, slurm_extra=--export=ALL
+Job 19 has been submitted with SLURM jobid 24024700 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_index_bams/raw_genome_G3BP1_kidney_ctrl_IP_1.genome_sort/24024700.log).
+[Sun Sep 27 18:16:58 2026]
+Finished jobid: 21 (Rule: se_sort_bam)
+6 of 46 steps (13%) done
+Removing temporary output output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam.
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:16:58 2026]
+rule se_index_bams:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    log: stdout/raw.genome.sort.G3BP1_kidney_ctrl_IP_2.genome.index_bams.out, stderr/raw.genome.sort.G3BP1_kidney_ctrl_IP_2.genome.index_bams.err
+    jobid: 25
+    benchmark: benchmarks/index_bam/raw/genome/sort/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.genome.index_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam
+    wildcards: round=raw, ref=genome, replicate_label=G3BP1_kidney_ctrl_IP_2.genome, mid=sort
+    threads: 2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=2506, disk_mib=2390, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=30, cpus_per_task=4, slurm_extra=--export=ALL
+Job 25 has been submitted with SLURM jobid 24024702 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_index_bams/raw_genome_G3BP1_kidney_ctrl_IP_2.genome_sort/24024702.log).
+[Sun Sep 27 18:20:39 2026]
+Finished jobid: 7 (Rule: se_index_bams)
+7 of 46 steps (15%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:20:39 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+    jobid: 2
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    resources: mem_mb=48000, mem_mib=45777, disk_mb=2244, disk_mib=2141, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=32000
+Job 2 has been submitted with SLURM jobid 24024799 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_1/24024799.log).
+[Sun Sep 27 18:20:39 2026]
+Finished jobid: 19 (Rule: se_index_bams)
+8 of 46 steps (17%) done
+[Sun Sep 27 18:20:39 2026]
+Finished jobid: 25 (Rule: se_index_bams)
+9 of 46 steps (20%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Sun Sep 27 18:20:39 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+    jobid: 14
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    resources: mem_mb=48000, mem_mib=45777, disk_mb=2169, disk_mib=2069, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=32000
+Job 14 has been submitted with SLURM jobid 24024800 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_1/24024800.log).
+[Sun Sep 27 18:20:39 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+    jobid: 20
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    resources: mem_mb=48000, mem_mib=45777, disk_mb=2513, disk_mib=2397, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=32000
+Job 20 has been submitted with SLURM jobid 24024801 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_2/24024801.log).
+[Sun Sep 27 18:21:19 2026]
+Finished jobid: 10 (Rule: se_align_reads)
+10 of 46 steps (22%) done
+Select jobs to execute...
+Execute 2 jobs...
+[Sun Sep 27 18:21:19 2026]
+rule se_sort_bam:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.genome.sort_bam.out, stderr/G3BP1_kidney_ctrl_IN_2.genome.sort_bam.err
+    jobid: 9
+    benchmark: benchmarks/sort/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.sort_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam
+    wildcards: ref=genome, replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=7942, disk_mib=7575, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 9 has been submitted with SLURM jobid 24024815 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_sort_bam/genome_G3BP1_kidney_ctrl_IN_2/24024815.log).
+[Sun Sep 27 18:21:19 2026]
+rule multiqc:
+    input: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_1.trimmed.umi_fastqc.zip, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_2.trimmed.umi_fastqc.zip, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_1.trimmed.umi_fastqc.zip, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_2.trimmed.umi_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_1_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_2_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_1_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_2_fastqc.zip, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    output: output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_data, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_plots, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_report.html
+    log: stdout/G3BP1_kidney_ctrl.multiqc.out, stderr/G3BP1_kidney_ctrl.multiqc.err
+    jobid: 53
+    benchmark: benchmarks/multiqc/G3BP1_kidney_ctrl.multiqc.txt
+    reason: Missing output files: output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_data, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_plots, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_report.html; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    wildcards: experiment_label=G3BP1_kidney_ctrl
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 53 has been submitted with SLURM jobid 24024816 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_multiqc/G3BP1_kidney_ctrl/24024816.log).
+[Sun Sep 27 18:26:19 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024799' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 2
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_1/24024799.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms32000M -Xmx32000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024799
+[Sun Sep 27 18:26:19 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024800' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 14
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_1/24024800.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms32000M -Xmx32000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024800
+Trying to restart job 2.
+Select jobs to execute...
+[Sun Sep 27 18:26:19 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024801' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 20
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_2/24024801.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms32000M -Xmx32000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024801
+Execute 1 jobs...
+[Sun Sep 27 18:26:19 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+    jobid: 2
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    resources: mem_mb=72000, mem_mib=68665, disk_mb=2244, disk_mib=2141, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=48000
+Job 2 has been submitted with SLURM jobid 24024886 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_1/24024886.log).
+[Sun Sep 27 18:26:20 2026]
+Finished jobid: 53 (Rule: multiqc)
+11 of 46 steps (24%) done
+Trying to restart job 14.
+Trying to restart job 20.
+Select jobs to execute...
+Execute 3 jobs...
+[Sun Sep 27 18:26:20 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+    jobid: 14
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    resources: mem_mb=72000, mem_mib=68665, disk_mb=2169, disk_mib=2069, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=48000
+Job 14 has been submitted with SLURM jobid 24024887 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_1/24024887.log).
+[Sun Sep 27 18:26:20 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+    jobid: 20
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    resources: mem_mb=72000, mem_mib=68665, disk_mb=2513, disk_mib=2397, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=48000
+Job 20 has been submitted with SLURM jobid 24024888 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_2/24024888.log).
+[Sun Sep 27 18:26:20 2026]
+rule all_qc:
+    input: output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_data, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_data, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_plots, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_plots, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_report.html, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_report.html
+    output: QC_done.txt
+    jobid: 52
+    reason: Missing output files: QC_done.txt; Input files updated by another job: output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_data, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_plots, output/QC/multiqc/G3BP1_kidney_ctrl/multiqc_report.html
+    resources: mem_mb=400, mem_mib=382, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, run_time=20
+Job 52 has been submitted with SLURM jobid 24024889 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_all_qc/24024889.log).
+[Sun Sep 27 18:27:50 2026]
+Finished jobid: 9 (Rule: se_sort_bam)
+12 of 46 steps (26%) done
+Removing temporary output output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam.
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:27:50 2026]
+rule se_index_bams:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    log: stdout/raw.genome.sort.G3BP1_kidney_ctrl_IN_2.genome.index_bams.out, stderr/raw.genome.sort.G3BP1_kidney_ctrl_IN_2.genome.index_bams.err
+    jobid: 13
+    benchmark: benchmarks/index_bam/raw/genome/sort/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.genome.index_bam.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam
+    wildcards: round=raw, ref=genome, replicate_label=G3BP1_kidney_ctrl_IN_2.genome, mid=sort
+    threads: 2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=4783, disk_mib=4562, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=30, cpus_per_task=4, slurm_extra=--export=ALL
+Job 13 has been submitted with SLURM jobid 24024903 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_index_bams/raw_genome_G3BP1_kidney_ctrl_IN_2.genome_sort/24024903.log).
+[Sun Sep 27 18:30:20 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024886' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 2
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_1/24024886.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms48000M -Xmx48000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024886
+[Sun Sep 27 18:30:20 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024887' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 14
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_1/24024887.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms48000M -Xmx48000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024887
+Trying to restart job 2.
+Select jobs to execute...
+[Sun Sep 27 18:30:20 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024888' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 20
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_2/24024888.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms48000M -Xmx48000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024888
+Execute 1 jobs...
+[Sun Sep 27 18:30:20 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+    jobid: 2
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    resources: mem_mb=108000, mem_mib=102997, disk_mb=2244, disk_mib=2141, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=72000
+Job 2 has been submitted with SLURM jobid 24024954 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_1/24024954.log).
+[Sun Sep 27 18:30:20 2026]
+Finished jobid: 52 (Rule: all_qc)
+13 of 46 steps (28%) done
+Trying to restart job 14.
+Trying to restart job 20.
+Select jobs to execute...
+Execute 2 jobs...
+[Sun Sep 27 18:30:20 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+    jobid: 14
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    resources: mem_mb=108000, mem_mib=102997, disk_mb=2169, disk_mib=2069, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=72000
+Job 14 has been submitted with SLURM jobid 24024955 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_1/24024955.log).
+[Sun Sep 27 18:30:20 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+    jobid: 20
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    resources: mem_mb=108000, mem_mib=102997, disk_mb=2513, disk_mib=2397, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=72000
+Job 20 has been submitted with SLURM jobid 24024956 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_2/24024956.log).
+[Sun Sep 27 18:31:00 2026]
+Finished jobid: 13 (Rule: se_index_bams)
+14 of 46 steps (30%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:31:00 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+    jobid: 8
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    resources: mem_mb=48000, mem_mib=45777, disk_mb=4790, disk_mib=4569, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=32000
+Job 8 has been submitted with SLURM jobid 24024957 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_2/24024957.log).
+[Sun Sep 27 18:36:00 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024954' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 2
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_1/24024954.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024954
+[Sun Sep 27 18:36:00 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024955' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 14
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_1/24024955.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024955
+[Sun Sep 27 18:36:00 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024956' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 20
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IP_2/24024956.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024956
+[Sun Sep 27 18:36:00 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24024957' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 8
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_2/24024957.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms32000M -Xmx32000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24024957
+Trying to restart job 8.
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:36:01 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+    jobid: 8
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    resources: mem_mb=72000, mem_mib=68665, disk_mb=4790, disk_mib=4569, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=48000
+Job 8 has been submitted with SLURM jobid 24025041 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_2/24025041.log).
+[Sun Sep 27 18:41:01 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24025041' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 8
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_2/24025041.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms48000M -Xmx48000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24025041
+Trying to restart job 8.
+Select jobs to execute...
+Execute 1 jobs...
+[Sun Sep 27 18:41:01 2026]
+rule se_dedup_umi:
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+    jobid: 8
+    benchmark: benchmarks/dedup/genome/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.dedup_umi.txt
+    reason: Missing output files: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam; Input files updated by another job: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    resources: mem_mb=108000, mem_mib=102997, disk_mb=4790, disk_mib=4569, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, java_mem_mb=72000
+Job 8 has been submitted with SLURM jobid 24025127 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_2/24025127.log).
+[Sun Sep 27 18:47:31 2026]
+Error in rule se_dedup_umi:
+    message: SLURM-job '24025127' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 8
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_dedup_umi/G3BP1_kidney_ctrl_IN_2/24025127.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24025127
+Exiting because a job execution failed. Look below for error messages
+[Sun Sep 27 18:50:01 2026]
+Error in rule se_dedup_umi:
+    message: None
+    jobid: 14
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+[Sun Sep 27 18:50:01 2026]
+Error in rule se_dedup_umi:
+    message: None
+    jobid: 2
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+[Sun Sep 27 18:50:01 2026]
+Error in rule se_dedup_umi:
+    message: None
+    jobid: 8
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+[Sun Sep 27 18:50:01 2026]
+Error in rule se_dedup_umi:
+    message: None
+    jobid: 20
+    input: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam.bai
+    output: output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam
+    log: stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        echo "[`date`] Starting dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+
+        JAR=$(dirname $(which umicollapse))/../share/umicollapse*/umicollapse.jar
+
+        java -server -Xms72000M -Xmx72000M -Xss40M \
+            -jar $JAR bam \
+            -i output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.bam \
+            -o output/secondary_results/bams/dedup/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.sort.dedup.bam \
+            --umi-sep : \
+            --two-pass \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.dedup_umi.err
+
+        echo "[`date`] Finished dedup_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.dedup_umi.out
+        
+        (command exited with non-zero exit code)
+Complete log(s): /home/u11/maarowosegbe/eclip_pipeline/.snakemake/log/2026-09-27T180014.753117.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

@@ -1,0 +1,9 @@
+host: r4u05n1.puma.hpc.arizona.edu
+Building DAG of jobs...
+MissingInputException in rule se_trim_fastq in file "/home/u11/maarowosegbe/eclip_pipeline/skipper/rules/se_preprocess.smk", line 90:
+Missing input files for rule se_trim_fastq:
+    output: output/secondary_results/fastqs/trimmed/TDP43_NGN2_unstress_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/TDP43_NGN2_unstress_IN_1-trimmed.log
+    wildcards: replicate_label=TDP43_NGN2_unstress_IN_1
+    affected files:
+        /xdisk/haining/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+        FILL_IN_SMINPUT_PATH

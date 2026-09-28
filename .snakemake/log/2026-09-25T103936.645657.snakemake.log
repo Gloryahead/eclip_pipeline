@@ -1,0 +1,1027 @@
+host: r4u09n1.puma.hpc.arizona.edu
+Building DAG of jobs...
+SLURM run ID: 3e7cc96b-6d10-4828-ab62-16ec8cca0e93
+Using shell: /usr/bin/bash
+Provided remote nodes: 50
+Conda environments: ignored
+Job stats:
+job                                   count
+----------------------------------  -------
+all                                       1
+all_basic_output                          1
+all_qc                                    1
+calc_partition_nuc                        1
+call_enriched_windows                     2
+check_window_concordance                  1
+consult_encode_reference                  1
+filter_reproducible_windows               1
+find_reproducible_enriched_windows        1
+fit_input_betabinomial_model              2
+get_nt_coverage                           1
+make_genome_count_table                   1
+make_scaled_bigwig                        4
+make_unscaled_bigwig                      4
+multiqc                                   1
+partition_bam_reads                       4
+se_align_reads                            4
+se_dedup_umi                              4
+se_extract_umi                            4
+se_index_bams                             8
+se_run_trimmed_fastqc                     4
+se_sort_bam                               4
+total                                    55
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 5 jobs...
+[Fri Sep 25 10:39:39 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+    jobid: 5
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2316, disk_mib=2209, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 5 has been submitted with SLURM jobid 24012214 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24012214.log).
+[Fri Sep 25 10:39:39 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+    jobid: 23
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2664, disk_mib=2541, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 23 has been submitted with SLURM jobid 24012215 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24012215.log).
+[Fri Sep 25 10:39:39 2026]
+rule calc_partition_nuc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err
+    jobid: 41
+    benchmark: benchmarks/partition_nuc.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc; Set of input files has changed since last execution
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=7444, disk_mib=7100, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 41 has been submitted with SLURM jobid 24012216 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24012216.log).
+[Fri Sep 25 10:39:39 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+    jobid: 11
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=5134, disk_mib=4897, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 11 has been submitted with SLURM jobid 24012217 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24012217.log).
+[Fri Sep 25 10:39:39 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+    jobid: 17
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2240, disk_mib=2137, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 17 has been submitted with SLURM jobid 24012218 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24012218.log).
+[Fri Sep 25 10:46:09 2026]
+Finished jobid: 5 (Rule: se_extract_umi)
+1 of 55 steps (2%) done
+Removing temporary output output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz.
+Select jobs to execute...
+Execute 2 jobs...
+[Fri Sep 25 10:46:09 2026]
+rule se_run_trimmed_fastqc:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    output: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_1.trimmed.umi_fastqc.html, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_1.trimmed.umi_fastqc.zip
+    log: stdout/G3BP1_kidney_ctrl_IN_1.run_trimmed_fastqc.out, stderr/G3BP1_kidney_ctrl_IN_1.run_trimmed_fastqc.err
+    jobid: 55
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.trimmed_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_1.trimmed.umi_fastqc.zip; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2360, disk_mib=2251, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=180, cpus_per_task=4, slurm_extra=--export=ALL
+Job 55 has been submitted with SLURM jobid 24012244 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_trimmed_fastqc/G3BP1_kidney_ctrl_IN_1/24012244.log).
+[Fri Sep 25 10:46:10 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+    jobid: 4
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 4
+    resources: mem_mb=64000, mem_mib=61036, disk_mb=2360, disk_mib=2251, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 4 has been submitted with SLURM jobid 24012245 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24012245.log).
+[Fri Sep 25 10:46:10 2026]
+Finished jobid: 23 (Rule: se_extract_umi)
+2 of 55 steps (4%) done
+Removing temporary output output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz.
+[Fri Sep 25 10:46:10 2026]
+Finished jobid: 17 (Rule: se_extract_umi)
+3 of 55 steps (5%) done
+Removing temporary output output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz.
+Select jobs to execute...
+Execute 4 jobs...
+[Fri Sep 25 10:46:10 2026]
+rule se_run_trimmed_fastqc:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz
+    output: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_2.trimmed.umi_fastqc.html, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_2.trimmed.umi_fastqc.zip
+    log: stdout/G3BP1_kidney_ctrl_IP_2.run_trimmed_fastqc.out, stderr/G3BP1_kidney_ctrl_IP_2.run_trimmed_fastqc.err
+    jobid: 58
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.trimmed_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_2.trimmed.umi_fastqc.zip; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2715, disk_mib=2590, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=180, cpus_per_task=4, slurm_extra=--export=ALL
+Job 58 has been submitted with SLURM jobid 24012246 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_trimmed_fastqc/G3BP1_kidney_ctrl_IP_2/24012246.log).
+[Fri Sep 25 10:46:10 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+    jobid: 16
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 4
+    resources: mem_mb=64000, mem_mib=61036, disk_mb=2282, disk_mib=2177, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 16 has been submitted with SLURM jobid 24012247 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24012247.log).
+[Fri Sep 25 10:46:10 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+    jobid: 22
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 4
+    resources: mem_mb=64000, mem_mib=61036, disk_mb=2715, disk_mib=2590, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 22 has been submitted with SLURM jobid 24012248 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24012248.log).
+[Fri Sep 25 10:46:10 2026]
+rule se_run_trimmed_fastqc:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    output: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_1.trimmed.umi_fastqc.html, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_1.trimmed.umi_fastqc.zip
+    log: stdout/G3BP1_kidney_ctrl_IP_1.run_trimmed_fastqc.out, stderr/G3BP1_kidney_ctrl_IP_1.run_trimmed_fastqc.err
+    jobid: 57
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.trimmed_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IP_1.trimmed.umi_fastqc.zip; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2282, disk_mib=2177, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=180, cpus_per_task=4, slurm_extra=--export=ALL
+Job 57 has been submitted with SLURM jobid 24012249 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_trimmed_fastqc/G3BP1_kidney_ctrl_IP_1/24012249.log).
+[Fri Sep 25 10:46:49 2026]
+Finished jobid: 11 (Rule: se_extract_umi)
+4 of 55 steps (7%) done
+Removing temporary output output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz.
+Select jobs to execute...
+Execute 2 jobs...
+[Fri Sep 25 10:46:49 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+    jobid: 10
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 4
+    resources: mem_mb=64000, mem_mib=61036, disk_mb=5141, disk_mib=4903, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 10 has been submitted with SLURM jobid 24012250 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24012250.log).
+[Fri Sep 25 10:46:50 2026]
+rule se_run_trimmed_fastqc:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    output: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_2.trimmed.umi_fastqc.html, output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_2.trimmed.umi_fastqc.zip
+    log: stdout/G3BP1_kidney_ctrl_IN_2.run_trimmed_fastqc.out, stderr/G3BP1_kidney_ctrl_IN_2.run_trimmed_fastqc.err
+    jobid: 56
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.trimmed_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/processed/G3BP1_kidney_ctrl_IN_2.trimmed.umi_fastqc.zip; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=5141, disk_mib=4903, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=180, cpus_per_task=4, slurm_extra=--export=ALL
+Job 56 has been submitted with SLURM jobid 24012251 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_trimmed_fastqc/G3BP1_kidney_ctrl_IN_2/24012251.log).
+[Fri Sep 25 10:48:20 2026]
+Finished jobid: 41 (Rule: calc_partition_nuc)
+5 of 55 steps (9%) done
+[Fri Sep 25 10:50:50 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012245' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 4
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24012245.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012245
+[Fri Sep 25 10:50:50 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012247' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 16
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24012247.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012247
+Trying to restart job 4.
+Select jobs to execute...
+[Fri Sep 25 10:50:50 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012248' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 22
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24012248.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012248
+[Fri Sep 25 10:50:50 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012250' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 10
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24012250.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012250
+Execute 1 jobs...
+[Fri Sep 25 10:50:50 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+    jobid: 4
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 4
+    resources: mem_mb=96000, mem_mib=91553, disk_mb=2360, disk_mib=2251, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 4 has been submitted with SLURM jobid 24012267 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24012267.log).
+Trying to restart job 16.
+Trying to restart job 22.
+Trying to restart job 10.
+Select jobs to execute...
+Execute 3 jobs...
+[Fri Sep 25 10:50:50 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+    jobid: 16
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 4
+    resources: mem_mb=96000, mem_mib=91553, disk_mb=2282, disk_mib=2177, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 16 has been submitted with SLURM jobid 24012268 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24012268.log).
+[Fri Sep 25 10:50:51 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+    jobid: 10
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 4
+    resources: mem_mb=96000, mem_mib=91553, disk_mb=5141, disk_mib=4903, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 10 has been submitted with SLURM jobid 24012269 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24012269.log).
+[Fri Sep 25 10:50:51 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+    jobid: 22
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 4
+    resources: mem_mb=96000, mem_mib=91553, disk_mb=2715, disk_mib=2590, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 22 has been submitted with SLURM jobid 24012270 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24012270.log).
+[Fri Sep 25 10:52:00 2026]
+Finished jobid: 55 (Rule: se_run_trimmed_fastqc)
+6 of 55 steps (11%) done
+[Fri Sep 25 10:52:00 2026]
+Finished jobid: 58 (Rule: se_run_trimmed_fastqc)
+7 of 55 steps (13%) done
+[Fri Sep 25 10:52:00 2026]
+Finished jobid: 57 (Rule: se_run_trimmed_fastqc)
+8 of 55 steps (15%) done
+[Fri Sep 25 10:53:30 2026]
+Finished jobid: 56 (Rule: se_run_trimmed_fastqc)
+9 of 55 steps (16%) done
+[Fri Sep 25 10:55:01 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012269' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 10
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24012269.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012269
+[Fri Sep 25 10:55:01 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012270' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 22
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24012270.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012270
+Trying to restart job 10.
+Trying to restart job 22.
+Select jobs to execute...
+Execute 2 jobs...
+[Fri Sep 25 10:55:01 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+    jobid: 10
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 4
+    resources: mem_mb=144000, mem_mib=137330, disk_mb=5141, disk_mib=4903, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 10 has been submitted with SLURM jobid 24012299 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24012299.log).
+[Fri Sep 25 10:55:01 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+    jobid: 22
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 4
+    resources: mem_mb=144000, mem_mib=137330, disk_mb=2715, disk_mib=2590, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 22 has been submitted with SLURM jobid 24012300 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24012300.log).
+[Fri Sep 25 10:56:01 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012267' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 4
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24012267.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012267
+[Fri Sep 25 10:56:01 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012268' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 16
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24012268.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012268
+Trying to restart job 4.
+Trying to restart job 16.
+Select jobs to execute...
+Execute 2 jobs...
+[Fri Sep 25 10:56:01 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+    jobid: 16
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 4
+    resources: mem_mb=144000, mem_mib=137330, disk_mb=2282, disk_mib=2177, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 16 has been submitted with SLURM jobid 24012302 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24012302.log).
+[Fri Sep 25 10:56:01 2026]
+rule se_align_reads:
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+    jobid: 4
+    benchmark: benchmarks/align/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.align_reads_genome.txt
+    reason: Missing output files: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out; Input files updated by another job: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 4
+    resources: mem_mb=144000, mem_mib=137330, disk_mb=2360, disk_mib=2251, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=480, cpus_per_task=4, slurm_extra=--export=ALL, exclusive=True
+Job 4 has been submitted with SLURM jobid 24012303 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24012303.log).
+[Fri Sep 25 11:00:02 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012299' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 10
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_2/24012299.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012299
+[Fri Sep 25 11:00:02 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012300' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 22
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_2/24012300.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012300
+[Fri Sep 25 11:01:42 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012302' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 16
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IP_1/24012302.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012302
+[Fri Sep 25 11:01:42 2026]
+Error in rule se_align_reads:
+    message: SLURM-job '24012303' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 4
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_align_reads/G3BP1_kidney_ctrl_IN_1/24012303.log (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24012303
+Exiting because a job execution failed. Look below for error messages
+[Fri Sep 25 11:03:33 2026]
+Error in rule se_align_reads:
+    message: None
+    jobid: 16
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_1." | tee -a stdout/G3BP1_kidney_ctrl_IP_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+[Fri Sep 25 11:03:33 2026]
+Error in rule se_align_reads:
+    message: None
+    jobid: 10
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_2." | tee -a stdout/G3BP1_kidney_ctrl_IN_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+[Fri Sep 25 11:03:33 2026]
+Error in rule se_align_reads:
+    message: None
+    jobid: 22
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out, stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IP_2.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IP_2 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IP_2.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IP_2." | tee -a stdout/G3BP1_kidney_ctrl_IP_2.align_reads.out
+        
+        (command exited with non-zero exit code)
+[Fri Sep 25 11:03:33 2026]
+Error in rule se_align_reads:
+    message: None
+    jobid: 4
+    input: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt
+    output: output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Aligned.out.bam, output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome.Log.final.out
+    log: stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out, stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err (check log file(s) for error details)
+    shell:
+        
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        echo "[`date`] Starting align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+
+        STAR \
+            --alignEndsType EndToEnd \
+            --genomeDir /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index \
+            --genomeLoad NoSharedMemory \
+            --outBAMcompression 10 \
+            --outFileNamePrefix output/secondary_results/bams/raw/genome/G3BP1_kidney_ctrl_IN_1.genome. \
+            --winAnchorMultimapNmax 100 \
+            --outFilterMultimapNmax 100 \
+            --outFilterMultimapScoreRange 1 \
+            --outSAMmultNmax 1 \
+            --outMultimapperOrder Random \
+            --outFilterScoreMin 10 \
+            --outFilterType BySJout \
+            --limitOutSJcollapsed 10000000 \
+            --outReadsUnmapped None \
+            --outSAMattrRGline ID:G3BP1_kidney_ctrl_IN_1 \
+            --outSAMattributes All \
+            --outSAMmode Full \
+            --outSAMtype BAM Unsorted \
+            --outSAMunmapped Within \
+            --readFilesCommand zcat \
+            --outStd Log \
+            --readFilesIn output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            --runMode alignReads \
+            --runThreadN 4 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out 2> stderr/G3BP1_kidney_ctrl_IN_1.align_reads.err
+
+        echo "[`date`] Finished align_reads for G3BP1_kidney_ctrl_IN_1." | tee -a stdout/G3BP1_kidney_ctrl_IN_1.align_reads.out
+        
+        (command exited with non-zero exit code)
+Complete log(s): /home/u11/maarowosegbe/eclip_pipeline/.snakemake/log/2026-09-25T103936.645657.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

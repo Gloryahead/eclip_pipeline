@@ -1,0 +1,870 @@
+host: r3u31n2.puma.hpc.arizona.edu
+Building DAG of jobs...
+SLURM run ID: 5b9f42cb-5206-45a9-97b0-37aab5cdcc74
+Using shell: /usr/bin/bash
+Provided remote nodes: 50
+Conda environments: ignored
+Job stats:
+job                                   count
+----------------------------------  -------
+all                                       1
+all_basic_output                          1
+all_qc                                    1
+calc_partition_nuc                        1
+call_enriched_windows                     2
+check_window_concordance                  1
+consult_encode_reference                  1
+filter_reproducible_windows               1
+find_reproducible_enriched_windows        1
+fit_input_betabinomial_model              2
+get_nt_coverage                           1
+make_genome_count_table                   1
+make_scaled_bigwig                        4
+make_unscaled_bigwig                      4
+multiqc                                   1
+parse_gff                                 1
+partition_bam_reads                       4
+se_align_reads                            4
+se_dedup_umi                              4
+se_extract_umi                            4
+se_index_bams                             8
+se_run_initial_fastqc                     4
+se_run_trimmed_fastqc                     4
+se_sort_bam                               4
+se_trim_fastq                             4
+total                                    64
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 9 jobs...
+[Thu Sep 24 11:33:37 2026]
+rule parse_gff:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err
+    jobid: 39
+    benchmark: benchmarks/parse_gff.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    resources: mem_mb=64000, mem_mib=61036, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=180, cpus_per_task=4, slurm_extra=--export=ALL
+Job 39 has been submitted with SLURM jobid 24002994 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_parse_gff/24002994.log).
+[Thu Sep 24 11:33:37 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+    jobid: 18
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2912, disk_mib=2778, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 18 has been submitted with SLURM jobid 24002995 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_1/24002995.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+    jobid: 6
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3092, disk_mib=2949, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 6 has been submitted with SLURM jobid 24002996 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_1/24002996.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+    jobid: 24
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3399, disk_mib=3242, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 24 has been submitted with SLURM jobid 24002997 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_2/24002997.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_run_initial_fastqc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz
+    output: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_2_fastqc.html, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_2_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_2_fastqc
+    log: stdout/G3BP1_kidney_ctrl_IP_2.run_initial_fastqc.out, stderr/G3BP1_kidney_ctrl_IP_2.run_initial_fastqc.err
+    jobid: 63
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.initial_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_2_fastqc.zip
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3399, disk_mib=3242, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 63 has been submitted with SLURM jobid 24002998 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_initial_fastqc/G3BP1_kidney_ctrl_IP_2/24002998.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_run_initial_fastqc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz
+    output: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_1_fastqc.html, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_1_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_1_fastqc
+    log: stdout/G3BP1_kidney_ctrl_IP_1.run_initial_fastqc.out, stderr/G3BP1_kidney_ctrl_IP_1.run_initial_fastqc.err
+    jobid: 62
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.initial_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IP_1_fastqc.zip
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2912, disk_mib=2778, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 62 has been submitted with SLURM jobid 24002999 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_initial_fastqc/G3BP1_kidney_ctrl_IP_1/24002999.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_run_initial_fastqc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz
+    output: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_1_fastqc.html, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_1_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_1_fastqc
+    log: stdout/G3BP1_kidney_ctrl_IN_1.run_initial_fastqc.out, stderr/G3BP1_kidney_ctrl_IN_1.run_initial_fastqc.err
+    jobid: 60
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.initial_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_1_fastqc.zip
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3092, disk_mib=2949, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 60 has been submitted with SLURM jobid 24003000 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_initial_fastqc/G3BP1_kidney_ctrl_IN_1/24003000.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_run_initial_fastqc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz
+    output: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_2_fastqc.html, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_2_fastqc.zip, output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_2_fastqc
+    log: stdout/G3BP1_kidney_ctrl_IN_2.run_initial_fastqc.out, stderr/G3BP1_kidney_ctrl_IN_2.run_initial_fastqc.err
+    jobid: 61
+    benchmark: benchmarks/fastqc/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.initial_fastqc.txt
+    reason: Missing output files: output/QC/fastqc/initial/G3BP1_kidney_ctrl_IN_2_fastqc.zip
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 2
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=6600, disk_mib=6295, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 61 has been submitted with SLURM jobid 24003001 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_run_initial_fastqc/G3BP1_kidney_ctrl_IN_2/24003001.log).
+[Thu Sep 24 11:33:38 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+    jobid: 12
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=6600, disk_mib=6295, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 12 has been submitted with SLURM jobid 24003002 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_2/24003002.log).
+[Thu Sep 24 11:38:48 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24002995' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 18
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_1/24002995.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24002995
+[Thu Sep 24 11:38:48 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24002996' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 6
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_1/24002996.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24002996
+[Thu Sep 24 11:38:48 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24002997' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 24
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_2/24002997.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24002997
+[Thu Sep 24 11:38:48 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003002' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 12
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_2/24003002.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003002
+Trying to restart job 18.
+Trying to restart job 6.
+Trying to restart job 24.
+Trying to restart job 12.
+Select jobs to execute...
+Execute 4 jobs...
+[Thu Sep 24 11:38:48 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+    jobid: 24
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3399, disk_mib=3242, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 24 has been submitted with SLURM jobid 24003055 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_2/24003055.log).
+[Thu Sep 24 11:38:48 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+    jobid: 6
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3092, disk_mib=2949, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 6 has been submitted with SLURM jobid 24003056 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_1/24003056.log).
+[Thu Sep 24 11:38:48 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+    jobid: 18
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2912, disk_mib=2778, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 18 has been submitted with SLURM jobid 24003057 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_1/24003057.log).
+[Thu Sep 24 11:38:48 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+    jobid: 12
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=6600, disk_mib=6295, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 12 has been submitted with SLURM jobid 24003058 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_2/24003058.log).
+[Thu Sep 24 11:40:09 2026]
+Error in rule parse_gff:
+    message: SLURM-job '24002994' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 39
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_parse_gff/24002994.log (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/parse_gff.out
+            echo "[`date`] Starting parse_gff" | tee -a stdout/parse_gff.out
+    
+            Rscript --vanilla /home/u11/maarowosegbe/eclip_pipeline/skipper/tools/parse_gff.R \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz \
+                /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv \
+            >> stdout/parse_gff.out 2> stderr/parse_gff.err
+    
+            echo "[`date`] Finished parse_gff" | tee -a stdout/parse_gff.out
+            
+        (command exited with non-zero exit code)
+    external_jobid: 24002994
+Trying to restart job 39.
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Sep 24 11:40:09 2026]
+rule parse_gff:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err
+    jobid: 39
+    benchmark: benchmarks/parse_gff.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    resources: mem_mb=96000, mem_mib=91553, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=360, cpus_per_task=4, slurm_extra=--export=ALL
+Job 39 has been submitted with SLURM jobid 24003065 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_parse_gff/24003065.log).
+[Thu Sep 24 11:41:39 2026]
+Finished jobid: 63 (Rule: se_run_initial_fastqc)
+1 of 64 steps (2%) done
+[Thu Sep 24 11:41:39 2026]
+Finished jobid: 62 (Rule: se_run_initial_fastqc)
+2 of 64 steps (3%) done
+[Thu Sep 24 11:41:39 2026]
+Finished jobid: 60 (Rule: se_run_initial_fastqc)
+3 of 64 steps (5%) done
+[Thu Sep 24 11:42:19 2026]
+Finished jobid: 61 (Rule: se_run_initial_fastqc)
+4 of 64 steps (6%) done
+[Thu Sep 24 11:43:49 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003055' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 24
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_2/24003055.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003055
+[Thu Sep 24 11:43:49 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003056' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 6
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_1/24003056.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003056
+[Thu Sep 24 11:43:49 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003057' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 18
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_1/24003057.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003057
+[Thu Sep 24 11:43:49 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003058' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 12
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_2/24003058.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003058
+Trying to restart job 24.
+Trying to restart job 6.
+Trying to restart job 18.
+Trying to restart job 12.
+Select jobs to execute...
+Execute 4 jobs...
+[Thu Sep 24 11:43:49 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+    jobid: 24
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3399, disk_mib=3242, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 24 has been submitted with SLURM jobid 24003111 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_2/24003111.log).
+[Thu Sep 24 11:43:50 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+    jobid: 6
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3092, disk_mib=2949, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 6 has been submitted with SLURM jobid 24003112 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_1/24003112.log).
+[Thu Sep 24 11:43:50 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+    jobid: 18
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=2912, disk_mib=2778, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 18 has been submitted with SLURM jobid 24003113 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_1/24003113.log).
+[Thu Sep 24 11:43:50 2026]
+rule se_trim_fastq:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+    jobid: 12
+    benchmark: benchmarks/trim/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.trim.txt
+    reason: Missing output files: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=6600, disk_mib=6295, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 12 has been submitted with SLURM jobid 24003114 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_2/24003114.log).
+[Thu Sep 24 11:48:50 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003111' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 24
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_2/24003111.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003111
+[Thu Sep 24 11:48:50 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003112' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 6
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_1/24003112.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003112
+[Thu Sep 24 11:48:50 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003113' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 18
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IP_1/24003113.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003113
+[Thu Sep 24 11:48:50 2026]
+Error in rule se_trim_fastq:
+    message: SLURM-job '24003114' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 12
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_trim_fastq/G3BP1_kidney_ctrl_IN_2/24003114.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24003114
+[Thu Sep 24 11:50:30 2026]
+Error in rule parse_gff:
+    message: SLURM-job '24003065' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 39
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_parse_gff/24003065.log (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/parse_gff.out
+            echo "[`date`] Starting parse_gff" | tee -a stdout/parse_gff.out
+    
+            Rscript --vanilla /home/u11/maarowosegbe/eclip_pipeline/skipper/tools/parse_gff.R \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz \
+                /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv \
+            >> stdout/parse_gff.out 2> stderr/parse_gff.err
+    
+            echo "[`date`] Finished parse_gff" | tee -a stdout/parse_gff.out
+            
+        (command exited with non-zero exit code)
+    external_jobid: 24003065
+Trying to restart job 39.
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Sep 24 11:50:30 2026]
+rule parse_gff:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err
+    jobid: 39
+    benchmark: benchmarks/parse_gff.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    resources: mem_mb=144000, mem_mib=137330, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=720, cpus_per_task=4, slurm_extra=--export=ALL
+Job 39 has been submitted with SLURM jobid 24003169 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_parse_gff/24003169.log).
+[Thu Sep 24 12:06:51 2026]
+Error in rule parse_gff:
+    message: SLURM-job '24003169' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 39
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_parse_gff/24003169.log (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/parse_gff.out
+            echo "[`date`] Starting parse_gff" | tee -a stdout/parse_gff.out
+    
+            Rscript --vanilla /home/u11/maarowosegbe/eclip_pipeline/skipper/tools/parse_gff.R \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz \
+                /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv \
+            >> stdout/parse_gff.out 2> stderr/parse_gff.err
+    
+            echo "[`date`] Finished parse_gff" | tee -a stdout/parse_gff.out
+            
+        (command exited with non-zero exit code)
+    external_jobid: 24003169
+Exiting because a job execution failed. Look below for error messages
+[Thu Sep 24 12:09:51 2026]
+Error in rule parse_gff:
+    message: None
+    jobid: 39
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz, /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    log: stdout/parse_gff.out, stderr/parse_gff.err (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/parse_gff.out
+            echo "[`date`] Starting parse_gff" | tee -a stdout/parse_gff.out
+    
+            Rscript --vanilla /home/u11/maarowosegbe/eclip_pipeline/skipper/tools/parse_gff.R \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz \
+                /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv \
+            >> stdout/parse_gff.out 2> stderr/parse_gff.err
+    
+            echo "[`date`] Finished parse_gff" | tee -a stdout/parse_gff.out
+            
+        (command exited with non-zero exit code)
+[Thu Sep 24 12:09:51 2026]
+Error in rule se_trim_fastq:
+    message: None
+    jobid: 18
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+[Thu Sep 24 12:09:51 2026]
+Error in rule se_trim_fastq:
+    message: None
+    jobid: 6
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep1.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_1.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+[Thu Sep 24 12:09:51 2026]
+Error in rule se_trim_fastq:
+    message: None
+    jobid: 24
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_ip_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IP_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+[Thu Sep 24 12:09:51 2026]
+Error in rule se_trim_fastq:
+    message: None
+    jobid: 12
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz, /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta
+    output: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz, output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.log
+    log: stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out, stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        echo "[`date`] Starting trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+
+        zcat /xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/g3bp1_test/ctrl_input_rep2.fastq.gz \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -1 -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          | skewer \
+              -t 8 \
+              -x /home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta \
+              -o output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2 \
+              -z -r 0.2 -d 0.2 -q 13 -l 20 -k 2 -m tail - \
+          >> stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out 2> stderr/G3BP1_kidney_ctrl_IN_2.trim_fastq.err
+
+        echo "[`date`] Finished trim_fastq for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.trim_fastq.out
+        
+        (command exited with non-zero exit code)
+Complete log(s): /home/u11/maarowosegbe/eclip_pipeline/.snakemake/log/2026-09-24T113335.272586.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

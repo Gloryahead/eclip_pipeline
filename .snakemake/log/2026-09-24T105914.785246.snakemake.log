@@ -1,0 +1,8 @@
+Creating specified working directory /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test.
+host: r5u24n1.puma.hpc.arizona.edu
+Building DAG of jobs...
+MissingInputException in rule parse_gff in file "/home/u11/maarowosegbe/eclip_pipeline/skipper/rules/genome_windows.smk", line 9:
+Missing input files for rule parse_gff:
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv
+    affected files:
+        /home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_rankings.txt

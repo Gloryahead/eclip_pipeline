@@ -1,0 +1,803 @@
+host: r7u14n1.puma.hpc.arizona.edu
+Building DAG of jobs...
+SLURM run ID: 83c44ed9-25f7-45d3-8207-53b9a777efd0
+Using shell: /usr/bin/bash
+Provided remote nodes: 50
+Conda environments: ignored
+Job stats:
+job                                   count
+----------------------------------  -------
+all                                       1
+all_basic_output                          1
+all_qc                                    1
+calc_partition_nuc                        1
+call_enriched_windows                     2
+check_window_concordance                  1
+consult_encode_reference                  1
+filter_reproducible_windows               1
+find_reproducible_enriched_windows        1
+fit_input_betabinomial_model              2
+get_nt_coverage                           1
+make_genome_count_table                   1
+make_scaled_bigwig                        4
+make_unscaled_bigwig                      4
+multiqc                                   1
+partition_bam_reads                       4
+se_align_reads                            4
+se_dedup_umi                              4
+se_extract_umi                            4
+se_index_bams                             8
+se_run_trimmed_fastqc                     4
+se_sort_bam                               4
+total                                    55
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 5 jobs...
+[Thu Sep 24 16:31:41 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+    jobid: 5
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2316, disk_mib=2209, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 5 has been submitted with SLURM jobid 24006058 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24006058.log).
+[Thu Sep 24 16:31:42 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+    jobid: 23
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2664, disk_mib=2541, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 23 has been submitted with SLURM jobid 24006059 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24006059.log).
+[Thu Sep 24 16:31:42 2026]
+rule calc_partition_nuc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err
+    jobid: 41
+    benchmark: benchmarks/partition_nuc.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=3046, disk_mib=2905, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 41 has been submitted with SLURM jobid 24006060 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24006060.log).
+[Thu Sep 24 16:31:42 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+    jobid: 11
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=5134, disk_mib=4897, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 11 has been submitted with SLURM jobid 24006061 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24006061.log).
+[Thu Sep 24 16:31:42 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+    jobid: 17
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2240, disk_mib=2137, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 17 has been submitted with SLURM jobid 24006062 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24006062.log).
+[Thu Sep 24 16:36:52 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006058' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 5
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24006058.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006058
+[Thu Sep 24 16:36:52 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006059' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 23
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24006059.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006059
+[Thu Sep 24 16:36:52 2026]
+Error in rule calc_partition_nuc:
+    message: SLURM-job '24006060' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 41
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24006060.log (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/calc_partition_nuc.out
+            echo "[`date`] Starting calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+    
+            bedtools nuc -s \
+                -fi /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz \
+                -bed /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                | gzip -c \
+                > /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc \
+            2> stderr/calc_partition_nuc.err
+    
+            echo "[`date`] Finished calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+            
+        (command exited with non-zero exit code)
+    external_jobid: 24006060
+[Thu Sep 24 16:36:52 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006061' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 11
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24006061.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006061
+[Thu Sep 24 16:36:52 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006062' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 17
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24006062.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006062
+Trying to restart job 5.
+Trying to restart job 23.
+Trying to restart job 41.
+Trying to restart job 11.
+Trying to restart job 17.
+Select jobs to execute...
+Execute 5 jobs...
+[Thu Sep 24 16:36:52 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+    jobid: 5
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2316, disk_mib=2209, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 5 has been submitted with SLURM jobid 24006129 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24006129.log).
+[Thu Sep 24 16:36:52 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+    jobid: 23
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2664, disk_mib=2541, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 23 has been submitted with SLURM jobid 24006130 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24006130.log).
+[Thu Sep 24 16:36:53 2026]
+rule calc_partition_nuc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err
+    jobid: 41
+    benchmark: benchmarks/partition_nuc.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    resources: mem_mb=24000, mem_mib=22889, disk_mb=3046, disk_mib=2905, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=120, cpus_per_task=4, slurm_extra=--export=ALL
+Job 41 has been submitted with SLURM jobid 24006131 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24006131.log).
+[Thu Sep 24 16:36:53 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+    jobid: 11
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=5134, disk_mib=4897, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 11 has been submitted with SLURM jobid 24006132 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24006132.log).
+[Thu Sep 24 16:36:53 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+    jobid: 17
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2240, disk_mib=2137, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 17 has been submitted with SLURM jobid 24006133 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24006133.log).
+[Thu Sep 24 16:43:13 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006129' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 5
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24006129.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006129
+[Thu Sep 24 16:43:13 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006130' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 23
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24006130.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006130
+[Thu Sep 24 16:43:13 2026]
+Error in rule calc_partition_nuc:
+    message: SLURM-job '24006131' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 41
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24006131.log (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/calc_partition_nuc.out
+            echo "[`date`] Starting calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+    
+            bedtools nuc -s \
+                -fi /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz \
+                -bed /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                | gzip -c \
+                > /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc \
+            2> stderr/calc_partition_nuc.err
+    
+            echo "[`date`] Finished calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+            
+        (command exited with non-zero exit code)
+    external_jobid: 24006131
+[Thu Sep 24 16:43:13 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006132' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 11
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24006132.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006132
+[Thu Sep 24 16:43:13 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006133' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 17
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24006133.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006133
+Trying to restart job 5.
+Trying to restart job 23.
+Trying to restart job 41.
+Trying to restart job 11.
+Trying to restart job 17.
+Select jobs to execute...
+Execute 5 jobs...
+[Thu Sep 24 16:43:13 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+    jobid: 5
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_1.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2316, disk_mib=2209, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 5 has been submitted with SLURM jobid 24006192 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24006192.log).
+[Thu Sep 24 16:43:13 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+    jobid: 23
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_2.extract_umi.txt
+    reason: Missing output files: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2664, disk_mib=2541, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 23 has been submitted with SLURM jobid 24006193 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24006193.log).
+[Thu Sep 24 16:43:14 2026]
+rule calc_partition_nuc:
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err
+    jobid: 41
+    benchmark: benchmarks/partition_nuc.txt
+    reason: Missing output files: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    resources: mem_mb=36000, mem_mib=34333, disk_mb=3046, disk_mib=2905, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=240, cpus_per_task=4, slurm_extra=--export=ALL
+Job 41 has been submitted with SLURM jobid 24006194 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24006194.log).
+[Thu Sep 24 16:43:14 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+    jobid: 11
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IN_2.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IN_2
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=5134, disk_mib=4897, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 11 has been submitted with SLURM jobid 24006195 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24006195.log).
+[Thu Sep 24 16:43:14 2026]
+rule se_extract_umi:
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+    jobid: 17
+    benchmark: benchmarks/umi/unassigned_experiment.G3BP1_kidney_ctrl_IP_1.extract_umi.txt
+    reason: Missing output files: output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz
+    wildcards: replicate_label=G3BP1_kidney_ctrl_IP_1
+    threads: 8
+    resources: mem_mb=8000, mem_mib=7630, disk_mb=2240, disk_mib=2137, tmpdir=<TBD>, slurm_account=haining, slurm_partition=standard, runtime=60, cpus_per_task=4, slurm_extra=--export=ALL
+Job 17 has been submitted with SLURM jobid 24006196 (log: /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24006196.log).
+[Thu Sep 24 16:47:23 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006192' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 5
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_1/24006192.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006192
+[Thu Sep 24 16:47:23 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006193' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 23
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_2/24006193.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006193
+[Thu Sep 24 16:47:23 2026]
+Error in rule calc_partition_nuc:
+    message: SLURM-job '24006194' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 41
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_calc_partition_nuc/24006194.log (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/calc_partition_nuc.out
+            echo "[`date`] Starting calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+    
+            bedtools nuc -s \
+                -fi /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz \
+                -bed /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                | gzip -c \
+                > /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc \
+            2> stderr/calc_partition_nuc.err
+    
+            echo "[`date`] Finished calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+            
+        (command exited with non-zero exit code)
+    external_jobid: 24006194
+[Thu Sep 24 16:47:23 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006195' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 11
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IN_2/24006195.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006195
+[Thu Sep 24 16:47:23 2026]
+Error in rule se_extract_umi:
+    message: SLURM-job '24006196' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 17
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err, /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test/.snakemake/slurm_logs/rule_se_extract_umi/G3BP1_kidney_ctrl_IP_1/24006196.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+    external_jobid: 24006196
+Exiting because a job execution failed. Look below for error messages
+[Thu Sep 24 16:49:43 2026]
+Error in rule se_extract_umi:
+    message: None
+    jobid: 5
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_1" | tee -a stdout/G3BP1_kidney_ctrl_IN_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+[Thu Sep 24 16:49:43 2026]
+Error in rule se_extract_umi:
+    message: None
+    jobid: 23
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_2" | tee -a stdout/G3BP1_kidney_ctrl_IP_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+[Thu Sep 24 16:49:43 2026]
+Error in rule calc_partition_nuc:
+    message: None
+    jobid: 41
+    input: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed, /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz
+    output: /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc
+    log: stdout/calc_partition_nuc.out, stderr/calc_partition_nuc.err (check log file(s) for error details)
+    shell:
+        
+            set -euo pipefail
+    
+            echo "Running on node: $(hostname)" | tee stdout/calc_partition_nuc.out
+            echo "[`date`] Starting calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+    
+            bedtools nuc -s \
+                -fi /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa.gz \
+                -bed /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed \
+                | gzip -c \
+                > /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.nuc \
+            2> stderr/calc_partition_nuc.err
+    
+            echo "[`date`] Finished calc_partition_nuc" | tee -a stdout/calc_partition_nuc.out
+            
+        (command exited with non-zero exit code)
+[Thu Sep 24 16:49:43 2026]
+Error in rule se_extract_umi:
+    message: None
+    jobid: 11
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out, stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IN_2-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IN_2.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IN_2.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IN_2.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IN_2" | tee -a stdout/G3BP1_kidney_ctrl_IN_2.extract_umi.out
+        
+        (command exited with non-zero exit code)
+[Thu Sep 24 16:49:43 2026]
+Error in rule se_extract_umi:
+    message: None
+    jobid: 17
+    input: output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz
+    output: output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json, output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html
+    log: stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out, stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+
+        echo "Running on node: $(hostname)" | tee stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        echo "[`date`] Starting extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+
+        fastp \
+            -i output/secondary_results/fastqs/trimmed/G3BP1_kidney_ctrl_IP_1-trimmed.fastq.gz \
+            -o output/secondary_results/fastqs/umi/G3BP1_kidney_ctrl_IP_1.trimmed.umi.fq.gz \
+            -A \
+            -U \
+            --umi_len=10 \
+            --umi_loc=read1 \
+            -j output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.json \
+            -h output/QC/fastp/G3BP1_kidney_ctrl_IP_1.fastp.html \
+            -w 8 \
+        >> stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out 2> stderr/G3BP1_kidney_ctrl_IP_1.extract_umi.err
+
+        echo "[`date`] Finished extract_umi for G3BP1_kidney_ctrl_IP_1" | tee -a stdout/G3BP1_kidney_ctrl_IP_1.extract_umi.out
+        
+        (command exited with non-zero exit code)
+Complete log(s): /home/u11/maarowosegbe/eclip_pipeline/.snakemake/log/2026-09-24T163137.279415.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
