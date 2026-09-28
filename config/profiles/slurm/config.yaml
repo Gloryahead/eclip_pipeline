@@ -43,9 +43,9 @@ set-resources:
   # Skipper single-end alignment rule (se_preprocess.smk: rule align_reads)
   # STAR hg38 genome load needs ~35 GB; headroom for GENCODE v47 junctions + BAM compression
   se_align_reads:
-    cpus_per_task: 16
-    mem_mb: 480000    # 480 GB — use most of Puma standard node (512 GB) to avoid OOM
-    runtime: 480
+    cpus_per_task: 12
+    mem_mb: 60000
+    runtime: 240
   # Paired-end fallback (name used in older Skipper versions)
   star_align:
     cpus_per_task: 16
