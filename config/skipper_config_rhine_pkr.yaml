@@ -1,0 +1,49 @@
+# =============================================================================
+# skipper_config_rhine_pkr.yaml
+# Skipper eCLIP pipeline configuration — Rhine et al. 2025 (GSE301408)
+#
+# Paper: "Mitochondrial double-stranded RNA triggers chronic stress in aged neurons"
+# GEO:   GSE301408  |  BioProject: PRJNA1241817
+#
+# Targets:  PKR (EIF2AK2), PNPT1, SUV3 (SUPV3L1)
+# Cell types:
+#   tdiff      = transdifferentiated neurons (aged, main finding)
+#   ipsc       = iPSC-derived neurons (young, baseline)
+#   brain      = human frontal cortex (mid-age vs old-age)
+#
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ end of read 1 (informative read).
+#   Paired-end samples were downloaded as R1-only (see download_rhine_pkr.sh).
+#
+# Genome:   GRCh38 (hg38) + GENCODE v47 — same index as Rhine et al. human config.
+#
+# Reference: Boyle et al. 2023, Cell Genomics (Skipper method paper)
+# =============================================================================
+
+WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/rhine_pkr"
+TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
+MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_rhine_pkr.csv"
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
+
+# Reference files (hg38) — reuse the same index built for other human experiments
+GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa"
+BLACKLIST: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/encode_eclip_blacklist.bed"
+PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed"
+FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv"
+STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index"
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt"
+
+# ENCODE4 protocol: UMI at 5′ of read 1; 10 nt random barcode from RT primer
+protocol: ENCODE4
+UMI_SIZE: 10
+INFORMATIVE_READ: 1
+
+# Peak-calling parameters
+# OVERDISPERSION_MODE: input — both IP and SMInput are deposited in GSE301408,
+# so use SMInput for overdispersion estimation (more accurate than "clip" mode).
+OVERDISPERSION_MODE: "input"
+GINI_CUTOFF: 0.9
+NORMALIZATION_MODE: "new"
+THRESHOLD_MIN: 2
+DEFINITION_OF_REPRODUCIBILITY: "ALL"
+HOMER: ""

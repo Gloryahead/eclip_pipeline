@@ -1,0 +1,62 @@
+# eCLIP sample manifest — Rhine et al. 2025, GSE301408
+# Paper: "Mitochondrial double-stranded RNA triggers chronic stress in aged neurons"
+# GEO: GSE301408 | BioProject: PRJNA1241817
+#
+# Targets: PKR (EIF2AK2), PNPT1, SUV3 (SUPV3L1)
+# Cell types:
+#   ipsc_10uM  = iPSC-derived neurons + 10 µM AntimycinA  (SINGLE-end, 101 bp)
+#   ipsc_5nM   = iPSC-derived neurons + 5 nM AntimycinA   (SINGLE-end, 101 bp)
+#   ipsc_untr  = iPSC-derived neurons, untreated           (PAIRED→R1, 51 bp)
+#   tdiff      = transdifferentiated neurons (aged model)  (PAIRED→R1, 51 or 101 bp)
+#   brain_mid  = frontal cortex, mid-age donors            (PAIRED→R1)
+#   brain_old  = frontal cortex, old-age donors            (PAIRED→R1)
+#
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ end of R1 (informative read).
+# Paired-end samples: R1 only was kept during download (see download_rhine_pkr.sh).
+#
+# SRR assignments verified from NCBI SRA Run Selector, GSE301408:
+#   PKR tdiff IP:      SRR34324081 (rep1), SRR34324082 (rep2)  [PAIRED, 101 bp]
+#   PKR tdiff SMInput: SRR34324083 (rep1), SRR34324084 (rep2)  [PAIRED, 101 bp]
+#   PNPT1 tdiff IP:    SRR34324073 (rep1), SRR34324074 (rep2)  [PAIRED, 51 bp]
+#   PNPT1 tdiff SMIn:  SRR34324075 (rep1), SRR34324076 (rep2)  [PAIRED, 51 bp]
+#   SUV3 tdiff IP:     SRR34324077 (rep1), SRR34324078 (rep2)  [PAIRED, 51 bp]
+#   SUV3 tdiff SMIn:   SRR34324079 (rep1), SRR34324080 (rep2)  [PAIRED, 51 bp]
+#   PNPT1 iPSC IP:     SRR34324053 (rep1), SRR34324054 (rep2)  [PAIRED, 51 bp]
+#   PNPT1 iPSC SMIn:   SRR34324055 (rep1), SRR34324056 (rep2)  [PAIRED, 51 bp]
+#   SUV3 iPSC IP:      SRR34324057 (rep1), SRR34324058 (rep2)  [PAIRED, 51 bp]
+#   SUV3 iPSC SMIn:    SRR34324059 (rep1), SRR34324060 (rep2)  [PAIRED, 51 bp]
+#   PKR iPSC 10uM IP:  SRR34324061 (rep1), SRR34324062 (rep2)  [SINGLE, 101 bp]
+#   PKR iPSC 10uM SMI: SRR34324063 (rep1), SRR34324064 (rep2)  [SINGLE, 101 bp]
+#   PKR iPSC 5nM IP:   SRR34324065 (rep1), SRR34324066 (rep2)  [SINGLE, 101 bp]
+#   PKR iPSC 5nM SMI:  SRR34324067 (rep1), SRR34324068 (rep2)  [SINGLE, 101 bp]
+#   PKR iPSC untr IP:  SRR34324069 (rep1), SRR34324070 (rep2)  [PAIRED, 51 bp]
+#   PKR iPSC untr SMI: SRR34324071 (rep1), SRR34324072 (rep2)  [PAIRED, 51 bp]
+#   PKR brain mid IP:  SRR34324123 (rep1), SRR34324125 (rep2)  [PAIRED] **see TODO**
+#   PKR brain mid SMI: SRR34324124 (rep1), SRR34324126 (rep2)  [PAIRED]
+#   PKR brain old IP:  SRR34324127 (rep1), SRR34324129 (rep2)  [PAIRED]
+#   PKR brain old SMI: SRR34324128 (rep1), SRR34324130 (rep2)  [PAIRED]
+#
+# TODO: Verify brain_mid vs brain_old assignment by checking individual GSM
+#       records (SRR34324123-130) against donor age metadata in GEO.
+#
+Experiment,Sample,Cells,Input_replicate,Input_adapter,Input_fastq,CLIP_replicate,CLIP_adapter,CLIP_fastq,Notes
+PKR_tdiff,PKR_tdiff,tdiff_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_tdiff_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_tdiff_ip_rep1.fastq.gz,SRR34324081/SRR34324083
+PKR_tdiff,PKR_tdiff,tdiff_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_tdiff_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_tdiff_ip_rep2.fastq.gz,SRR34324082/SRR34324084
+PKR_ipsc_untr,PKR_ipsc_untr,ipsc_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_untr_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_untr_ip_rep1.fastq.gz,SRR34324069/SRR34324071
+PKR_ipsc_untr,PKR_ipsc_untr,ipsc_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_untr_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_untr_ip_rep2.fastq.gz,SRR34324070/SRR34324072
+PKR_ipsc_10uM,PKR_ipsc_10uM,ipsc_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_10uM_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_10uM_ip_rep1.fastq.gz,SRR34324061/SRR34324063
+PKR_ipsc_10uM,PKR_ipsc_10uM,ipsc_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_10uM_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_10uM_ip_rep2.fastq.gz,SRR34324062/SRR34324064
+PKR_ipsc_5nM,PKR_ipsc_5nM,ipsc_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_5nM_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_5nM_ip_rep1.fastq.gz,SRR34324065/SRR34324067
+PKR_ipsc_5nM,PKR_ipsc_5nM,ipsc_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_5nM_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_ipsc_5nM_ip_rep2.fastq.gz,SRR34324066/SRR34324068
+PNPT1_tdiff,PNPT1_tdiff,tdiff_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_tdiff_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_tdiff_ip_rep1.fastq.gz,SRR34324073/SRR34324075
+PNPT1_tdiff,PNPT1_tdiff,tdiff_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_tdiff_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_tdiff_ip_rep2.fastq.gz,SRR34324074/SRR34324076
+PNPT1_ipsc,PNPT1_ipsc,ipsc_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_ipsc_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_ipsc_ip_rep1.fastq.gz,SRR34324053/SRR34324055
+PNPT1_ipsc,PNPT1_ipsc,ipsc_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_ipsc_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PNPT1_ipsc_ip_rep2.fastq.gz,SRR34324054/SRR34324056
+SUV3_tdiff,SUV3_tdiff,tdiff_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_tdiff_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_tdiff_ip_rep1.fastq.gz,SRR34324077/SRR34324079
+SUV3_tdiff,SUV3_tdiff,tdiff_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_tdiff_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_tdiff_ip_rep2.fastq.gz,SRR34324078/SRR34324080
+SUV3_ipsc,SUV3_ipsc,ipsc_neurons,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_ipsc_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_ipsc_ip_rep1.fastq.gz,SRR34324057/SRR34324059
+SUV3_ipsc,SUV3_ipsc,ipsc_neurons,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_ipsc_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/SUV3_ipsc_ip_rep2.fastq.gz,SRR34324058/SRR34324060
+PKR_brain_mid,PKR_brain_mid,frontal_cortex_midage,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_mid_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_mid_ip_rep1.fastq.gz,SRR34324123/SRR34324124
+PKR_brain_mid,PKR_brain_mid,frontal_cortex_midage,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_mid_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_mid_ip_rep2.fastq.gz,SRR34324125/SRR34324126
+PKR_brain_old,PKR_brain_old,frontal_cortex_oldage,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_old_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_old_ip_rep1.fastq.gz,SRR34324127/SRR34324128
+PKR_brain_old,PKR_brain_old,frontal_cortex_oldage,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_old_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/rhine_pkr/PKR_brain_old_ip_rep2.fastq.gz,SRR34324129/SRR34324130

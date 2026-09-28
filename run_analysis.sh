@@ -44,8 +44,11 @@ case "${GENOME}" in
     g3bp1_test)
         CONFIG="${SCRIPT_BASE}/config/skipper_config_g3bp1_test.yaml"
         ;;
+    rhine_pkr)
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_rhine_pkr.yaml"
+        ;;
     *)
-        echo "Unknown genome '${GENOME}'. Use 'human', 'mouse', or 'g3bp1_test'."
+        echo "Unknown genome '${GENOME}'. Use 'human', 'mouse', 'g3bp1_test', or 'rhine_pkr'."
         exit 1
         ;;
 esac
