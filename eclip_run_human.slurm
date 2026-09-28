@@ -37,6 +37,11 @@ mamba-haining
 micromamba activate eclip
 export PATH="${CONDA_PREFIX}/bin:${PATH}"
 
+# Patch Skipper submodule: increase Java stack from 40M to 2G.
+# Directional dedup algorithm recurses per-UMI and overflows 40M for high-depth
+# eCLIP positions (e.g. rRNA-binding sites). sed is idempotent.
+sed -i 's/-Xss40M/-Xss2G/g' /home/u11/maarowosegbe/eclip_pipeline/skipper/rules/se_preprocess.smk
+
 # Snakemake will submit child SLURM jobs automatically.
 # Pass --dry-run to preview without submitting.
 bash /home/u11/maarowosegbe/eclip_pipeline/run_analysis.sh human
