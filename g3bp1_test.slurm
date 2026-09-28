@@ -36,12 +36,23 @@ export PATH="${CONDA_PREFIX}/bin:${PATH}"
 
 SCRIPT_BASE="/home/u11/maarowosegbe/eclip_pipeline"
 
-# Patch Skipper submodule: increase Java stack from 40M to 512m.
-# Directional dedup algorithm recurses per-UMI and overflows 40M for high-depth
-# eCLIP positions (e.g. rRNA-binding sites in G3BP1 data). Regex matches any
-# existing -Xss value so this is always idempotent. (2G would overflow signed
-# 32-bit JVM stack parser; 512m gives ~650k frame depth, far more than needed.)
-sed -i 's/-Xss[0-9]*[mMgGkK]/-Xss512m/g' "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
+# Patch Skipper submodule — two fixes, both idempotent:
+#
+# 1. -Xss: increase Java stack from 40M to 512m.
+#    Directional dedup uses recursive DFS over UMI edit-distance graph; the
+#    default 40M overflows at high-depth rRNA positions in G3BP1 data.
+#    2G was tried but exceeds the JVM signed-32-bit stack parser limit.
+#    Regex matches any existing -Xss value (40M, 2G, etc.).
+#
+# 2. -Xms: decouple initial heap from max heap.
+#    Skipper sets Xms=Xmx=32/48/72 GB. That pre-commits the full heap at
+#    startup; add thread stacks and the cgroup limit is breached → OOM kill
+#    (exit 137) even though actual heap usage is much lower. Fix: start at
+#    4 GB and grow on demand up to the retry-scaled Xmx.
+sed -i \
+  's/-Xss[0-9]*[mMgGkK]/-Xss512m/g;
+   s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
+  "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
 # Step 1: Download FASTQ files (skips any already present)
 echo "--- Step 1: Downloading G3BP1 test FASTQs ---"

@@ -37,11 +37,16 @@ mamba-haining
 micromamba activate eclip
 export PATH="${CONDA_PREFIX}/bin:${PATH}"
 
-# Patch Skipper submodule: increase Java stack from 40M to 512m.
-# Directional dedup algorithm recurses per-UMI and overflows 40M for high-depth
-# eCLIP positions (e.g. rRNA-binding sites). Regex matches any existing -Xss
-# value so this is always idempotent. (2G exceeds JVM signed 32-bit stack limit.)
-sed -i 's/-Xss[0-9]*[mMgGkK]/-Xss512m/g' /home/u11/maarowosegbe/eclip_pipeline/skipper/rules/se_preprocess.smk
+# Patch Skipper submodule — two fixes, both idempotent:
+# 1. -Xss512m: fixes StackOverflow in recursive Directional DFS at high-depth
+#    rRNA positions. Regex matches any existing -Xss value.
+# 2. -Xms4000M: fixes OOM kill (exit 137). Skipper sets Xms=Xmx which pre-commits
+#    the full heap at startup, breaching the SLURM cgroup limit. Starting at 4 GB
+#    and growing to Xmx on demand keeps RSS well within limits.
+sed -i \
+  's/-Xss[0-9]*[mMgGkK]/-Xss512m/g;
+   s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
+  /home/u11/maarowosegbe/eclip_pipeline/skipper/rules/se_preprocess.smk
 
 # Snakemake will submit child SLURM jobs automatically.
 # Pass --dry-run to preview without submitting.
