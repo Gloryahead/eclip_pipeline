@@ -36,10 +36,12 @@ export PATH="${CONDA_PREFIX}/bin:${PATH}"
 
 SCRIPT_BASE="/home/u11/maarowosegbe/eclip_pipeline"
 
-# Patch Skipper submodule: increase Java stack from 40M to 2G.
+# Patch Skipper submodule: increase Java stack from 40M to 512m.
 # Directional dedup algorithm recurses per-UMI and overflows 40M for high-depth
-# eCLIP positions (e.g. rRNA-binding sites in G3BP1 data). sed is idempotent.
-sed -i 's/-Xss40M/-Xss2G/g' "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
+# eCLIP positions (e.g. rRNA-binding sites in G3BP1 data). Regex matches any
+# existing -Xss value so this is always idempotent. (2G would overflow signed
+# 32-bit JVM stack parser; 512m gives ~650k frame depth, far more than needed.)
+sed -i 's/-Xss[0-9]*[mMgGkK]/-Xss512m/g' "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
 # Step 1: Download FASTQ files (skips any already present)
 echo "--- Step 1: Downloading G3BP1 test FASTQs ---"
