@@ -36,7 +36,7 @@ mkdir -p /xdisk/haining/maarowosegbe/eclip_pipeline/logs
 set +eu; source ~/.bashrc; set -eu
 mamba-haining
 micromamba activate eclip
-export PATH="${CONDA_PREFIX}/bin:${PATH}"
+export PATH="${CONDA_PREFIX}/bin:/groups/haining/maarowosegbe/micromamba/envs/snakemake_env/bin:${PATH}"
 
 SCRIPT_BASE="/home/u11/maarowosegbe/eclip_pipeline"
 
