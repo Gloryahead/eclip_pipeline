@@ -100,6 +100,13 @@ dependencies:
   - r-cowplot             # Skipper multi-panel plot assembly
   - r-vgam                # fit_input_betabinomial_model
   - r-betareg             # fit_input_betabinomial_model
+  - r-viridis             # call_enriched_windows.R color scales
+  - r-desctools           # call_enriched_windows.R statistical utilities
+  - r-ggdendro            # Skipper dendrogram plots
+  - r-ggupset             # Skipper upset plots
+  - r-glue                # string interpolation (also tidyverse dep)
+  - r-magrittr            # pipe operator (also tidyverse dep)
+  - r-rtsne               # Skipper t-SNE dimensionality reduction
   - bioconductor-rtracklayer      # required by Skipper GFF filter script
   - bioconductor-genomicranges
   - bioconductor-genomicfeatures
