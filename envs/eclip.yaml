@@ -22,10 +22,6 @@ dependencies:
   # and pysam/bioinformatics tools on bioconda
   - python=3.12
 
-  # ── Workflow management ─────────────────────────────────────────────────
-  - snakemake=9.12.0
-  - snakemake-executor-plugin-slurm=1.4.0
-
   # ── Adapter trimming ────────────────────────────────────────────────────
   # cutadapt removes the 3' RNA ligation adapter and low-quality bases.
   # ENCODE4 eCLIP adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
@@ -39,13 +35,21 @@ dependencies:
   # umi_tools extracts the 10 nt UMI and deduplicates PCR copies after
   # alignment. Non-negotiable for eCLIP: reads naturally pile at crosslink
   # sites, so flag-based dedup destroys real signal.
-  - umi_tools>=1.1.5      # 1.1.5 has no py3.12 build; solver picks compatible
+  - umi_tools             # unpinned — Skipper uses umicollapse for dedup, not umi_tools
+
+  # ── UMIcollapse (Skipper se_dedup_umi rule) ─────────────────────────────
+  # Skipper's se_dedup_umi rule calls `umicollapse` via java. Without
+  # --use-conda the per-rule conda env is ignored, so both the tool and a
+  # JVM must live in THIS env. The bioconda package installs the jar at
+  # $PREFIX/share/umicollapse-*/umicollapse.jar, matching Skipper's glob.
+  - umicollapse
+  - openjdk>=17
 
   # ── BAM / BED processing ────────────────────────────────────────────────
-  - samtools=1.20
+  - samtools>=1.21        # >=1.21 has OpenSSL 3 builds; 1.5/1.20 linked against OpenSSL 1.0.x
   - bedtools=2.31.1
-  - htslib=1.20           # tabix + bgzip for indexed BED/VCF
-  - pysam                 # version unpinned — resolves against python=3.10
+  - htslib>=1.21
+  - pysam                 # version unpinned — resolves against python=3.12
   - sambamba=1.0.1
 
   # ── Quality control ─────────────────────────────────────────────────────
@@ -67,9 +71,13 @@ dependencies:
   - pyranges=0.0.129
   - click=8.1.7
 
-  # ── Genome coverage / bigWig ─────────────────────────────────────────────
-  # deeptools bamCoverage handles bigWig; dropping ucsc-bedgraphtobigwig
-  # which requires legacy openssl 1.1.x incompatible with other packages
+  # ── bigWig generation (Skipper make_*_bigwig rules) ─────────────────────
+  # bedGraphToBigWig + bc are both required by make_scaled_bigwig and
+  # make_unscaled_bigwig. On a fresh env (openssl 3) ucsc-bedgraphtobigwig
+  # installs cleanly. On an existing env with openssl 1.1.x, replace the
+  # conda binary with the UCSC static binary (see README).
+  - ucsc-bedgraphtobigwig
+  - bc
   - deeptools=3.5.4
 
   # ── Compression & download ──────────────────────────────────────────────
@@ -88,6 +96,10 @@ dependencies:
   - r-ggplot2
   - r-dplyr
   - r-stringr
+  - r-ggrepel             # Skipper visualization scripts
+  - r-cowplot             # Skipper multi-panel plot assembly
+  - r-vgam                # fit_input_betabinomial_model
+  - r-betareg             # fit_input_betabinomial_model
   - bioconductor-rtracklayer      # required by Skipper GFF filter script
   - bioconductor-genomicranges
   - bioconductor-genomicfeatures

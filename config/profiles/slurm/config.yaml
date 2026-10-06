@@ -55,7 +55,7 @@ set-resources:
     cpus_per_task: 16
     mem_mb: 64000
     runtime: 360
-  dedup_umi:
+  se_dedup_umi:          # must match the rule name in skipper/rules/se_preprocess.smk
     cpus_per_task: 8
     runtime: 360
   call_peaks:
