@@ -57,6 +57,7 @@ dependencies:
   - fastqc=0.12.1
   - multiqc=1.25.1
   - trim-galore=0.6.10
+  - fastp                 # se_extract_umi rule: UMI extraction + QC JSON/HTML
 
   # ── Motif analysis ──────────────────────────────────────────────────────
   # HOMER identifies enriched k-mers in eCLIP binding sites (Fig. 2e, 2l)
