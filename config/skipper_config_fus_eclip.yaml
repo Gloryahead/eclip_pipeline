@@ -38,7 +38,8 @@ OVERDISPERSION_MODE: "input"
 GINI_CUTOFF: 0.9
 NORMALIZATION_MODE: "new"
 THRESHOLD_MIN: 2
-# With 1 replicate per condition, ALL peaks called are "reproducible" (1/1 = 100%).
-# Compare condition-specific peak lists and BigWig tracks for differential analysis.
-DEFINITION_OF_REPRODUCIBILITY: "ALL"
+# 3 biological conditions treated as 3 replicates (Skipper requires >=2 replicates).
+# Peaks reproducible in >=2/3 conditions are stable FUS binding sites.
+# Use per-condition BigWigs for differential FUS binding comparison across states.
+DEFINITION_OF_REPRODUCIBILITY: 2
 HOMER: ""
