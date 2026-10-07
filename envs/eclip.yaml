@@ -26,6 +26,7 @@ dependencies:
   # cutadapt removes the 3' RNA ligation adapter and low-quality bases.
   # ENCODE4 eCLIP adapter: AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
   - cutadapt=4.9
+  - skewer                # se_trim_fastq rule in Skipper se_preprocess.smk
 
   # ── Alignment ───────────────────────────────────────────────────────────
   # STAR is the aligner used by Skipper and by the RNA-seq arm of the paper
