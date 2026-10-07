@@ -47,8 +47,11 @@ case "${GENOME}" in
     rhine_pkr)
         CONFIG="${SCRIPT_BASE}/config/skipper_config_rhine_pkr.yaml"
         ;;
+    fus_eclip)
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_fus_eclip.yaml"
+        ;;
     *)
-        echo "Unknown genome '${GENOME}'. Use 'human', 'mouse', 'g3bp1_test', or 'rhine_pkr'."
+        echo "Unknown genome '${GENOME}'. Use 'human', 'mouse', 'g3bp1_test', 'rhine_pkr', or 'fus_eclip'."
         exit 1
         ;;
 esac

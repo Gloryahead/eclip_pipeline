@@ -1,0 +1,27 @@
+# FUS eCLIP sample manifest — user's own FUS pull-down data
+# Sequenced: 2026-10-01 (run 9040-0003-10012026_153425)
+# Protocol : seCLIP — Eclipse BioInnovations / ENCODE4, 10 nt UMI at 5' of R1
+# Genome   : hg38
+#
+# Three biological conditions of FUS eCLIP, 1 IP replicate + 1 SMInput each:
+#   healthy = 010 (control / wildtype)
+#   disease = 004 (ALS/disease state)
+#   remedy  = 002 (therapeutic / rescue condition)
+#
+# Each condition is its own Skipper Experiment.  With 1 replicate per condition,
+# DEFINITION_OF_REPRODUCIBILITY: "ALL" means every called peak passes (1/1).
+# Compare peak lists and BigWigs across conditions for differential binding.
+#
+# Raw FASTQ paths on Puma:
+#   /xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/
+#     L9040-0003-0001_S37_L008_R1_001.fastq.gz  → 010IP  (healthy FUS IP)
+#     L9040-0003-0002_S38_L008_R1_001.fastq.gz  → 010input (healthy SMInput)
+#     L9040-0003-0003_S39_L008_R1_001.fastq.gz  → 002IP  (remedy FUS IP)
+#     L9040-0003-0004_S40_L008_R1_001.fastq.gz  → 002input (remedy SMInput)
+#     L9040-0003-0005_S41_L008_R1_001.fastq.gz  → 004IP  (disease FUS IP)
+#     L9040-0003-0006_S42_L008_R1_001.fastq.gz  → 004input (disease SMInput)
+#
+Experiment,Sample,Cells,Input_replicate,Input_adapter,Input_fastq,CLIP_replicate,CLIP_adapter,CLIP_fastq,Notes
+FUS_healthy,FUS_healthy,motor_neuron_healthy,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/L9040-0003-0002_S38_L008_R1_001.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/L9040-0003-0001_S37_L008_R1_001.fastq.gz,010IP_vs_010input
+FUS_disease,FUS_disease,motor_neuron_disease,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/L9040-0003-0006_S42_L008_R1_001.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/L9040-0003-0005_S41_L008_R1_001.fastq.gz,004IP_vs_004input
+FUS_remedy,FUS_remedy,motor_neuron_remedy,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/L9040-0003-0004_S40_L008_R1_001.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/Lei_Wang_eCLIP/9040-0003-10012026_153425/L9040-0003-0003_S39_L008_R1_001.fastq.gz,002IP_vs_002input
