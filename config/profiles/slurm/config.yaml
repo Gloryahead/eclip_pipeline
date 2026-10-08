@@ -58,6 +58,13 @@ set-resources:
   se_dedup_umi:          # must match the rule name in skipper/rules/se_preprocess.smk
     cpus_per_task: 8
     runtime: 360
+  # partition_bam_reads pipes bedtools bamtobed → sort -S 50% → bedtools coverage.
+  # sort consumes ~54 GB (50% of Skipper's 108 GB default) and bedtools coverage
+  # adds another ~60–80 GB for large SMInput BAMs → OOM kill at 108 GB.
+  # 200 GB leaves comfortable headroom on Puma's 224 GB nodes.
+  partition_bam_reads:
+    mem_mb: 200000
+    runtime: 360
   call_peaks:
     cpus_per_task: 4
     mem_mb: 16000
