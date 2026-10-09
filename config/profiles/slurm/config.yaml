@@ -65,6 +65,10 @@ set-resources:
   partition_bam_reads:
     mem_mb: 200000
     runtime: 360
+    # Puma allocates memory proportionally by CPU (≈5 GB/core); mem_mb alone is
+    # not forwarded to sbatch by the executor plugin. Pass --mem explicitly so
+    # SLURM actually enforces the 200 GB limit instead of the default 4×5=20 GB.
+    slurm_extra: "'--export=ALL --mem=200G'"
   call_peaks:
     cpus_per_task: 4
     mem_mb: 16000
