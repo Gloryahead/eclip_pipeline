@@ -79,6 +79,7 @@ dependencies:
   # installs cleanly. On an existing env with openssl 1.1.x, replace the
   # conda binary with the UCSC static binary (see README).
   - ucsc-bedgraphtobigwig
+  - ucsc-bigwigtobedgraph   # needed by negate_minus_bigwigs.sh post-processing step
   - bc
   - deeptools=3.5.4
 
