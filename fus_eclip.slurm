@@ -54,7 +54,14 @@ sed -i \
    s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
-echo "--- Running FUS eCLIP Skipper pipeline (3 conditions) ---"
+echo "--- Step 1: Running FUS eCLIP Skipper pipeline (3 conditions) ---"
 bash "${SCRIPT_BASE}/run_analysis.sh" fus_eclip
+
+# Step 2: Negate minus-strand bigwigs for IGV display (peaks face downward)
+echo "--- Step 2: Negating minus-strand bigwigs ---"
+bash "${SCRIPT_BASE}/scripts/negate_minus_bigwigs.sh" \
+    /xdisk/haining/maarowosegbe/eclip_pipeline/results/fus_eclip \
+    /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt \
+    8
 
 echo "========== Job finished at: $(date) =========="

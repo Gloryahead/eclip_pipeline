@@ -63,4 +63,11 @@ bash "${SCRIPT_BASE}/scripts/download_rhine_pkr.sh"
 echo "--- Step 2: Running Skipper pipeline ---"
 bash "${SCRIPT_BASE}/run_analysis.sh" rhine_pkr
 
+# Step 3: Negate minus-strand bigwigs for IGV display (peaks face downward)
+echo "--- Step 3: Negating minus-strand bigwigs ---"
+bash "${SCRIPT_BASE}/scripts/negate_minus_bigwigs.sh" \
+    /xdisk/haining/maarowosegbe/eclip_pipeline/results/rhine_pkr \
+    /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt \
+    8
+
 echo "========== Job finished at: $(date) =========="
