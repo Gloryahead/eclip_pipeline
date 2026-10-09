@@ -55,6 +55,16 @@ sed -i \
    s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
+# 3. pybedtools regression fix: newer pybedtools no longer auto-infers BED column
+#    names in to_dataframe() — returns RangeIndex (integers) instead of
+#    ['chrom','start','end',...]. annotate_finemapped_regions.py then passes those
+#    integers as the 'names' list for the intersect result, so site_annotation_finemap
+#    has columns 0,1,2... not 'start','end' → KeyError:'end' at line 34.
+#    Fix: supply explicit names= for the 9-column finemapped windows BED.
+sed -i \
+  "s/finemapped_sites_df = finemapped_sites\.to_dataframe()/finemapped_sites_df = finemapped_sites.to_dataframe(names=['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf'])/" \
+  "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
+
 # Step 1: Download FASTQ files (skips any already present)
 echo "--- Step 1: Downloading Rhine et al. 2025 FASTQs (GSE301408) ---"
 bash "${SCRIPT_BASE}/scripts/download_rhine_pkr.sh"
