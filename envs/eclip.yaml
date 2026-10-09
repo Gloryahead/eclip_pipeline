@@ -61,8 +61,8 @@ dependencies:
 
   # ── Motif analysis ──────────────────────────────────────────────────────
   # HOMER identifies enriched k-mers in eCLIP binding sites (Fig. 2e, 2l)
-  - homer=4.11
-  - perl=5.32.1
+  - homer=5.1
+  - perl
 
   # ── Skipper Python dependencies ─────────────────────────────────────────
   - pandas=2.2.2
