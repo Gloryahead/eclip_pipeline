@@ -65,10 +65,12 @@ set-resources:
   partition_bam_reads:
     mem_mb: 200000
     runtime: 360
-    # Puma allocates memory proportionally by CPU (≈5 GB/core); mem_mb alone is
-    # not forwarded to sbatch by the executor plugin. Pass --mem explicitly so
-    # SLURM actually enforces the 200 GB limit instead of the default 4×5=20 GB.
-    slurm_extra: "'--export=ALL --mem=200G'"
+    # Puma allocates memory proportionally by CPU (≈5 GB/core on standard nodes).
+    # mem_mb is NOT forwarded as --mem by the executor plugin, and slurm_extra in
+    # set-resources does not override default-resources slurm_extra. Requesting 8
+    # CPUs gives 8 × 5 GB = 40 GB via Puma's proportional allocation — enough for
+    # bedtools sort (50% × 108 GB default) + bedtools coverage on large SMInput BAMs.
+    cpus_per_task: 8
   call_peaks:
     cpus_per_task: 4
     mem_mb: 16000
