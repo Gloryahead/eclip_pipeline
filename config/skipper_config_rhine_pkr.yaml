@@ -46,4 +46,4 @@ GINI_CUTOFF: 0.9
 NORMALIZATION_MODE: "new"
 THRESHOLD_MIN: 2
 DEFINITION_OF_REPRODUCIBILITY: "ALL"
-HOMER: "homer"
+HOMER: ""  # disabled: Skipper bg process-substitution bug produces 0 background peaks → invalid results

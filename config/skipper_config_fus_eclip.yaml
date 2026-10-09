@@ -42,4 +42,4 @@ THRESHOLD_MIN: 2
 # Peaks reproducible in >=2/3 conditions are stable FUS binding sites.
 # Use per-condition BigWigs for differential FUS binding comparison across states.
 DEFINITION_OF_REPRODUCIBILITY: 2
-HOMER: "homer"
+HOMER: ""  # disabled: Skipper bg process-substitution bug produces 0 background peaks → invalid results
