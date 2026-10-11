@@ -66,10 +66,14 @@ negate_one() {
     fi
 
     printf 'START %s\n' "$(basename "${bw}")"
+    local tmp
+    tmp=$(mktemp --suffix=.bedgraph)
     bigWigToBedGraph "${bw}" stdout \
         | awk 'BEGIN{OFS="\t"} {$4 = -$4; print}' \
         | LC_COLLATE=C sort -k1,1 -k2,2n \
-        | bedGraphToBigWig stdin "${CHROM_SIZES}" "${out}"
+        > "${tmp}"
+    bedGraphToBigWig "${tmp}" "${CHROM_SIZES}" "${out}"
+    rm -f "${tmp}"
     printf 'DONE  %s\n' "$(basename "${out}")"
 }
 
