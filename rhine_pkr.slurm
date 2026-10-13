@@ -55,13 +55,16 @@ sed -i \
    s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
-# 3. pybedtools regression fix: copy patched version of annotate_finemapped_regions.py
-#    over the submodule. pybedtools >=0.10.0 no longer auto-infers column names in
-#    to_dataframe(); the submodule script builds intersection column names from
-#    finemapped_sites_df.columns, so both call sites must use explicit names=.
-#    Using cp (not sed) avoids NFS stale-handle or pattern-match failures.
-cp "${SCRIPT_BASE}/scripts/annotate_finemapped_regions.py" \
-   "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
+# 3. pybedtools regression fix: patch finemap.smk to use scripts/ path directly.
+#    Root cause: cp to skipper/tools/ (NFS submodule) does not propagate reliably
+#    to child SLURM nodes — NFS attribute cache (60 s default) serves the stale
+#    inode when child jobs start immediately after submission. The scripts/ copy
+#    has a fresh inode never previously cached by any node. Snakemake compiles
+#    the shell template on the parent node at DAG-build time (after this patch),
+#    so child jobs receive a pre-compiled command pointing at scripts/.
+python3 "${SCRIPT_BASE}/scripts/patch_annotate_finemap_rule.py" \
+  "${SCRIPT_BASE}/skipper/rules/finemap.smk" \
+  "${SCRIPT_BASE}/scripts/annotate_finemapped_regions.py"
 
 # 4. HOMER process-substitution fix: HOMER calls mergePeaks as a child subprocess
 #    which cannot read /dev/fd/N fds created by the parent shell's <(...).
