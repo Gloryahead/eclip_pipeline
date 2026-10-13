@@ -60,6 +60,9 @@ sed -i \
   "s/finemapped_sites_df = finemapped_sites\.to_dataframe()/finemapped_sites_df = finemapped_sites.to_dataframe(names=['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf'])/" \
   "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
 
+python3 "${SCRIPT_BASE}/scripts/patch_homer_rule.py" \
+  "${SCRIPT_BASE}/skipper/rules/analysis.smk"
+
 # Step 1: Download FASTQ files (skips any already present)
 echo "--- Step 1: Downloading G3BP1 test FASTQs ---"
 bash "${SCRIPT_BASE}/scripts/download_g3bp1_test.sh"

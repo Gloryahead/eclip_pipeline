@@ -58,6 +58,9 @@ sed -i \
   "s/finemapped_sites_df = finemapped_sites\.to_dataframe()/finemapped_sites_df = finemapped_sites.to_dataframe(names=['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf'])/" \
   "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
 
+python3 "${SCRIPT_BASE}/scripts/patch_homer_rule.py" \
+  "${SCRIPT_BASE}/skipper/rules/analysis.smk"
+
 echo "--- Step 1: Running FUS eCLIP Skipper pipeline (3 conditions) ---"
 bash "${SCRIPT_BASE}/run_analysis.sh" fus_eclip
 

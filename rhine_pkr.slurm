@@ -65,6 +65,12 @@ sed -i \
   "s/finemapped_sites_df = finemapped_sites\.to_dataframe()/finemapped_sites_df = finemapped_sites.to_dataframe(names=['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf'])/" \
   "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
 
+# 4. HOMER process-substitution fix: HOMER calls mergePeaks as a child subprocess
+#    which cannot read /dev/fd/N fds created by the parent shell's <(...).
+#    Patch replaces both fg and bg process substitutions with mktemp files.
+python3 "${SCRIPT_BASE}/scripts/patch_homer_rule.py" \
+  "${SCRIPT_BASE}/skipper/rules/analysis.smk"
+
 # Step 1: Download FASTQ files (skips any already present)
 echo "--- Step 1: Downloading Rhine et al. 2025 FASTQs (GSE301408) ---"
 bash "${SCRIPT_BASE}/scripts/download_rhine_pkr.sh"
