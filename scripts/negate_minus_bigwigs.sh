@@ -28,9 +28,10 @@
 # =============================================================================
 set -euo pipefail
 
-RESULTS_DIR="${1:?ERROR: results_dir required. Usage: $0 <results_dir> <chrom_sizes> [threads]}"
-CHROM_SIZES="${2:?ERROR: chrom_sizes required. Usage: $0 <results_dir> <chrom_sizes> [threads]}"
+RESULTS_DIR="${1:?ERROR: results_dir required. Usage: $0 <results_dir> <chrom_sizes> [threads] [suffix]}"
+CHROM_SIZES="${2:?ERROR: chrom_sizes required. Usage: $0 <results_dir> <chrom_sizes> [threads] [suffix]}"
 THREADS="${3:-4}"
+SUFFIX="${4:-_neg}"   # output suffix appended before .bw; default _neg, e.g. pass _inv for a different set
 
 # ── Validate inputs ────────────────────────────────────────────────────────
 [[ -d "${RESULTS_DIR}" ]] || { echo "ERROR: not a directory: ${RESULTS_DIR}"; exit 1; }
@@ -58,7 +59,7 @@ echo
 # ── Per-file negation function ─────────────────────────────────────────────
 negate_one() {
     local bw="$1"
-    local out="${bw%.bw}_neg.bw"
+    local out="${bw%.bw}${SUFFIX}.bw"
 
     if [[ -f "${out}" ]]; then
         printf 'SKIP  (exists) %s\n' "$(basename "${out}")"
@@ -78,7 +79,7 @@ negate_one() {
 }
 
 export -f negate_one
-export CHROM_SIZES   # inherited by each bash subprocess spawned by xargs
+export CHROM_SIZES SUFFIX   # inherited by each bash subprocess spawned by xargs
 
 # ── Run in parallel using null-delimited xargs ─────────────────────────────
 printf '%s\0' "${MINUS_BWS[@]}" \
