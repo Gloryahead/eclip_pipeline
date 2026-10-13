@@ -16,53 +16,49 @@ Usage:
 """
 
 import sys
-import re
 
 smk_path = sys.argv[1]
 
 with open(smk_path) as fh:
     src = fh.read()
 
-OLD = (
-    r"fg_input=<\(zcat \{input\.finemapped_windows\}"
-    r".*?"
-    r'\| awk -v OFS="\\t" \'{{print \$4, \$1, \$2\+1, \$3, \$6}}\'\)'
-    r"\s*\nbg_input=<\(zcat \{input\.background\}"
-    r".*?"
-    r'\| awk -v OFS="\\t" \'{{print \$4, \$1, \$2\+1, \$3, \$6}}\'\)'
+# Already patched check — idempotent
+if 'fg_tmp=$(mktemp' in src:
+    print("patch_homer_rule.py: already patched, skipping.")
+    sys.exit(0)
+
+OLD_PS = (
+    '        fg_input=<(zcat {input.finemapped_windows} \\\n'
+    '            | awk -v OFS="\\t" \'{{print $4 ":" $9, $1, $2+1, $3, $6}}\')\n'
+    '\n'
+    '        bg_input=<(zcat {input.background} \\\n'
+    '            | awk -v OFS="\\t" \'{{print $4, $1, $2+1, $3, $6}}\')'
 )
 
-# Build replacement: temp files for both fg and bg
-NEW = (
-    'fg_tmp=$(mktemp --suffix=.homer_fg.bed)\n'
-    '    bg_tmp=$(mktemp --suffix=.homer_bg.bed)\n'
-    '    zcat {input.finemapped_windows} \\\n'
-    '        | awk -v OFS="\\t" \'{{print $4 ":" $9, $1, $2+1, $3, $6}}\' > "$fg_tmp"\n'
-    '    zcat {input.background} \\\n'
-    '        | awk -v OFS="\\t" \'{{print $4, $1, $2+1, $3, $6}}\' > "$bg_tmp"'
+NEW_TMP = (
+    '        fg_tmp=$(mktemp --suffix=.homer_fg.bed)\n'
+    '        bg_tmp=$(mktemp --suffix=.homer_bg.bed)\n'
+    '        zcat {input.finemapped_windows} \\\n'
+    '            | awk -v OFS="\\t" \'{{print $4 ":" $9, $1, $2+1, $3, $6}}\' > "$fg_tmp"\n'
+    '        zcat {input.background} \\\n'
+    '            | awk -v OFS="\\t" \'{{print $4, $1, $2+1, $3, $6}}\' > "$bg_tmp"'
 )
 
-patched, count = re.subn(OLD, NEW, src, flags=re.DOTALL)
-
-if count == 0:
-    # Already patched or pattern changed — check for fg_tmp to avoid double-patch
-    if 'fg_tmp=$(mktemp' in src:
-        print("patch_homer_rule.py: already patched, skipping.")
-        sys.exit(0)
+if OLD_PS not in src:
     print("patch_homer_rule.py: WARNING — pattern not found, file unchanged.", file=sys.stderr)
     sys.exit(0)
 
-# Also replace the findMotifsGenome.pl call to use temp files and clean up
+patched = src.replace(OLD_PS, NEW_TMP, 1)
+
+# Replace variable references in findMotifsGenome.pl call
+patched = patched.replace('findMotifsGenome.pl "$fg_input"', 'findMotifsGenome.pl "$fg_tmp"', 1)
 patched = patched.replace(
-    'findMotifsGenome.pl "$fg_input"',
-    'findMotifsGenome.pl "$fg_tmp"'
-)
-patched = patched.replace(
-    '-bg "$bg_input"',
-    '-bg "$bg_tmp"\n    rm -f "$fg_tmp" "$bg_tmp"'
+    '-bg "$bg_input" \\\n        >> {log.stdout} 2> {log.stderr}',
+    '-bg "$bg_tmp" \\\n        >> {log.stdout} 2> {log.stderr}\n        rm -f "$fg_tmp" "$bg_tmp"',
+    1
 )
 
 with open(smk_path, 'w') as fh:
     fh.write(patched)
 
-print(f"patch_homer_rule.py: patched {smk_path} ({count} substitution(s)).")
+print(f"patch_homer_rule.py: patched {smk_path}.")
