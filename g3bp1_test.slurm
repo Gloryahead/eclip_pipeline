@@ -73,6 +73,6 @@ echo "--- Step 3: Negating minus-strand bigwigs ---"
 bash "${SCRIPT_BASE}/scripts/negate_minus_bigwigs.sh" \
     /xdisk/haining/maarowosegbe/eclip_pipeline/results/g3bp1_test \
     /xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index/chrNameLength.txt \
-    8
+    8 _inv
 
 echo "========== Job finished at: $(date) =========="
