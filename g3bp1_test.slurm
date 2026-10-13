@@ -56,9 +56,8 @@ sed -i \
    s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
-sed -i \
-  "s/finemapped_sites_df = finemapped_sites\.to_dataframe()/finemapped_sites_df = finemapped_sites.to_dataframe(names=['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf'])/" \
-  "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
+cp "${SCRIPT_BASE}/scripts/annotate_finemapped_regions.py" \
+   "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
 
 python3 "${SCRIPT_BASE}/scripts/patch_homer_rule.py" \
   "${SCRIPT_BASE}/skipper/rules/analysis.smk"

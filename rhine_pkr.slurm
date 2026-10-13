@@ -55,15 +55,13 @@ sed -i \
    s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
-# 3. pybedtools regression fix: newer pybedtools no longer auto-infers BED column
-#    names in to_dataframe() — returns RangeIndex (integers) instead of
-#    ['chrom','start','end',...]. annotate_finemapped_regions.py then passes those
-#    integers as the 'names' list for the intersect result, so site_annotation_finemap
-#    has columns 0,1,2... not 'start','end' → KeyError:'end' at line 34.
-#    Fix: supply explicit names= for the 9-column finemapped windows BED.
-sed -i \
-  "s/finemapped_sites_df = finemapped_sites\.to_dataframe()/finemapped_sites_df = finemapped_sites.to_dataframe(names=['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf'])/" \
-  "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
+# 3. pybedtools regression fix: copy patched version of annotate_finemapped_regions.py
+#    over the submodule. pybedtools >=0.10.0 no longer auto-infers column names in
+#    to_dataframe(); the submodule script builds intersection column names from
+#    finemapped_sites_df.columns, so both call sites must use explicit names=.
+#    Using cp (not sed) avoids NFS stale-handle or pattern-match failures.
+cp "${SCRIPT_BASE}/scripts/annotate_finemapped_regions.py" \
+   "${SCRIPT_BASE}/skipper/tools/annotate_finemapped_regions.py"
 
 # 4. HOMER process-substitution fix: HOMER calls mergePeaks as a child subprocess
 #    which cannot read /dev/fd/N fds created by the parent shell's <(...).
