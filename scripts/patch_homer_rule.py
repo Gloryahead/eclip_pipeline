@@ -16,47 +16,66 @@ Usage:
 """
 
 import sys
+import re
 
 smk_path = sys.argv[1]
 
 with open(smk_path) as fh:
     src = fh.read()
 
-# Already patched check — idempotent
 if 'fg_tmp=$(mktemp' in src:
     print("patch_homer_rule.py: already patched, skipping.")
     sys.exit(0)
 
-OLD_PS = (
-    '        fg_input=<(zcat {input.finemapped_windows} \\\n'
-    '            | awk -v OFS="\\t" \'{{print $4 ":" $9, $1, $2+1, $3, $6}}\')\n'
-    '\n'
-    '        bg_input=<(zcat {input.background} \\\n'
-    '            | awk -v OFS="\\t" \'{{print $4, $1, $2+1, $3, $6}}\')'
+# Use a flexible regex to match the process-substitution block regardless of
+# exact indentation or trailing whitespace — the exact string match proved
+# fragile across environments.
+m = re.search(
+    r'( +)fg_input=<\(zcat \{input\.finemapped_windows\} \\\n'
+    r'( +)\| awk[^\n]+\)\n'
+    r'\n'
+    r' +bg_input=<\(zcat \{input\.background\} \\\n'
+    r' +\| awk[^\n]+\)',
+    src,
 )
 
-NEW_TMP = (
-    '        fg_tmp=$(mktemp --suffix=.homer_fg.bed)\n'
-    '        bg_tmp=$(mktemp --suffix=.homer_bg.bed)\n'
-    '        zcat {input.finemapped_windows} \\\n'
-    '            | awk -v OFS="\\t" \'{{print $4 ":" $9, $1, $2+1, $3, $6}}\' > "$fg_tmp"\n'
-    '        zcat {input.background} \\\n'
-    '            | awk -v OFS="\\t" \'{{print $4, $1, $2+1, $3, $6}}\' > "$bg_tmp"'
+if m is None:
+    print(
+        "patch_homer_rule.py: WARNING — process-substitution block not found, file unchanged.",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+
+indent = m.group(1)   # leading spaces on fg_input line (e.g. 8 spaces)
+indent2 = m.group(2)  # leading spaces on | awk line (e.g. 12 spaces)
+
+new_block = (
+    indent + 'fg_tmp=$(mktemp --suffix=.homer_fg.bed)\n' +
+    indent + 'bg_tmp=$(mktemp --suffix=.homer_bg.bed)\n' +
+    indent + 'zcat {input.finemapped_windows} \\\n' +
+    indent2 + '| awk -v OFS="\\t" \'{{print $4 ":" $9, $1, $2+1, $3, $6}}\' > "$fg_tmp"\n' +
+    indent + 'zcat {input.background} \\\n' +
+    indent2 + '| awk -v OFS="\\t" \'{{print $4, $1, $2+1, $3, $6}}\' > "$bg_tmp"'
 )
 
-if OLD_PS not in src:
-    print("patch_homer_rule.py: WARNING — pattern not found, file unchanged.", file=sys.stderr)
-    sys.exit(0)
+patched = src[:m.start()] + new_block + src[m.end():]
 
-patched = src.replace(OLD_PS, NEW_TMP, 1)
+# Replace variable references in the findMotifsGenome.pl call
+patched = patched.replace('"$fg_input"', '"$fg_tmp"', 1)
+patched = patched.replace('"$bg_input"', '"$bg_tmp"', 1)
 
-# Replace variable references in findMotifsGenome.pl call
-patched = patched.replace('findMotifsGenome.pl "$fg_input"', 'findMotifsGenome.pl "$fg_tmp"', 1)
-patched = patched.replace(
-    '-bg "$bg_input" \\\n        >> {log.stdout} 2> {log.stderr}',
-    '-bg "$bg_tmp" \\\n        >> {log.stdout} 2> {log.stderr}\n        rm -f "$fg_tmp" "$bg_tmp"',
-    1
-)
+# Add rm cleanup after the log redirect that ends the HOMER call
+log_redirect = '>> {log.stdout} 2> {log.stderr}'
+idx_bg = patched.find('-bg "$bg_tmp"')
+if idx_bg >= 0:
+    idx_log = patched.find(log_redirect, idx_bg)
+    if idx_log >= 0:
+        insert_at = idx_log + len(log_redirect)
+        patched = (
+            patched[:insert_at]
+            + '\n' + indent + 'rm -f "$fg_tmp" "$bg_tmp"'
+            + patched[insert_at:]
+        )
 
 with open(smk_path, 'w') as fh:
     fh.write(patched)
