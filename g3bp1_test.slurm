@@ -51,9 +51,7 @@ SCRIPT_BASE="/home/u11/maarowosegbe/eclip_pipeline"
 #    startup; add thread stacks and the cgroup limit is breached → OOM kill
 #    (exit 137) even though actual heap usage is much lower. Fix: start at
 #    4 GB and grow on demand up to the retry-scaled Xmx.
-sed -i \
-  's/-Xss[0-9]*[mMgGkK]/-Xss512m/g;
-   s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
+python3 "${SCRIPT_BASE}/scripts/patch_se_preprocess_rule.py" \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
 python3 "${SCRIPT_BASE}/scripts/patch_annotate_finemap_rule.py" \

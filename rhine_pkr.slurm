@@ -50,9 +50,7 @@ SCRIPT_BASE="/home/u11/maarowosegbe/eclip_pipeline"
 # 2. -Xms4000M: fixes OOM kill (exit 137). Skipper sets Xms=Xmx which pre-commits
 #    the full heap at startup, breaching the SLURM cgroup limit. Starting at 4 GB
 #    and growing to Xmx on demand keeps RSS well within limits.
-sed -i \
-  's/-Xss[0-9]*[mMgGkK]/-Xss512m/g;
-   s/-Xms{resources\.java_mem_mb}M -Xmx/-Xms4000M -Xmx/g' \
+python3 "${SCRIPT_BASE}/scripts/patch_se_preprocess_rule.py" \
   "${SCRIPT_BASE}/skipper/rules/se_preprocess.smk"
 
 # 3. pybedtools regression fix: patch finemap.smk to use scripts/ path directly.
