@@ -38,8 +38,8 @@ OVERDISPERSION_MODE: "input"
 GINI_CUTOFF: 0.9
 NORMALIZATION_MODE: "new"
 THRESHOLD_MIN: 2
-# 3 biological conditions treated as 3 replicates (Skipper requires >=2 replicates).
-# Peaks reproducible in >=2/3 conditions are stable FUS binding sites.
-# Use per-condition BigWigs for differential FUS binding comparison across states.
-DEFINITION_OF_REPRODUCIBILITY: 2
+# 3 separate experiments (FUS_healthy, FUS_disease, FUS_remedy), each with 1 replicate.
+# "ALL" means every peak passes (1/1 = no reproducibility filter needed).
+# Compare peak lists and BigWigs across experiments for differential FUS binding.
+DEFINITION_OF_REPRODUCIBILITY: "ALL"
 HOMER: "homer"
