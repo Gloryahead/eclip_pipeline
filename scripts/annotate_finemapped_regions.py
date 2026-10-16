@@ -64,6 +64,9 @@ if __name__ == '__main__':
         site_annotation_finemap = intersection.to_dataframe()
         print(f"[annotate_finemap] intersection shape: {site_annotation_finemap.shape}", flush=True)
     except EmptyDataError:
+        site_annotation_finemap = pd.DataFrame()
+
+    if site_annotation_finemap.empty:
         print("No annotated overlaps. Creating an empty file and exiting cleanly.")
         Path(outf).touch()
         sys.exit(0)
