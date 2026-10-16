@@ -6,15 +6,13 @@ sys.stderr = sys.stdout
 
 import gzip
 import os
+import shutil
+import subprocess
 import tempfile
 import pandas as pd
-from pybedtools import BedTool
 from pathlib import Path
-from pandas.errors import EmptyDataError
 
 # Column names for the finemapped sites file (Skipper finemap output).
-# Used as a label prefix; the actual column count is read from the file
-# dynamically so this list never needs to exactly match the file format.
 FINEMAPPED_COLS = ['chrom', 'start', 'end', 'name', 'score', 'strand', 'input', 'clip', 'cdf']
 
 
@@ -29,6 +27,16 @@ def count_bed_columns(filepath):
     return 0
 
 
+def is_bed_empty(filepath):
+    """Return True if the BED/BED.gz file has no data lines."""
+    opener = gzip.open if str(filepath).endswith('.gz') else open
+    with opener(str(filepath), 'rt') as fh:
+        for line in fh:
+            if line.strip() and not line.startswith('#'):
+                return False
+    return True
+
+
 if __name__ == '__main__':
     finemapped_path, ranking_path, window_path, outf = sys.argv[1:5]
 
@@ -37,60 +45,86 @@ if __name__ == '__main__':
     n_finemap_cols = count_bed_columns(finemapped_path)
     print(f"[annotate_finemap] finemapped file has {n_finemap_cols} columns", flush=True)
 
-    finemapped_sites = BedTool(finemapped_path)
-    ranking = pd.read_csv(ranking_path, sep='\t')
-    window = pd.read_csv(window_path, sep='\t')
+    if is_bed_empty(finemapped_path):
+        print("No sites to parse. Creating an empty file and exiting cleanly.")
+        Path(outf).parent.mkdir(parents=True, exist_ok=True)
+        Path(outf).touch()
+        sys.exit(0)
+    print("[annotate_finemap] finemapped_sites non-empty, proceeding", flush=True)
 
-    print(f"[annotate_finemap] window columns ({len(window.columns)}): {window.columns.tolist()}", flush=True)
+    ranking = pd.read_csv(ranking_path, sep='\t')
     print(f"[annotate_finemap] ranking columns: {ranking.columns.tolist()}", flush=True)
 
-    try:
-        finemapped_sites.to_dataframe()
-        print("[annotate_finemap] finemapped_sites non-empty, proceeding", flush=True)
-    except EmptyDataError:
-        print("No sites to parse. Creating an empty file and exiting cleanly.")
+    # Read ONLY the header from the large annotation file.
+    # Loading the full 3.45 GB TSV via pd.read_csv() uses 15-20 GB RAM
+    # (pandas object dtype for string columns) — enough to trigger OOM kill.
+    with open(window_path) as f:
+        header_line = f.readline()
+    window_cols = header_line.strip().split('\t')
+    print(f"[annotate_finemap] window columns ({len(window_cols)}): {window_cols}", flush=True)
+
+    # Stream the annotation file (skip header row) to a headerless BED in TMPDIR.
+    # shutil.copyfileobj reads in 16 KB chunks — O(1) memory regardless of file size.
+    tmpdir = os.environ.get('TMPDIR', tempfile.gettempdir())
+    os.makedirs(tmpdir, exist_ok=True)
+    window_bed_path = os.path.join(tmpdir, 'skipper_annotation_window.bed')
+
+    with open(window_path) as src, open(window_bed_path, 'w') as dst:
+        src.readline()  # discard header
+        shutil.copyfileobj(src, dst)
+    window_bed_size = os.path.getsize(window_bed_path)
+    print(f"[annotate_finemap] streamed window BED to {window_bed_path} ({window_bed_size:,} bytes)", flush=True)
+
+    # Call bedtools intersect directly via subprocess.
+    # pybedtools' .intersect() silently returned (0, 0): the bedtools subprocess
+    # was OOM-killed (peak RSS ~21 GB for Python + bedtools combined), leaving an
+    # empty temp file that pybedtools returned as a (0, 0) DataFrame with no error.
+    # Direct bedtools call confirmed working on Puma (2026-10-16 manual test).
+    bedtools_bin = os.path.join(os.environ.get('CONDA_PREFIX', ''), 'bin', 'bedtools')
+    if not os.path.exists(bedtools_bin):
+        bedtools_bin = 'bedtools'
+
+    intersection_path = os.path.join(tmpdir, 'skipper_intersection.bed')
+    print(f"[annotate_finemap] running bedtools intersect (direct subprocess)", flush=True)
+
+    with open(intersection_path, 'w') as intersection_out:
+        bt_result = subprocess.run(
+            [bedtools_bin, 'intersect',
+             '-a', str(finemapped_path),
+             '-b', window_bed_path,
+             '-s', '-wb'],
+            stdout=intersection_out,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+
+    print(f"[annotate_finemap] bedtools returncode: {bt_result.returncode}", flush=True)
+    if bt_result.stderr:
+        print(f"[annotate_finemap] bedtools stderr: {bt_result.stderr[:2000]}", flush=True)
+    if bt_result.returncode != 0:
+        print(f"[annotate_finemap] FATAL: bedtools intersect failed", flush=True)
+        sys.exit(1)
+
+    intersection_size = os.path.getsize(intersection_path)
+    print(f"[annotate_finemap] intersection output: {intersection_size:,} bytes", flush=True)
+
+    if intersection_size == 0:
+        print("No annotated overlaps. Creating an empty file and exiting cleanly.")
+        Path(outf).parent.mkdir(parents=True, exist_ok=True)
         Path(outf).touch()
         sys.exit(0)
 
-    # Build finemap column names to match the actual file, falling back to
-    # generic names if the file has more columns than FINEMAPPED_COLS covers.
+    site_annotation_finemap = pd.read_csv(intersection_path, sep='\t', header=None)
+    print(f"[annotate_finemap] intersection shape: {site_annotation_finemap.shape}", flush=True)
+
     finemap_col_names = (
         FINEMAPPED_COLS + [f'finemap_col{i}' for i in range(len(FINEMAPPED_COLS), n_finemap_cols)]
     )[:n_finemap_cols]
 
-    # BedTool.from_dataframe() on a 3+ GB annotation file builds a giant
-    # in-memory string then writes it to pybedtools' default temp dir (often
-    # /tmp on the compute node, which has limited space). That silently
-    # produces an empty temp BED → zero intersection results. Instead, write
-    # directly to TMPDIR which SLURM allocates on xdisk and has real space.
-    tmpdir = os.environ.get('TMPDIR', tempfile.gettempdir())
-    os.makedirs(tmpdir, exist_ok=True)
-    window_bed_path = os.path.join(tmpdir, 'skipper_annotation_window.bed')
-    window.to_csv(window_bed_path, sep='\t', header=False, index=False)
-    window_bed_size = os.path.getsize(window_bed_path)
-    print(f"[annotate_finemap] wrote window BED to {window_bed_path} ({window_bed_size:,} bytes)", flush=True)
-    window_bed = BedTool(window_bed_path)
-
-    # find windows overlapping finemapped regions
-    intersection = finemapped_sites.intersect(window_bed, s=True, wb=True)
-    try:
-        site_annotation_finemap = intersection.to_dataframe()
-        print(f"[annotate_finemap] intersection shape: {site_annotation_finemap.shape}", flush=True)
-    except EmptyDataError:
-        site_annotation_finemap = pd.DataFrame()
-
-    if site_annotation_finemap.empty:
-        print("No annotated overlaps. Creating an empty file and exiting cleanly.")
-        Path(outf).touch()
-        sys.exit(0)
-
-    window_cols = window.columns.tolist()
     expected_cols = finemap_col_names + [c + '.1' for c in window_cols[:6]] + window_cols[6:]
-
     actual_n = len(site_annotation_finemap.columns)
     expected_n = len(expected_cols)
     print(f"[annotate_finemap] expected {expected_n} cols, got {actual_n}", flush=True)
-    print(f"[annotate_finemap] expected_cols: {expected_cols}", flush=True)
 
     if actual_n != expected_n:
         print(
@@ -110,12 +144,12 @@ if __name__ == '__main__':
         ranking.set_index('accession')['rank']
     )
 
-    # get unique 1-to-1 mapping, prioritize by ranking and overlap size
     site_annotation_uniq = site_annotation_finemap.sort_values(
         by='overlap_size', ascending=False
     ).sort_values(
         by='gene_types_rank', ascending=True
     ).drop_duplicates(subset='name', keep='first')
 
+    Path(outf).parent.mkdir(parents=True, exist_ok=True)
     site_annotation_uniq.to_csv(outf, sep='\t', index=False)
     print("[annotate_finemap] done.", flush=True)
