@@ -5,6 +5,8 @@ import sys
 sys.stderr = sys.stdout
 
 import gzip
+import os
+import tempfile
 import pandas as pd
 from pybedtools import BedTool
 from pathlib import Path
@@ -56,7 +58,18 @@ if __name__ == '__main__':
         FINEMAPPED_COLS + [f'finemap_col{i}' for i in range(len(FINEMAPPED_COLS), n_finemap_cols)]
     )[:n_finemap_cols]
 
-    window_bed = BedTool.from_dataframe(window)
+    # BedTool.from_dataframe() on a 3+ GB annotation file builds a giant
+    # in-memory string then writes it to pybedtools' default temp dir (often
+    # /tmp on the compute node, which has limited space). That silently
+    # produces an empty temp BED → zero intersection results. Instead, write
+    # directly to TMPDIR which SLURM allocates on xdisk and has real space.
+    tmpdir = os.environ.get('TMPDIR', tempfile.gettempdir())
+    os.makedirs(tmpdir, exist_ok=True)
+    window_bed_path = os.path.join(tmpdir, 'skipper_annotation_window.bed')
+    window.to_csv(window_bed_path, sep='\t', header=False, index=False)
+    window_bed_size = os.path.getsize(window_bed_path)
+    print(f"[annotate_finemap] wrote window BED to {window_bed_path} ({window_bed_size:,} bytes)", flush=True)
+    window_bed = BedTool(window_bed_path)
 
     # find windows overlapping finemapped regions
     intersection = finemapped_sites.intersect(window_bed, s=True, wb=True)
