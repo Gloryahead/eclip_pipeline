@@ -38,8 +38,8 @@ OVERDISPERSION_MODE: "input"
 GINI_CUTOFF: 0.9
 NORMALIZATION_MODE: "new"
 THRESHOLD_MIN: 2
-# 3 separate experiments (FUS_healthy, FUS_disease, FUS_remedy), each with 1 replicate.
-# "ALL" means every peak passes (1/1 = no reproducibility filter needed).
-# Compare peak lists and BigWigs across experiments for differential FUS binding.
-DEFINITION_OF_REPRODUCIBILITY: "ALL"
+# 3 conditions run as replicates 1/2/3 of one experiment (Skipper requires ≥2 reps).
+# Peaks enriched in ≥2/3 conditions are called. Use per-replicate BigWigs for
+# differential FUS binding comparison across healthy / disease / remedy.
+DEFINITION_OF_REPRODUCIBILITY: 2
 HOMER: "homer"
