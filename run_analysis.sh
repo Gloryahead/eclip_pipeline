@@ -50,8 +50,14 @@ case "${GENOME}" in
     fus_eclip)
         CONFIG="${SCRIPT_BASE}/config/skipper_config_fus_eclip.yaml"
         ;;
+    gse230717)
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_gse230717.yaml"
+        ;;
+    gse315406)
+        CONFIG="${SCRIPT_BASE}/config/skipper_config_gse315406.yaml"
+        ;;
     *)
-        echo "Unknown genome '${GENOME}'. Use 'human', 'mouse', 'g3bp1_test', 'rhine_pkr', or 'fus_eclip'."
+        echo "Unknown pipeline '${GENOME}'. Use 'human', 'mouse', 'g3bp1_test', 'rhine_pkr', 'fus_eclip', 'gse230717', or 'gse315406'."
         exit 1
         ;;
 esac
