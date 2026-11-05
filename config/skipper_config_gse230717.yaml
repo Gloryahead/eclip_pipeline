@@ -10,8 +10,8 @@
 # Cell:     human epithelial cells
 # Conditions (SNRNP200): whole cell vs cytoplasmic × unstressed vs stress
 #
-# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ end of R1 (informative read).
-#   All samples are paired-end; R1 only was retained during download.
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ of the read (informative read).
+#   Samples are SINGLE-END (confirmed: reads read = spots read in fasterq-dump).
 #
 # Genome: GRCh38 (hg38) + GENCODE v47 — reuses the index built for other human experiments.
 # =============================================================================

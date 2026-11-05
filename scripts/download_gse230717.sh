@@ -15,8 +15,8 @@
 #   wcs = whole cell + stress (sodium arsenite)
 #   cys = cytoplasmic + stress (sodium arsenite)
 #
-# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ of R1 (informative read).
-#   Samples are paired-end; R1 only is kept for the Skipper single-end pipeline.
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ of the read (informative read).
+#   Samples are SINGLE-END (confirmed: reads read = spots read in fasterq-dump).
 #
 # SRR accessions verified from NCBI SRA (SRX20116040–SRX20116063):
 #   G3BP1 IP:          SRR24321513 (rep1), SRR24321512 (rep2)
@@ -48,11 +48,10 @@ mkdir -p "${FASTQ_DIR}" "${TMP_PREFETCH}"
 trap 'rm -rf "${TMP_PREFETCH}"' EXIT
 
 # ---------------------------------------------------------------------------
-# download_pe_r1  label srr
-#   PAIRED-end: prefetch → fasterq-dump --split-files → keep R1 only.
-#   R2 is discarded — not needed for the single-end Skipper pipeline.
+# download_se  label srr
+#   SINGLE-end: prefetch → fasterq-dump → compress → rename.
 # ---------------------------------------------------------------------------
-download_pe_r1() {
+download_se() {
     local label="$1" srr="$2"
     local outfile="${FASTQ_DIR}/${label}.fastq.gz"
 
@@ -61,19 +60,15 @@ download_pe_r1() {
         return 0
     fi
 
-    echo "[DOWN-PE→R1] ${label}  (${srr})"
+    echo "[DOWN-SE] ${label}  (${srr})"
     prefetch --max-size 50G -p "${srr}" -O "${TMP_PREFETCH}/"
 
     fasterq-dump "${TMP_PREFETCH}/${srr}/${srr}.sra" \
         --outdir  "${FASTQ_DIR}" \
         --temp    "${TMP_PREFETCH}" \
-        --threads "${THREADS}" \
-        --split-files
+        --threads "${THREADS}"
 
-    # Keep R1 (cDNA + 5′ UMI); discard R2
-    mv "${FASTQ_DIR}/${srr}_1.fastq" "${FASTQ_DIR}/${label}.fastq"
-    rm -f "${FASTQ_DIR}/${srr}_2.fastq"
-
+    mv "${FASTQ_DIR}/${srr}.fastq" "${FASTQ_DIR}/${label}.fastq"
     pigz -p "${THREADS}" "${FASTQ_DIR}/${label}.fastq"
     rm -rf "${TMP_PREFETCH}/${srr}"
     echo "[DONE] ${label}"
@@ -85,45 +80,45 @@ echo ""
 
 # ── G3BP1 ────────────────────────────────────────────────────────────────────
 echo "--- G3BP1 ---"
-download_pe_r1 G3BP1_ip_rep1    SRR24321513
-download_pe_r1 G3BP1_ip_rep2    SRR24321512
-download_pe_r1 G3BP1_input_rep1 SRR24321525
-download_pe_r1 G3BP1_input_rep2 SRR24321524
+download_se G3BP1_ip_rep1    SRR24321513
+download_se G3BP1_ip_rep2    SRR24321512
+download_se G3BP1_input_rep1 SRR24321525
+download_se G3BP1_input_rep2 SRR24321524
 
 # ── CAPRIN1 ───────────────────────────────────────────────────────────────────
 echo "--- CAPRIN1 ---"
-download_pe_r1 CAPRIN1_ip_rep1    SRR24321511
-download_pe_r1 CAPRIN1_ip_rep2    SRR24321510
-download_pe_r1 CAPRIN1_input_rep1 SRR24321523
-download_pe_r1 CAPRIN1_input_rep2 SRR24321522
+download_se CAPRIN1_ip_rep1    SRR24321511
+download_se CAPRIN1_ip_rep2    SRR24321510
+download_se CAPRIN1_input_rep1 SRR24321523
+download_se CAPRIN1_input_rep2 SRR24321522
 
 # ── SNRNP200 whole cell, unstressed ──────────────────────────────────────────
 echo "--- SNRNP200 whole cell (unstressed) ---"
-download_pe_r1 SNRNP200_wc_ip_rep1    SRR24321517
-download_pe_r1 SNRNP200_wc_ip_rep2    SRR24321516
-download_pe_r1 SNRNP200_wc_input_rep1 SRR24321529
-download_pe_r1 SNRNP200_wc_input_rep2 SRR24321528
+download_se SNRNP200_wc_ip_rep1    SRR24321517
+download_se SNRNP200_wc_ip_rep2    SRR24321516
+download_se SNRNP200_wc_input_rep1 SRR24321529
+download_se SNRNP200_wc_input_rep2 SRR24321528
 
 # ── SNRNP200 cytoplasmic, unstressed ─────────────────────────────────────────
 echo "--- SNRNP200 cytoplasmic (unstressed) ---"
-download_pe_r1 SNRNP200_cy_ip_rep1    SRR24321515
-download_pe_r1 SNRNP200_cy_ip_rep2    SRR24321514
-download_pe_r1 SNRNP200_cy_input_rep1 SRR24321527
-download_pe_r1 SNRNP200_cy_input_rep2 SRR24321526
+download_se SNRNP200_cy_ip_rep1    SRR24321515
+download_se SNRNP200_cy_ip_rep2    SRR24321514
+download_se SNRNP200_cy_input_rep1 SRR24321527
+download_se SNRNP200_cy_input_rep2 SRR24321526
 
 # ── SNRNP200 whole cell, stress ───────────────────────────────────────────────
 echo "--- SNRNP200 whole cell (stress) ---"
-download_pe_r1 SNRNP200_wcs_ip_rep1    SRR24321509
-download_pe_r1 SNRNP200_wcs_ip_rep2    SRR24321508
-download_pe_r1 SNRNP200_wcs_input_rep1 SRR24321521
-download_pe_r1 SNRNP200_wcs_input_rep2 SRR24321520
+download_se SNRNP200_wcs_ip_rep1    SRR24321509
+download_se SNRNP200_wcs_ip_rep2    SRR24321508
+download_se SNRNP200_wcs_input_rep1 SRR24321521
+download_se SNRNP200_wcs_input_rep2 SRR24321520
 
 # ── SNRNP200 cytoplasmic, stress ──────────────────────────────────────────────
 echo "--- SNRNP200 cytoplasmic (stress) ---"
-download_pe_r1 SNRNP200_cys_ip_rep1    SRR24321507
-download_pe_r1 SNRNP200_cys_ip_rep2    SRR24321506
-download_pe_r1 SNRNP200_cys_input_rep1 SRR24321519
-download_pe_r1 SNRNP200_cys_input_rep2 SRR24321518
+download_se SNRNP200_cys_ip_rep1    SRR24321507
+download_se SNRNP200_cys_ip_rep2    SRR24321506
+download_se SNRNP200_cys_input_rep1 SRR24321519
+download_se SNRNP200_cys_input_rep2 SRR24321518
 
 echo ""
 echo "=== Download complete ==="

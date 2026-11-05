@@ -6,8 +6,8 @@
 # Cell type: human epithelial cells
 # Conditions (SNRNP200): whole cell vs cytoplasmic × unstressed vs stress
 #
-# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ end of R1 (informative read).
-#   All samples are paired-end; R1 only was kept during download (see download_gse230717.sh).
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ of the read (informative read).
+#   Samples are SINGLE-END (confirmed: reads read = spots read in fasterq-dump).
 #
 # SRR accessions verified from NCBI SRA (SRX20116040–SRX20116063):
 #   G3BP1 IP:          SRR24321513 (rep1), SRR24321512 (rep2)
