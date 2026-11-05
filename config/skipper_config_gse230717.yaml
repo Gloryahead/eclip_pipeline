@@ -1,0 +1,46 @@
+# =============================================================================
+# skipper_config_gse230717.yaml
+# Skipper eCLIP pipeline configuration — Gosztyla et al. 2023 (GSE230717)
+#
+# Paper: "Large-scale map of RNA binding protein interactomes across the
+#         mRNA life-cycle" (Mol Cell, 2023)
+# GEO:   GSE230717
+#
+# Targets:  G3BP1, CAPRIN1, SNRNP200
+# Cell:     human epithelial cells
+# Conditions (SNRNP200): whole cell vs cytoplasmic × unstressed vs stress
+#
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ end of R1 (informative read).
+#   All samples are paired-end; R1 only was retained during download.
+#
+# Genome: GRCh38 (hg38) + GENCODE v47 — reuses the index built for other human experiments.
+# =============================================================================
+
+WORKDIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/results/gse230717"
+TMPDIR:  "/xdisk/haining/maarowosegbe/eclip_pipeline/tmp"
+MANIFEST: "/home/u11/maarowosegbe/eclip_pipeline/config/manifest_gse230717.csv"
+TOOL_DIR: "/home/u11/maarowosegbe/eclip_pipeline/skipper/tools"
+
+# Reference files (hg38) — reuse the same index built for other human experiments
+GFF: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/gencode.v47.filtered.gff3.gz"
+GENOME: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/GRCh38.primary_assembly.genome.fa"
+BLACKLIST: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/encode_eclip_blacklist.bed"
+PARTITION: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_partition.bed"
+FEATURE_ANNOTATIONS: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/skipper_feature_annotations.tsv"
+STAR_DIR: "/xdisk/haining/maarowosegbe/eclip_pipeline/references/hg38/star_index"
+ACCESSION_RANKINGS: "/home/u11/maarowosegbe/eclip_pipeline/skipper/annotations/accession_type_ranking.txt"
+
+# ENCODE4 protocol: UMI at 5′ of R1; 10 nt random barcode from RT primer
+protocol: ENCODE4
+UMI_SIZE: 10
+INFORMATIVE_READ: 1
+
+# Peak-calling parameters
+# OVERDISPERSION_MODE: input — both IP and SMInput are deposited in GSE230717,
+# so use SMInput for overdispersion estimation (more accurate than "clip" mode).
+OVERDISPERSION_MODE: "input"
+GINI_CUTOFF: 0.9
+NORMALIZATION_MODE: "new"
+THRESHOLD_MIN: 2
+DEFINITION_OF_REPRODUCIBILITY: "ALL"
+HOMER: "homer"

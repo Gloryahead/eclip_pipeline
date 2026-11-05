@@ -1,0 +1,38 @@
+# eCLIP sample manifest — Gosztyla et al. 2023, GSE230717
+# Paper: "Large-scale map of RNA binding protein interactomes across the mRNA life-cycle"
+# GEO: GSE230717
+#
+# Targets: G3BP1, CAPRIN1, SNRNP200
+# Cell type: human epithelial cells
+# Conditions (SNRNP200): whole cell vs cytoplasmic × unstressed vs stress
+#
+# Protocol: ENCODE4 / seCLIP — 10 nt UMI at 5′ end of R1 (informative read).
+#   All samples are paired-end; R1 only was kept during download (see download_gse230717.sh).
+#
+# SRR accessions verified from NCBI SRA (SRX20116040–SRX20116063):
+#   G3BP1 IP:          SRR24321513 (rep1), SRR24321512 (rep2)
+#   G3BP1 SMInput:     SRR24321525 (rep1), SRR24321524 (rep2)
+#   CAPRIN1 IP:        SRR24321511 (rep1), SRR24321510 (rep2)
+#   CAPRIN1 SMInput:   SRR24321523 (rep1), SRR24321522 (rep2)
+#   SNRNP200 WC IP:    SRR24321517 (rep1), SRR24321516 (rep2)
+#   SNRNP200 WC SMIn:  SRR24321529 (rep1), SRR24321528 (rep2)
+#   SNRNP200 CY IP:    SRR24321515 (rep1), SRR24321514 (rep2)
+#   SNRNP200 CY SMIn:  SRR24321527 (rep1), SRR24321526 (rep2)
+#   SNRNP200 WCS IP:   SRR24321509 (rep1), SRR24321508 (rep2)
+#   SNRNP200 WCS SMIn: SRR24321521 (rep1), SRR24321520 (rep2)
+#   SNRNP200 CYS IP:   SRR24321507 (rep1), SRR24321506 (rep2)
+#   SNRNP200 CYS SMIn: SRR24321519 (rep1), SRR24321518 (rep2)
+#
+Experiment,Sample,Cells,Input_replicate,Input_adapter,Input_fastq,CLIP_replicate,CLIP_adapter,CLIP_fastq,Notes
+G3BP1,G3BP1,epithelial,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/G3BP1_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/G3BP1_ip_rep1.fastq.gz,SRR24321513/SRR24321525
+G3BP1,G3BP1,epithelial,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/G3BP1_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/G3BP1_ip_rep2.fastq.gz,SRR24321512/SRR24321524
+CAPRIN1,CAPRIN1,epithelial,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/CAPRIN1_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/CAPRIN1_ip_rep1.fastq.gz,SRR24321511/SRR24321523
+CAPRIN1,CAPRIN1,epithelial,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/CAPRIN1_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/CAPRIN1_ip_rep2.fastq.gz,SRR24321510/SRR24321522
+SNRNP200_wc,SNRNP200_wc,epithelial_whole_cell,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wc_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wc_ip_rep1.fastq.gz,SRR24321517/SRR24321529
+SNRNP200_wc,SNRNP200_wc,epithelial_whole_cell,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wc_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wc_ip_rep2.fastq.gz,SRR24321516/SRR24321528
+SNRNP200_cy,SNRNP200_cy,epithelial_cytoplasmic,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cy_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cy_ip_rep1.fastq.gz,SRR24321515/SRR24321527
+SNRNP200_cy,SNRNP200_cy,epithelial_cytoplasmic,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cy_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cy_ip_rep2.fastq.gz,SRR24321514/SRR24321526
+SNRNP200_wcs,SNRNP200_wcs,epithelial_whole_cell_stress,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wcs_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wcs_ip_rep1.fastq.gz,SRR24321509/SRR24321521
+SNRNP200_wcs,SNRNP200_wcs,epithelial_whole_cell_stress,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wcs_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_wcs_ip_rep2.fastq.gz,SRR24321508/SRR24321520
+SNRNP200_cys,SNRNP200_cys,epithelial_cytoplasmic_stress,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cys_input_rep1.fastq.gz,1,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cys_ip_rep1.fastq.gz,SRR24321507/SRR24321519
+SNRNP200_cys,SNRNP200_cys,epithelial_cytoplasmic_stress,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_input_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cys_input_rep2.fastq.gz,2,/home/u11/maarowosegbe/eclip_pipeline/config/adapters/eclip_ip_adapter.fasta,/xdisk/haining/maarowosegbe/eclip_pipeline/data/fastq/gse230717/SNRNP200_cys_ip_rep2.fastq.gz,SRR24321506/SRR24321518
